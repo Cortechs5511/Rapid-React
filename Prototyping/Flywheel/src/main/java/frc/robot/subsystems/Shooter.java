@@ -39,6 +39,8 @@ public class Shooter extends SubsystemBase {
         SmartDashboard.putNumber("Shooter/I", ShooterConstants.kI);
         SmartDashboard.putNumber("Shooter/D", ShooterConstants.kD);
         SmartDashboard.putNumber("Shooter/F", ShooterConstants.kF);
+
+        SmartDashboard.putNumber("Shooter/Ramp Rate", 1.5);
     }
 
     @Override
@@ -47,6 +49,8 @@ public class Shooter extends SubsystemBase {
         m_pidController.setI(SmartDashboard.getNumber("Shooter/I", ShooterConstants.kI));
         m_pidController.setD(SmartDashboard.getNumber("Shooter/D", ShooterConstants.kD));
         m_pidController.setFF(SmartDashboard.getNumber("Shooter/F", ShooterConstants.kF));
+
+        this.setRampRate(SmartDashboard.getNumber("Shooter/Ramp Rate", 1.5));
 
         SmartDashboard.putNumber("Shooter/Speed", m_encoder.getVelocity());
         SmartDashboard.putNumber("Shooter/Setpoint", m_leftMotor.get());
@@ -59,7 +63,7 @@ public class Shooter extends SubsystemBase {
         sparkMax.setIdleMode(IdleMode.kCoast);
         sparkMax.setSmartCurrentLimit(60);
         sparkMax.setOpenLoopRampRate(1.5);
-        sparkMax.setClosedLoopRampRate(0.2);
+        sparkMax.setClosedLoopRampRate(1.5);
         sparkMax.enableVoltageCompensation(11);
 
         return sparkMax;
@@ -71,5 +75,13 @@ public class Shooter extends SubsystemBase {
 
     public void setPIDReference(double reference) {
         m_pidController.setReference(reference, ControlType.kVelocity);
+    }
+
+    public void setRampRate(double rate) {
+        m_leftMotor.setOpenLoopRampRate(rate);
+        m_rightMotor.setOpenLoopRampRate(rate);
+
+        m_leftMotor.setClosedLoopRampRate(rate);
+        m_rightMotor.setClosedLoopRampRate(rate);
     }
 }
