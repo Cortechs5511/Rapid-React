@@ -40,9 +40,9 @@ public class RobotContainer {
        
         SmartDashboard.putBoolean("Shooter/RPM Mode", false);
 
-        m_shooter.setDefaultCommand(m_setPower);
+        m_shooter.setDefaultCommand(m_setSpeed);
         m_trigger.whenActive(m_setSpeed)
-                .whenInactive(m_setPower);
+                .whenInactive(m_setSpeed);
     }
 
     /**

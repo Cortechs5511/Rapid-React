@@ -16,18 +16,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
 
 public class Shooter extends SubsystemBase {
-    // create two CANSparkMaxes
     private final CANSparkMax m_leftMotor = createSparkMax(ShooterConstants.leftId);
     private final CANSparkMax m_rightMotor = createSparkMax(ShooterConstants.rightId);
 
     private final RelativeEncoder m_encoder = m_leftMotor.getEncoder();
     private final SparkMaxPIDController m_pidController = m_leftMotor.getPIDController();
 
-    /** Creates a new ExampleSubsystem. */
     public Shooter() {
-        m_rightMotor.follow(m_leftMotor);
-        // TODO: test motor inversion
+        m_leftMotor.setInverted(false);
+        m_rightMotor.setInverted(false);
 
+        m_rightMotor.follow(m_leftMotor, true);
+        
         m_encoder.setPositionConversionFactor(42);
 
         m_pidController.setP(ShooterConstants.kP);
