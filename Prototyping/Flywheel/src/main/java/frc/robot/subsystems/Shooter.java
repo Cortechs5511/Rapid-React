@@ -26,7 +26,7 @@ public class Shooter extends SubsystemBase {
         m_leftMotor.setInverted(false);
         m_rightMotor.setInverted(false);
 
-        m_rightMotor.follow(m_leftMotor, true);
+        m_rightMotor.follow(m_leftMotor, false);
         
         m_encoder.setPositionConversionFactor(42);
 
