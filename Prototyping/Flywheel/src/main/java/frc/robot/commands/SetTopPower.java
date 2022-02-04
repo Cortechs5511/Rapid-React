@@ -6,41 +6,41 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.TopShooter;
 
-public class SetPower extends CommandBase {
+public class SetTopPower extends CommandBase {
 
-    private Shooter m_shooter;
+    private TopShooter t_shooter;
 
     /** Creates a new SetPower. */
-    public SetPower(Shooter shooter) {
+    public SetTopPower(TopShooter t_shooter) {
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(shooter);
-        m_shooter = shooter;
+        addRequirements(t_shooter);
+        this.t_shooter = t_shooter;
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_shooter.setPower(0);
+        t_shooter.setPower(0);
 
-        SmartDashboard.putNumber("Shooter/Power", 0);
+        SmartDashboard.putNumber("TopShooter/Power", 0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
         // set shooter power to SmartDashboard value
-        m_shooter.setPower(SmartDashboard.getNumber("Shooter/Power", 0));
+        t_shooter.setPower(SmartDashboard.getNumber("TopShooter/Power", 0));
         
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_shooter.setPower(0);
+        t_shooter.setPower(0);
         
-        SmartDashboard.putNumber("Shooter/Power", 0);
+        SmartDashboard.putNumber("TopShooter/Power", 0);
         
     }
 

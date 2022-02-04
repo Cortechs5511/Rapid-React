@@ -15,44 +15,45 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
 
-public class Shooter extends SubsystemBase {
-    private final CANSparkMax m_leftMotor = createSparkMax(ShooterConstants.leftId);
-    
-    //private final RelativeEncoder r_encoder = m_rightMotor.getEncoder();
-    private final RelativeEncoder l_encoder = m_leftMotor.getEncoder();
-    private final SparkMaxPIDController m_pidController = m_leftMotor.getPIDController();
+public class TopShooter extends SubsystemBase {
+   
+    private final CANSparkMax m_rightMotor = createSparkMax(ShooterConstants.rightId);
+    private final RelativeEncoder r_encoder = m_rightMotor.getEncoder();
 
-    public Shooter() {
-        m_leftMotor.setInverted(false);
+    private final SparkMaxPIDController m_pidController = m_rightMotor.getPIDController();
+
+    public TopShooter() {
+       
+        m_rightMotor.setInverted(true);
+
         
-        
-        l_encoder.setPositionConversionFactor(42);
+        r_encoder.setPositionConversionFactor(42);
 
         m_pidController.setP(ShooterConstants.kP);
         m_pidController.setI(ShooterConstants.kI);
         m_pidController.setD(ShooterConstants.kD);
         m_pidController.setFF(ShooterConstants.kF);
 
-        SmartDashboard.putNumber("Shooter/P", ShooterConstants.kP);
-        SmartDashboard.putNumber("Shooter/I", ShooterConstants.kI);
-        SmartDashboard.putNumber("Shooter/D", ShooterConstants.kD);
-        SmartDashboard.putNumber("Shooter/F", ShooterConstants.kF);
+        SmartDashboard.putNumber("TopShooter/P", ShooterConstants.kP);
+        SmartDashboard.putNumber("TopShooter/I", ShooterConstants.kI);
+        SmartDashboard.putNumber("TopShooter/D", ShooterConstants.kD);
+        SmartDashboard.putNumber("TopShooter/F", ShooterConstants.kF);
 
-        SmartDashboard.putNumber("Shooter/Ramp Rate", 1.5);
+        SmartDashboard.putNumber("TopShooter/Ramp Rate", 1.5);
     }
 
     @Override
     public void periodic() {
-        m_pidController.setP(SmartDashboard.getNumber("Shooter/P", ShooterConstants.kP));
-        m_pidController.setI(SmartDashboard.getNumber("Shooter/I", ShooterConstants.kI));
-        m_pidController.setD(SmartDashboard.getNumber("Shooter/D", ShooterConstants.kD));
-        m_pidController.setFF(SmartDashboard.getNumber("Shooter/F", ShooterConstants.kF));
+        m_pidController.setP(SmartDashboard.getNumber("TopShooter/P", ShooterConstants.kP));
+        m_pidController.setI(SmartDashboard.getNumber("TopShooter/I", ShooterConstants.kI));
+        m_pidController.setD(SmartDashboard.getNumber("TopShooter/D", ShooterConstants.kD));
+        m_pidController.setFF(SmartDashboard.getNumber("TopShooter/F", ShooterConstants.kF));
 
-        this.setRampRate(SmartDashboard.getNumber("Shooter/Ramp Rate", 1.5));
+        this.setRampRate(SmartDashboard.getNumber("TopShooter/Ramp Rate", 1.5));
 
-        SmartDashboard.putNumber("Shooter/Speed", l_encoder.getVelocity());
+        SmartDashboard.putNumber("TopShooter/Speed", r_encoder.getVelocity());
 
-        SmartDashboard.putNumber("Shooter/Setpoint", m_leftMotor.get());
+        SmartDashboard.putNumber("TopShooter/Setpoint", m_rightMotor.get());
     }
 
     private CANSparkMax createSparkMax(int id) {
@@ -69,7 +70,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public void setPower(double power) {
-        m_leftMotor.set(power);
+        m_rightMotor.set(power);
     }
 
     public void setPIDReference(double reference) {
@@ -77,10 +78,9 @@ public class Shooter extends SubsystemBase {
     }
 
     public void setRampRate(double rate) {
-        m_leftMotor.setOpenLoopRampRate(rate);
-        
-
-        m_leftMotor.setClosedLoopRampRate(rate);
-      
+        m_rightMotor.setOpenLoopRampRate(rate);
+       
+        m_rightMotor.setClosedLoopRampRate(rate);
     }
 }
+

@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.SetPower;
 import frc.robot.commands.SetSpeed;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.TopShooter;
+import frc.robot.commands.SetTopSpeed;
+import frc.robot.commands.SetTopPower;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -26,10 +29,13 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
     private final Shooter m_shooter = new Shooter();
-    private final Trigger m_trigger = new DashboardTrigger();
-
+    private final TopShooter t_shooter = new TopShooter();
+    private final Trigger m_trigger = new DashboardTrigger("Shooter/RPM Mode");
+    private final Trigger t_trigger = new DashboardTrigger("TopShooter/RPM Mode");
     private final SetPower m_setPower = new SetPower(m_shooter);
     private final SetSpeed m_setSpeed = new SetSpeed(m_shooter);
+    private final SetTopPower t_setPower = new SetTopPower(t_shooter);
+    private final SetTopSpeed t_setSpeed = new SetTopSpeed(t_shooter);
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -39,10 +45,14 @@ public class RobotContainer {
         configureButtonBindings();
        
         SmartDashboard.putBoolean("Shooter/RPM Mode", false);
-
+        
         m_shooter.setDefaultCommand(m_setPower);
         m_trigger.whenActive(m_setSpeed)
                 .whenInactive(m_setPower);
+        SmartDashboard.putBoolean("TopShooter/RPM Mode", false);
+        t_shooter.setDefaultCommand(t_setPower);
+        t_trigger.whenActive(t_setSpeed)
+                .whenInactive(t_setPower);
     }
 
     /**
