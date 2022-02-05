@@ -33,26 +33,26 @@ public class Shooter extends SubsystemBase {
         m_pidController.setD(ShooterConstants.kD);
         m_pidController.setFF(ShooterConstants.kF);
 
-        SmartDashboard.putNumber("Shooter/P", ShooterConstants.kP);
-        SmartDashboard.putNumber("Shooter/I", ShooterConstants.kI);
-        SmartDashboard.putNumber("Shooter/D", ShooterConstants.kD);
-        SmartDashboard.putNumber("Shooter/F", ShooterConstants.kF);
+        SmartDashboard.putNumber("BottomShooter/P", ShooterConstants.kP);
+        SmartDashboard.putNumber("BottomShooter/I", ShooterConstants.kI);
+        SmartDashboard.putNumber("BottomShooter/D", ShooterConstants.kD);
+        SmartDashboard.putNumber("BottomShooter/F", ShooterConstants.kF);
 
-        SmartDashboard.putNumber("Shooter/Ramp Rate", 1.5);
+        SmartDashboard.putNumber("BottomShooter/Ramp Rate", 1.5);
     }
 
     @Override
     public void periodic() {
-        m_pidController.setP(SmartDashboard.getNumber("Shooter/P", ShooterConstants.kP));
-        m_pidController.setI(SmartDashboard.getNumber("Shooter/I", ShooterConstants.kI));
-        m_pidController.setD(SmartDashboard.getNumber("Shooter/D", ShooterConstants.kD));
-        m_pidController.setFF(SmartDashboard.getNumber("Shooter/F", ShooterConstants.kF));
+        m_pidController.setP(SmartDashboard.getNumber("BottomShooter/P", ShooterConstants.kP));
+        m_pidController.setI(SmartDashboard.getNumber("BottomShooter/I", ShooterConstants.kI));
+        m_pidController.setD(SmartDashboard.getNumber("BottomShooter/D", ShooterConstants.kD));
+        m_pidController.setFF(SmartDashboard.getNumber("BottomShooter/F", ShooterConstants.kF));
 
-        this.setRampRate(SmartDashboard.getNumber("Shooter/Ramp Rate", 1.5));
+        this.setRampRate(SmartDashboard.getNumber("BottomShooter/Ramp Rate", 1.5));
 
-        SmartDashboard.putNumber("Shooter/Speed", l_encoder.getVelocity());
+        SmartDashboard.putNumber("BottomShooter/Speed", l_encoder.getVelocity());
 
-        SmartDashboard.putNumber("Shooter/Setpoint", m_leftMotor.get());
+        SmartDashboard.putNumber("BottomShooter/Setpoint", m_leftMotor.get());
     }
 
     private CANSparkMax createSparkMax(int id) {

@@ -24,7 +24,7 @@ public class TopShooter extends SubsystemBase {
 
     public TopShooter() {
        
-        m_rightMotor.setInverted(true);
+        m_rightMotor.setInverted(false);
 
         
         r_encoder.setPositionConversionFactor(42);
