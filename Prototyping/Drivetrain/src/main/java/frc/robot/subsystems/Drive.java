@@ -35,7 +35,7 @@ public class Drive extends SubsystemBase {
 
     public Drive() {
         leftFollower.follow(leftLeader);
-        rightFollower.follow(rightLeader, true);
+        rightFollower.follow(rightLeader);
 
         leftEncoder.setPosition(0);
         rightEncoder.setPosition(0);
