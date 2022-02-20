@@ -23,7 +23,7 @@ public class Shooter extends SubsystemBase {
     private final SparkMaxPIDController m_pidController = m_leftMotor.getPIDController();
 
     public Shooter() {
-        m_leftMotor.setInverted(false);
+        m_leftMotor.setInverted(true);
         
         
         l_encoder.setPositionConversionFactor(42);
