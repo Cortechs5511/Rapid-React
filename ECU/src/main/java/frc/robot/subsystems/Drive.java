@@ -15,11 +15,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
 public class Drive extends SubsystemBase {
-    private final CANSparkMax leftLeader = createController(DriveConstants.LEFT_LEADER_PORT, false);
-    private final CANSparkMax leftFollower = createController(DriveConstants.LEFT_FOLLOWER_PORT, false);
+    private final CANSparkMax leftLeader = createDriveController(DriveConstants.LEFT_LEADER_ID, false);
+    private final CANSparkMax leftFollower = createDriveController(DriveConstants.LEFT_FOLLOWER_ID, false);
 
-    private final CANSparkMax rightLeader = createController(DriveConstants.RIGHT_LEADER_PORT, true);
-    private final CANSparkMax rightFollower = createController(DriveConstants.RIGHT_FOLLOWER_PORT, true);
+    private final CANSparkMax rightLeader = createDriveController(DriveConstants.RIGHT_LEADER_ID, true);
+    private final CANSparkMax rightFollower = createDriveController(DriveConstants.RIGHT_FOLLOWER_ID, true);
 
     private final RelativeEncoder leftEncoder = createEncoder(leftFollower);
     private final RelativeEncoder rightEncoder = createEncoder(rightFollower);
@@ -86,7 +86,7 @@ public class Drive extends SubsystemBase {
      * @param isInverted boolean inversion flag
      * @return CANSparkMax controller
      */
-    private CANSparkMax createController(int port, boolean isInverted) {
+    private CANSparkMax createDriveController(int port, boolean isInverted) {
         CANSparkMax controller = new CANSparkMax(port, MotorType.kBrushless);
         controller.restoreFactoryDefaults();
 

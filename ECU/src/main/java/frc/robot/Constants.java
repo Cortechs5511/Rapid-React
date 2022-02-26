@@ -11,10 +11,10 @@ public final class Constants {
         public static final double RAMP_RATE = 0.5;
         public static final int CURRENT_LIMIT = 80;
 
-        public static final int LEFT_LEADER_PORT = 10;
-        public static final int LEFT_FOLLOWER_PORT = 11;
-        public static final int RIGHT_LEADER_PORT = 20;
-        public static final int RIGHT_FOLLOWER_PORT = 21;
+        public static final int LEFT_LEADER_ID = 10;
+        public static final int LEFT_FOLLOWER_ID = 11;
+        public static final int RIGHT_LEADER_ID = 20;
+        public static final int RIGHT_FOLLOWER_ID = 21;
 
         public static final double PID_MIN_OUTPUT = 0;
         public static final double PID_MAX_OUTPUT = 0;
@@ -36,17 +36,17 @@ public final class Constants {
     }
 
     public static class IntakeConstants {
-        public static final int WRIST_PORT = 30;
-        public static final int INTAKE_PORT = 31;
+        public static final int WRIST_ID = 30;
+        public static final int INTAKE_ID = 31;
 
         public static final boolean INVERT_INTAKE = true;
         public static final boolean INVERT_WRIST = false;
     }
 
     public static class FeederConstants {
-        public static final int FEEDER_PORT = 40;
-        public static final int TOWER_1_PORT = 41;
-        public static final int TOWER_2_PORT = 42;
+        public static final int FEEDER_ID = 40;
+        public static final int TOWER_1_ID = 41;
+        public static final int TOWER_2_ID = 42;
 
         public static final boolean INVERT_FEEDER = false;
         public static final boolean INVERT_TOWER_1 = false;

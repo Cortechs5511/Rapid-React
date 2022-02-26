@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
 public class Intake extends SubsystemBase {
-    private final WPI_TalonSRX intakeMotor = new WPI_TalonSRX(IntakeConstants.INTAKE_PORT);
-    private final WPI_TalonSRX wristMotor = new WPI_TalonSRX(IntakeConstants.WRIST_PORT);
+    private final WPI_TalonSRX intakeMotor = new WPI_TalonSRX(IntakeConstants.INTAKE_ID);
+    private final WPI_TalonSRX wristMotor = new WPI_TalonSRX(IntakeConstants.WRIST_ID);
 
     public void setWrist(double speed) {
         wristMotor.set(speed);
