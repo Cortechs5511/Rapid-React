@@ -38,14 +38,19 @@ public final class Constants {
     public static class IntakeConstants {
         public static final int WRIST_PORT = 30;
         public static final int INTAKE_PORT = 31;
+
         public static final boolean INVERT_INTAKE = true;
         public static final boolean INVERT_WRIST = false;
     }
 
     public static class FeederConstants {
         public static final int FEEDER_PORT = 40;
-        public static final int TOWER1_PORT = 41;
-        public static final int TOWER2_PORT = 42;
+        public static final int TOWER_1_PORT = 41;
+        public static final int TOWER_2_PORT = 42;
+
+        public static final boolean INVERT_FEEDER = false;
+        public static final boolean INVERT_TOWER_1 = false;
+        public static final boolean INVERT_TOWER_2 = false;
     }
     public static class ShooterConstants {
         public static final int SHOOTER1_PORT = 50;
