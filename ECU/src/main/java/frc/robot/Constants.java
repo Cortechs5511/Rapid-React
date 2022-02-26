@@ -34,4 +34,28 @@ public final class Constants {
 
         public static final double DEADBAND = 0.1;
     }
-}
+
+    public static class IntakeConstants {
+        public static final int WRIST_PORT = 30;
+        public static final int INTAKE_PORT = 31;
+        public static final boolean INVERT_INTAKE = true;
+        public static final boolean INVERT_WRIST = false;
+    }
+
+    public static class FeederConstants {
+        public static final int FEEDER_PORT = 40;
+        public static final int TOWER1_PORT = 41;
+        public static final int TOWER2_PORT = 42;
+    }
+    public static class ShooterConstants {
+        public static final int SHOOTER1_PORT = 50;
+        public static final int SHOOTER2_PORT = 51;
+        public static final double VOLTAGE_COMPENSATION = 11;
+        public static final IdleMode IDLE_MODE = IdleMode.kBrake;
+        public static final double RAMP_RATE = 0.5;
+        public static final int CURRENT_LIMIT = 80;
+    }
+
+    }
+
+
