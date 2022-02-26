@@ -38,4 +38,8 @@ public class Shooter extends SubsystemBase {
         controller.setInverted(isInverted);
         return controller;
     }
+
+    @Override
+    public void periodic() {
+    }
 }

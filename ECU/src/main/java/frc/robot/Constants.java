@@ -6,15 +6,15 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
     public static class DriveConstants {
-        public static final double VOLTAGE_COMPENSATION = 11;
-        public static final IdleMode IDLE_MODE = IdleMode.kBrake;
-        public static final double RAMP_RATE = 0.5;
-        public static final int CURRENT_LIMIT = 80;
-
         public static final int LEFT_LEADER_ID = 10;
         public static final int LEFT_FOLLOWER_ID = 11;
         public static final int RIGHT_LEADER_ID = 20;
         public static final int RIGHT_FOLLOWER_ID = 21;
+
+        public static final double VOLTAGE_COMPENSATION = 11;
+        public static final IdleMode IDLE_MODE = IdleMode.kBrake;
+        public static final double RAMP_RATE = 0.5;
+        public static final int CURRENT_LIMIT = 80;
 
         public static final double PID_MIN_OUTPUT = 0;
         public static final double PID_MAX_OUTPUT = 0;
@@ -41,6 +41,10 @@ public final class Constants {
 
         public static final boolean INVERT_INTAKE = true;
         public static final boolean INVERT_WRIST = false;
+
+        public static final int CURRENT_LIMIT = 40;
+        public static final int PEAK_CURRENT_LIMIT = 60;
+        public static final double RAMP_RATE = 0.25;
     }
 
     public static class FeederConstants {
@@ -51,10 +55,15 @@ public final class Constants {
         public static final boolean INVERT_FEEDER = false;
         public static final boolean INVERT_TOWER_1 = false;
         public static final boolean INVERT_TOWER_2 = false;
+
+        public static final int CURRENT_LIMIT = 40;
+        public static final int PEAK_CURRENT_LIMIT = 60;
+        public static final double RAMP_RATE = 0.25;
     }
     public static class ShooterConstants {
         public static final int SHOOTER1_PORT = 50;
         public static final int SHOOTER2_PORT = 51;
+
         public static final double VOLTAGE_COMPENSATION = 11;
         public static final IdleMode IDLE_MODE = IdleMode.kBrake;
         public static final double RAMP_RATE = 0.5;

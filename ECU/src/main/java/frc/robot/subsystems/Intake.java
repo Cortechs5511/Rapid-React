@@ -11,6 +11,7 @@ public class Intake extends SubsystemBase {
     public void setWrist(double speed) {
         wristMotor.set(speed);
     }
+
     public void setIntake(double speed) {
         intakeMotor.set(speed);
 
@@ -18,6 +19,22 @@ public class Intake extends SubsystemBase {
     public Intake() {
         intakeMotor.setInverted(IntakeConstants.INVERT_INTAKE);
         wristMotor.setInverted(IntakeConstants.INVERT_WRIST);
+    }
+
+    private WPI_TalonSRX createIntakeController(int id, boolean invert) {
+        WPI_TalonSRX controller = new WPI_TalonSRX(id);
+
+        controller.configFactoryDefault();
+
+        controller.configContinuousCurrentLimit(IntakeConstants.CURRENT_LIMIT);
+        controller.configPeakCurrentLimit(IntakeConstants.PEAK_CURRENT_LIMIT);
+
+        controller.configOpenloopRamp(IntakeConstants.RAMP_RATE);
+        controller.configClosedloopRamp(IntakeConstants.RAMP_RATE);
+
+        controller.setInverted(invert);
+
+        return controller;
     }
 
     @Override
