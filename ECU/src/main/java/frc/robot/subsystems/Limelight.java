@@ -20,23 +20,17 @@ public class Limelight extends SubsystemBase {
     private double RPMAdjustment;
 
     public Limelight() {
-        ledMode.setNumber(1); // sets lights off
-        SmartDashboard.putNumber("Shooter/RPM Setpoint", 0);
-        SmartDashboard.putNumber("Shooter/RPM Adjustment", 0);
+        // Turn lights off
+        ledMode.setNumber(1);
         SmartDashboard.putNumber("Shooter/Flat RPM", 0);
         SmartDashboard.putBoolean("Limelight/Limelight Lights", false);
     }
 
-    @Override
-    public void periodic() {
-        x = tx.getDouble(0.0);
-        y = ty.getDouble(0.0);
-        v = tv.getDouble(0.0);
-
-        SmartDashboard.putNumber("Limelight/Limelight X", x);
-        SmartDashboard.putBoolean("Limelight/Limelight Valid Target", v == 0);
-    }
-
+    /**
+     * Method to return desired shooter RPM
+     *
+     * @return double calculated RPM for shooter
+     */
     public double calculateRPM() {
         double flatRPM = SmartDashboard.getNumber("Shooter/Flat RPM", 0);
         if (flatRPM != 0) {
@@ -46,7 +40,6 @@ public class Limelight extends SubsystemBase {
         // Math for determining the flat rpm from estimated distance
         // currently setting rpm to 0, but that should be changed for actual testing
         double rpm = 0;
-        SmartDashboard.putNumber("Shooter/RPM Setpoint", rpm);
         
         if (v != 0) {
             return rpm;
@@ -59,12 +52,22 @@ public class Limelight extends SubsystemBase {
         return x;
     }
 
-    public double getLightStatus() {
-        return ledMode.getDouble(1);
+    public boolean getLightStatus() {
+        return ledMode.getDouble(1) == 3;
     }
 
-    public void setLightStatus(double input) {
-        ledMode.setNumber(input); // 3 = on, 1 = off
-        SmartDashboard.putBoolean("Limelight/Limelight Lights", input != 1);
+    public void setLight(boolean on) {
+        ledMode.setNumber(on ? 3 : 1); // 3 = on, 1 = off
+        SmartDashboard.putBoolean("Limelight/Limelight Lights", on);
+    }
+
+    @Override
+    public void periodic() {
+        x = tx.getDouble(0.0);
+        y = ty.getDouble(0.0);
+        v = tv.getDouble(0.0);
+
+        SmartDashboard.putNumber("Limelight/Limelight X", x);
+        SmartDashboard.putBoolean("Limelight/Limelight Valid Target", v == 0);
     }
 }

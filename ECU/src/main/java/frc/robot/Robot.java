@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -49,6 +50,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
+        // Flush NT every 20ms if diagnostics enabled
+        if (Constants.DIAGNOSTICS) {
+            NetworkTableInstance.getDefault().flush();
+        }
     }
 
     @Override

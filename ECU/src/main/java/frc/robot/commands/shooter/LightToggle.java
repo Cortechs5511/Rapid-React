@@ -1,18 +1,18 @@
-package frc.robot.commands;
+package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.Limelight;
 
 public class LightToggle extends InstantCommand {
-	private final Limelight m_limelight;
+	private final Limelight limelight;
 
 	public LightToggle(Limelight limelight) {
-		m_limelight = limelight;
+		this.limelight = limelight;
 		addRequirements(limelight);
 	}
 
 	@Override
 	public void initialize() {
-        m_limelight.setLightStatus(m_limelight.getLightStatus() == 3 ? 1 : 3);
+        limelight.setLight(!limelight.getLightStatus());
 	}
 }
