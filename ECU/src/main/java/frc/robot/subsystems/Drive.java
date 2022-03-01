@@ -12,6 +12,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 
 public class Drive extends SubsystemBase {
@@ -33,6 +34,9 @@ public class Drive extends SubsystemBase {
     public double getLeftPosition() { return leftEncoder.getPosition(); }
     public double getRightPosition() { return rightEncoder.getPosition(); }
 
+    public double getLeftVelocity() { return leftEncoder.getVelocity(); }
+    public double getRightVelocity() { return rightEncoder.getVelocity(); }
+
     public Drive() {
         leftFollower.follow(leftLeader);
         rightFollower.follow(rightLeader);
@@ -41,16 +45,6 @@ public class Drive extends SubsystemBase {
         rightEncoder.setPosition(0);
 
         gyro.reset();
-    }
-
-    @Override
-    public void periodic() {
-        odometry.update(new Rotation2d(Math.IEEEremainder(gyro.getYaw(), 360)),
-                        leftEncoder.getPosition(), 
-                        rightEncoder.getPosition());
-
-        SmartDashboard.putNumber("Drivetrain/Left Position", getLeftPosition());
-        SmartDashboard.putNumber("Drivetrain/Right Position", getRightPosition());
     }
 
     @Override
@@ -135,4 +129,28 @@ public class Drive extends SubsystemBase {
 
         return pid;
     }
+
+    @Override
+    public void periodic() {
+        odometry.update(new Rotation2d(Math.IEEEremainder(gyro.getYaw(), 360)),
+                leftEncoder.getPosition(),
+                rightEncoder.getPosition());
+
+        if (Constants.DIAGNOSTICS) {
+            SmartDashboard.putNumber("Drivetrain/Left Position", getLeftPosition());
+            SmartDashboard.putNumber("Drivetrain/Right Position", getRightPosition());
+
+            SmartDashboard.putNumber("Drivetrain/Left Velocity", getLeftVelocity());
+            SmartDashboard.putNumber("Drivetrain/Right Velocity", getRightVelocity());
+
+            SmartDashboard.putNumber("Drivetrain/Left Temp", leftLeader.getMotorTemperature());
+            SmartDashboard.putNumber("Drivetrain/Right Temp", rightLeader.getMotorTemperature());
+
+            SmartDashboard.putNumber("Drivetrain/Left Current", leftLeader.getOutputCurrent());
+            SmartDashboard.putNumber("Drivetrain/Right Current", rightLeader.getOutputCurrent());
+
+            SmartDashboard.putNumber("Drivetrain/Yaw", gyro.getYaw());
+        }
+    }
+
 }
