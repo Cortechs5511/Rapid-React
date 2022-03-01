@@ -12,10 +12,14 @@ public class Feeder extends SubsystemBase {
     private final WPI_TalonSRX tower1Motor = createFeederController(FeederConstants.TOWER_1_ID, FeederConstants.INVERT_TOWER_1);
     private final WPI_TalonSRX tower2Motor = createFeederController(FeederConstants.TOWER_2_ID, FeederConstants.INVERT_TOWER_2);
 
-    private final DigitalInput towerSensor = new DigitalInput(FeederConstants.TOWER_SENSOR_PORT);
+    private final DigitalInput bottomSensor = new DigitalInput(FeederConstants.BOTTOM_SENSOR_PORT);
+    private final DigitalInput topSensor = new DigitalInput(FeederConstants.TOP_SENSOR_PORT);
 
-    public boolean getTowerSensor() {
-        return towerSensor.get();
+    public boolean getBottomSensor() {
+        return bottomSensor.get();
+    }
+    public boolean getTopSensor() {
+        return topSensor.get();
     }
 
     public Feeder() {
@@ -66,7 +70,7 @@ public class Feeder extends SubsystemBase {
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
-            SmartDashboard.putBoolean("Feeder/Tower Sensor", getTowerSensor());
+            SmartDashboard.putBoolean("Feeder/Tower Sensor", getBottomSensor());
         }
     }
 }
