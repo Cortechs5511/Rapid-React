@@ -57,6 +57,7 @@ public final class Constants {
         public static final int CURRENT_LIMIT = 40;
         public static final int PEAK_CURRENT_LIMIT = 60;
         public static final double RAMP_RATE = 0.25;
+        public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
         // TODO: Adjust powers
         public static final double INTAKE_POWER = 0.3;
@@ -75,6 +76,7 @@ public final class Constants {
         public static final int CURRENT_LIMIT = 40;
         public static final int PEAK_CURRENT_LIMIT = 60;
         public static final double RAMP_RATE = 0.25;
+        public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
         // TODO: set ports and power
         public static final int BOTTOM_SENSOR_PORT = 1;

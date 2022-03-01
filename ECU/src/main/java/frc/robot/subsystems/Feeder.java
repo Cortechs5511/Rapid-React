@@ -63,6 +63,7 @@ public class Feeder extends SubsystemBase {
         controller.configClosedloopRamp(FeederConstants.RAMP_RATE);
 
         controller.setInverted(invert);
+        controller.setNeutralMode(FeederConstants.NEUTRAL_MODE);
 
         return controller;
     }

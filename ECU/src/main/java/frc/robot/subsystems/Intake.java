@@ -50,6 +50,7 @@ public class Intake extends SubsystemBase {
         controller.configClosedloopRamp(IntakeConstants.RAMP_RATE);
 
         controller.setInverted(invert);
+        controller.setNeutralMode(IntakeConstants.NEUTRAL_MODE);
 
         return controller;
     }
