@@ -9,6 +9,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
     // Change before competition -- inhibits extraneous SmartDashboard logging
     public static final boolean DIAGNOSTICS = true;
+    public static final double DWELL_PERIOD = 0.5;
 
     public static class DriveConstants {
         public static final int LEFT_LEADER_ID = 10;
@@ -94,6 +95,8 @@ public final class Constants {
 
         public static final double VOLTAGE_COMPENSATION = 11.5;
         public static final double RAMP_RATE = 0.5;
+        public static final double UNITS_PER_ROTATION = 2048;
+        public static final double RPM_TO_UNITS = 60 / UNITS_PER_ROTATION;
 
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
         public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true, 80, 0, 0);

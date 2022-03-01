@@ -27,17 +27,17 @@ public class Shooter extends SubsystemBase {
     /**
      * Sets the shooter to a certain speed
      *
-     * @param speed target velocity, units unknown
+     * @param speed target velocity, RPM
      *              TODO: find units
      */
     public void setSpeed(double speed) {
-        leftShooter.set(ControlMode.Velocity, speed);
+        leftShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
     }
 
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
-            SmartDashboard.putNumber("Shooter/Speed", leftShooter.getSelectedSensorVelocity());
+            SmartDashboard.putNumber("Shooter/Speed", leftShooter.getSelectedSensorVelocity() / ShooterConstants.RPM_TO_UNITS);
             SmartDashboard.putNumber("Shooter/Current", leftShooter.getSupplyCurrent());
             SmartDashboard.putNumber("Shooter/Temperature", leftShooter.getTemperature());
         }
