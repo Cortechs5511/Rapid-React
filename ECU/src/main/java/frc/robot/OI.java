@@ -6,8 +6,8 @@ import frc.robot.Constants.OIConstants;
 public class OI {
     private static OI oi;
 
-    private Joystick leftStick = new Joystick(OIConstants.LEFT_STICK_PORT);
-    private Joystick rightStick = new Joystick(OIConstants.RIGHT_STICK_PORT);
+    private final Joystick leftStick = new Joystick(OIConstants.LEFT_STICK_PORT);
+    private final Joystick rightStick = new Joystick(OIConstants.RIGHT_STICK_PORT);
 
     public double getLeftY() { return leftStick.getY(); }
     public double getRightY() { return rightStick.getY(); }

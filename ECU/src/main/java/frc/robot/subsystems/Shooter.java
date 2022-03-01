@@ -8,8 +8,8 @@ import frc.robot.Constants;
 import frc.robot.Constants.ShooterConstants;
 
 public class Shooter extends SubsystemBase {
-    private WPI_TalonFX leftShooter = createShooterController(ShooterConstants.LEFT_SHOOTER_ID, ShooterConstants.INVERT_LEFT_SHOOTER);
-    private WPI_TalonFX rightShooter = createShooterController(ShooterConstants.RIGHT_SHOOTER_ID, ShooterConstants.INVERT_RIGHT_SHOOTER);
+    private final WPI_TalonFX leftShooter = createShooterController(ShooterConstants.LEFT_SHOOTER_ID, ShooterConstants.INVERT_LEFT_SHOOTER);
+    private final WPI_TalonFX rightShooter = createShooterController(ShooterConstants.RIGHT_SHOOTER_ID, ShooterConstants.INVERT_RIGHT_SHOOTER);
 
     public Shooter() {
         rightShooter.set(ControlMode.Follower, ShooterConstants.LEFT_SHOOTER_ID);
