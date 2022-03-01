@@ -64,6 +64,8 @@ public final class Constants {
         public static final int CURRENT_LIMIT = 40;
         public static final int PEAK_CURRENT_LIMIT = 60;
         public static final double RAMP_RATE = 0.25;
+
+        public static final int TOWER_SENSOR_PORT = 1;
     }
 
     public static class ShooterConstants {
