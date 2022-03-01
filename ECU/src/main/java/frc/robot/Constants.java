@@ -36,8 +36,15 @@ public final class Constants {
     public static class OIConstants {
         public static final int LEFT_STICK_PORT = 0;
         public static final int RIGHT_STICK_PORT = 1;
+        public static final int XBOX_CONTROLLER_PORT = 3;
 
         public static final double DEADBAND = 0.1;
+
+        // TODO: Bind all buttons
+        public static final int INTAKE_BUTTON = 1;
+        public static final int WRIST_UP_BUTTON = 2;
+        public static final int WRIST_DOWN_BUTTON = 3;
+        public static final int OUTTAKE_BUTTON = 4;
     }
 
     public static class IntakeConstants {
@@ -50,6 +57,10 @@ public final class Constants {
         public static final int CURRENT_LIMIT = 40;
         public static final int PEAK_CURRENT_LIMIT = 60;
         public static final double RAMP_RATE = 0.25;
+
+        // TODO: Adjust powers
+        public static final double INTAKE_POWER = 0.3;
+        public static final double WRIST_POWER = 0.3;
     }
 
     public static class FeederConstants {
@@ -65,7 +76,12 @@ public final class Constants {
         public static final int PEAK_CURRENT_LIMIT = 60;
         public static final double RAMP_RATE = 0.25;
 
-        public static final int TOWER_SENSOR_PORT = 1;
+        // TODO: set ports and power
+        public static final int BOTTOM_SENSOR_PORT = 1;
+        public static final int TOP_SENSOR_PORT = 2;
+
+        public static final double FEEDER_POWER = 0.3;
+        public static final double TOWER_POWER = 0.3;
     }
 
     public static class ShooterConstants {
