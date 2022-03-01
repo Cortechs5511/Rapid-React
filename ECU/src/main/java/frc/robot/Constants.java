@@ -84,6 +84,8 @@ public final class Constants {
 
         public static final double FEEDER_POWER = 0.3;
         public static final double TOWER_POWER = 0.3;
+
+        public static final double EJECT_TIMEOUT = 5.0;
     }
 
     public static class ShooterConstants {
