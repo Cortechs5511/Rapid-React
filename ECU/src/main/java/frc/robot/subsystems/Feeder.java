@@ -14,6 +14,10 @@ public class Feeder extends SubsystemBase {
 
     private final DigitalInput towerSensor = new DigitalInput(FeederConstants.TOWER_SENSOR_PORT);
 
+    public boolean getTowerSensor() {
+        return towerSensor.get();
+    }
+
     public Feeder() {
         tower2Motor.follow(tower1Motor);
     }
@@ -34,15 +38,6 @@ public class Feeder extends SubsystemBase {
      */
     public void setFeeder(double power) {
         feederMotor.set(power);
-    }
-
-    /**
-     * Returns whether a cargo is detected in the tower
-     *
-     * @return boolean sensor output
-     */
-    public boolean getTowerSensor() {
-        return towerSensor.get();
     }
 
     /**
