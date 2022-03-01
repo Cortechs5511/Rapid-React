@@ -1,10 +1,15 @@
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
+    // Change before competition -- inhibits extraneous SmartDashboard logging
+    public static final boolean DIAGNOSTICS = true;
+
     public static class DriveConstants {
         public static final int LEFT_LEADER_ID = 10;
         public static final int LEFT_FOLLOWER_ID = 11;
@@ -60,16 +65,21 @@ public final class Constants {
         public static final int PEAK_CURRENT_LIMIT = 60;
         public static final double RAMP_RATE = 0.25;
     }
+
     public static class ShooterConstants {
-        public static final int SHOOTER1_PORT = 50;
-        public static final int SHOOTER2_PORT = 51;
+        public static final int LEFT_SHOOTER_ID = 50;
+        public static final int RIGHT_SHOOTER_ID = 51;
 
-        public static final double VOLTAGE_COMPENSATION = 11;
-        public static final IdleMode IDLE_MODE = IdleMode.kBrake;
+        public static final double VOLTAGE_COMPENSATION = 11.5;
         public static final double RAMP_RATE = 0.5;
-        public static final int CURRENT_LIMIT = 80;
+
+        public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+        public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true, 80, 0, 0);
+
+        public static final boolean INVERT_LEFT_SHOOTER = false;
+        public static final boolean INVERT_RIGHT_SHOOTER = true;
     }
 
-    }
+}
 
 
