@@ -14,7 +14,7 @@ public class AutoCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        drive.setSpeed(0.0, 0.0);
+        drive.setPower(0.0, 0.0);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class AutoCommand extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        drive.setSpeed(0.0, 0.0);
+        drive.setPower(0.0, 0.0);
     }
 
     @Override   

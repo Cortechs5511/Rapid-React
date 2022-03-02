@@ -15,6 +15,20 @@ public class Shooter extends SubsystemBase {
         rightShooter.set(ControlMode.Follower, ShooterConstants.LEFT_SHOOTER_ID);
     }
 
+    public double getSpeed() {
+        return leftShooter.getSelectedSensorVelocity() / ShooterConstants.RPM_TO_UNITS;
+    }
+
+    /**
+     * Sets the shooter to a certain speed
+     *
+     * @param speed target velocity, RPM
+     *                                                                               TODO: find units
+     */
+    public void setSpeed(double speed) {
+        leftShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
+    }
+
     /**
      * Sets shooter to open loop output
      *
@@ -25,19 +39,31 @@ public class Shooter extends SubsystemBase {
     }
 
     /**
-     * Sets the shooter to a certain speed
+     * Returns the most recently set PID reference value
      *
-     * @param speed target velocity, RPM
-     *              TODO: find units
+     * @return double reference value, RPM
+     * TODO: confirm units in RPM
      */
-    public void setSpeed(double speed) {
-        leftShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
+    public double getSetpoint() {
+        return leftShooter.getClosedLoopTarget() / ShooterConstants.RPM_TO_UNITS;
+    }
+
+    /**
+     * Sets shooter controllers to adopt given ramp rate
+     *
+     * @param rate double ramp rate in seconds from neutral to full
+     */
+    public void setRampRate(double rate) {
+        leftShooter.configOpenloopRamp(rate);
+        rightShooter.configOpenloopRamp(rate);
+        leftShooter.configClosedloopRamp(rate);
+        rightShooter.configClosedloopRamp(rate);
     }
 
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
-            SmartDashboard.putNumber("Shooter/Speed", leftShooter.getSelectedSensorVelocity() / ShooterConstants.RPM_TO_UNITS);
+            SmartDashboard.putNumber("Shooter/Speed", getSpeed());
             SmartDashboard.putNumber("Shooter/Current", leftShooter.getSupplyCurrent());
             SmartDashboard.putNumber("Shooter/Temperature", leftShooter.getTemperature());
         }
@@ -58,12 +84,14 @@ public class Shooter extends SubsystemBase {
         shooterController.setNeutralMode(ShooterConstants.NEUTRAL_MODE);
         shooterController.configSupplyCurrentLimit(ShooterConstants.CURRENT_LIMIT);
 
-        shooterController.configOpenloopRamp(ShooterConstants.RAMP_RATE);
-        shooterController.configClosedloopRamp(ShooterConstants.RAMP_RATE);
+        shooterController.configOpenloopRamp(ShooterConstants.LONG_RAMP_RATE);
+        shooterController.configClosedloopRamp(ShooterConstants.LONG_RAMP_RATE);
         shooterController.configVoltageCompSaturation(ShooterConstants.VOLTAGE_COMPENSATION);
 
         shooterController.configPeakOutputReverse(0);
 
         return shooterController;
     }
+
+
 }

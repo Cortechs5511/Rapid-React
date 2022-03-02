@@ -32,6 +32,12 @@ public final class Constants {
         public static final double GEARING = (44f / 24f) * (68f / 11f);
         public static final double WHEEL_DIAMETER = Units.inchesToMeters(6);
         public static final double ENCODER_TO_METERS = WHEEL_DIAMETER / GEARING;
+        public static final double DRIVE_VELOCITY_TOLERANCE = 1;
+
+        public static final double ANGLE_P = 0.0;
+        public static final double ANGLE_I = 0.0;
+        public static final double ANGLE_D = 0.0;
+        public static final double ANGLE_PID_LIMIT = 0.3;
     }
 
     public static class OIConstants {
@@ -87,6 +93,7 @@ public final class Constants {
         public static final double TOWER_POWER = 0.3;
 
         public static final double EJECT_TIMEOUT = 5.0;
+        public static final double FEED_TIMEOUT = 0.5;
     }
 
     public static class ShooterConstants {
@@ -94,7 +101,8 @@ public final class Constants {
         public static final int RIGHT_SHOOTER_ID = 51;
 
         public static final double VOLTAGE_COMPENSATION = 11.5;
-        public static final double RAMP_RATE = 0.5;
+        public static final double LONG_RAMP_RATE = 1.5;
+        public static final double SHORT_RAMP_RATE = 0.01;
         public static final double UNITS_PER_ROTATION = 2048;
         public static final double RPM_TO_UNITS = 60 / UNITS_PER_ROTATION;
 
@@ -103,6 +111,10 @@ public final class Constants {
 
         public static final boolean INVERT_LEFT_SHOOTER = false;
         public static final boolean INVERT_RIGHT_SHOOTER = true;
+
+        public static final double SHOOTER_RPM_TOLERANCE = 200.0;
+        public static final double DWELL_TIME = 0.5;
+        public static final double SHOOTER_TIMEOUT = 1.0;
     }
 
 }

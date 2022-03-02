@@ -57,7 +57,7 @@ public class Drive extends SubsystemBase {
      * @param leftSpeed double left motor setpoint
      * @param rightSpeed double right motor setpoint
      */
-    public void setSpeed(double leftSpeed, double rightSpeed) {
+    public void setPower(double leftSpeed, double rightSpeed) {
         leftLeader.set(leftSpeed);
         rightLeader.set(rightSpeed);
     }

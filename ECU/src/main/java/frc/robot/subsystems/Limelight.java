@@ -14,7 +14,6 @@ public class Limelight extends SubsystemBase {
     private final NetworkTableEntry ledMode = table.getEntry("ledMode");
 
     private double x;
-    private double y;
     private double v;
 
     private double RPMAdjustment;
@@ -64,7 +63,7 @@ public class Limelight extends SubsystemBase {
     @Override
     public void periodic() {
         x = tx.getDouble(0.0);
-        y = ty.getDouble(0.0);
+        double y = ty.getDouble(0.0);
         v = tv.getDouble(0.0);
 
         SmartDashboard.putNumber("Limelight/Limelight X", x);

@@ -10,7 +10,6 @@ import frc.robot.Constants.FeederConstants;
 public class Feeder extends SubsystemBase {
     private final WPI_TalonSRX feederMotor = createFeederController(FeederConstants.FEEDER_ID, FeederConstants.INVERT_FEEDER);
     private final WPI_TalonSRX tower1Motor = createFeederController(FeederConstants.TOWER_1_ID, FeederConstants.INVERT_TOWER_1);
-    private final WPI_TalonSRX tower2Motor = createFeederController(FeederConstants.TOWER_2_ID, FeederConstants.INVERT_TOWER_2);
 
     private final DigitalInput bottomSensor = new DigitalInput(FeederConstants.BOTTOM_SENSOR_PORT);
     private final DigitalInput topSensor = new DigitalInput(FeederConstants.TOP_SENSOR_PORT);
@@ -23,6 +22,7 @@ public class Feeder extends SubsystemBase {
     }
 
     public Feeder() {
+        WPI_TalonSRX tower2Motor = createFeederController(FeederConstants.TOWER_2_ID, FeederConstants.INVERT_TOWER_2);
         tower2Motor.follow(tower1Motor);
     }
 
