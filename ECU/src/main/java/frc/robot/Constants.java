@@ -52,6 +52,9 @@ public final class Constants {
         public static final int WRIST_UP_BUTTON = 2;
         public static final int WRIST_DOWN_BUTTON = 3;
         public static final int OUTTAKE_BUTTON = 4;
+        public static final int SHOOT_BUTTON = 5;
+        public static final int STOP_SHOOT_BUTTON = 6;
+        public static final int LIGHTS_TOGGLE_BUTTON = 7;
     }
 
     public static class IntakeConstants {
