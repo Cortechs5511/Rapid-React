@@ -7,9 +7,24 @@ import frc.robot.Constants.OIConstants;
 public class OI {
     private static OI oi;
 
-    private final Joystick leftStick = new Joystick(OIConstants.LEFT_STICK_PORT);
-    private final Joystick rightStick = new Joystick(OIConstants.RIGHT_STICK_PORT);
-    private final XboxController controller = new XboxController(OIConstants.XBOX_CONTROLLER_PORT);
+    public final Joystick leftStick = new Joystick(OIConstants.LEFT_STICK_PORT);
+    public final Joystick rightStick = new Joystick(OIConstants.RIGHT_STICK_PORT);
+    public final XboxController controller = new XboxController(OIConstants.XBOX_CONTROLLER_PORT);
+
+    private OI() {
+    }
+
+    /**
+     * Singleton for getting instance of operator input
+     *
+     * @return OI object of self
+     */
+    public static OI getInstance() {
+        if (oi == null) {
+            oi = new OI();
+        }
+        return oi;
+    }
 
     /**
      * Returns number [-1.0, 1.0] of left joystick input
@@ -71,13 +86,12 @@ public class OI {
      * @return double value of joystick
      */
     public double getLeftYDeadband() {
-        double y = getLeftY();
-
-        if (Math.abs(y) < OIConstants.DEADBAND) {
-            y = 0;
+        double leftY;
+        if ((leftY = Math.abs(getLeftY())) < OIConstants.DEADBAND) {
+            return 0;
         }
 
-        return y;
+        return leftY;
     }
 
     /**
@@ -86,28 +100,12 @@ public class OI {
      * @return double value of joystick
      */
     public double getRightYDeadband() {
-        double y = getRightY();
-
-        if (Math.abs(y) < OIConstants.DEADBAND) {
-            y = 0;
+        double rightY;
+        if ((rightY = Math.abs(getRightY())) < OIConstants.DEADBAND) {
+            return 0;
         }
 
-        return y;
-    }
-
-    /**
-     * Singleton for getting instance of operator input
-     *
-     * @return OI object of self
-     */
-    public static OI getInstance() {
-        if (oi == null) {
-            oi = new OI();
-        }
-        return oi;
-    }
-
-    private OI() {
+        return rightY;
     }
 
 

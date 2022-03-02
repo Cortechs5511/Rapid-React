@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class RobotContainer {
     private final Drive drive = new Drive();
 
+    private final OI oi = OI.getInstance();
+
     enum AutoRoutine {
         WaitCommand, AutoCommand
     }
