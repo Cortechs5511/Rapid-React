@@ -2,11 +2,10 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.I2C.Port;
@@ -31,11 +30,8 @@ public class Drive extends SubsystemBase {
     private final AHRS gyro = new AHRS(Port.kMXP);
     private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(0));
 
-    public double getLeftPosition() { return leftEncoder.getPosition(); }
-    public double getRightPosition() { return rightEncoder.getPosition(); }
-
-    public double getLeftVelocity() { return leftEncoder.getVelocity(); }
-    public double getRightVelocity() { return rightEncoder.getVelocity(); }
+    private boolean inverted = false;
+    private double maxPower = 1.0;
 
     public Drive() {
         leftFollower.follow(leftLeader);
@@ -47,25 +43,62 @@ public class Drive extends SubsystemBase {
         gyro.reset();
     }
 
+    public double getLeftPosition() {
+        return leftEncoder.getPosition();
+    }
+
+    public double getRightPosition() {
+        return rightEncoder.getPosition();
+    }
+
+    public double getLeftVelocity() {
+        return leftEncoder.getVelocity();
+    }
+
+    public double getRightVelocity() {
+        return rightEncoder.getVelocity();
+    }
+
+    /**
+     * Sets drivetrain inversion flag to opposite of existing value
+     */
+    public void flip() {
+        inverted = !inverted;
+    }
+
+    /**
+     * Sets drivetrain set() limitation interpolation value for both motors
+     *
+     * @param power double max power value
+     */
+    public void setMaxPower(double power) {
+        maxPower = power;
+    }
+
     @Override
     public void simulationPeriodic() {
     }
 
     /**
      * Commands setpoint value out of 1 (voltage compensated) on both motors
-     * 
-     * @param leftSpeed double left motor setpoint
+     *
+     * @param leftSpeed  double left motor setpoint
      * @param rightSpeed double right motor setpoint
      */
     public void setPower(double leftSpeed, double rightSpeed) {
-        leftLeader.set(leftSpeed);
-        rightLeader.set(rightSpeed);
+        if (!inverted) {
+            leftLeader.set(leftSpeed * maxPower);
+            rightLeader.set(rightSpeed * maxPower);
+        } else {
+            rightLeader.set(-leftSpeed * maxPower);
+            leftLeader.set(-rightSpeed * maxPower);
+        }
     }
 
     /**
      * Commands PID reference (m/s) on both motors
-     * 
-     * @param leftSpeed double left motor setpoint
+     *
+     * @param leftSpeed  double left motor setpoint
      * @param rightSpeed double right motor setpoint
      */
     public void setPIDReference(double leftSpeed, double rightSpeed) {
@@ -75,8 +108,8 @@ public class Drive extends SubsystemBase {
 
     /**
      * Creates a CANSparkMax controller with preferred settings
-     * 
-     * @param port applicable CAN port
+     *
+     * @param port       applicable CAN port
      * @param isInverted boolean inversion flag
      * @return CANSparkMax controller
      */
@@ -98,10 +131,10 @@ public class Drive extends SubsystemBase {
 
     /**
      * Creates an encoder object from NEO with preferred settings
-     * 
+     *
      * @param controller CANSparkMax controller
      * @return RelativeEncoder
-    */
+     */
     private RelativeEncoder createEncoder(CANSparkMax controller) {
         RelativeEncoder encoder = controller.getEncoder();
 
@@ -113,7 +146,7 @@ public class Drive extends SubsystemBase {
 
     /**
      * Creates a PID controller from CANSparkMax
-     * 
+     *
      * @param controller CANSparkMax controller
      * @return SparkMaxPIDController
      */
@@ -132,9 +165,7 @@ public class Drive extends SubsystemBase {
 
     @Override
     public void periodic() {
-        odometry.update(new Rotation2d(Math.IEEEremainder(gyro.getYaw(), 360)),
-                leftEncoder.getPosition(),
-                rightEncoder.getPosition());
+        odometry.update(new Rotation2d(Math.IEEEremainder(gyro.getYaw(), 360)), leftEncoder.getPosition(), rightEncoder.getPosition());
 
         if (Constants.DIAGNOSTICS) {
             SmartDashboard.putNumber("Drivetrain/Left Position", getLeftPosition());

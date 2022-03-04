@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.collector.Eject;
 import frc.robot.commands.collector.SetFeederPower;
 import frc.robot.commands.collector.SetIntakePower;
+import frc.robot.commands.drive.Flip;
 import frc.robot.commands.drive.SetSpeed;
 import frc.robot.commands.shooter.LightToggle;
 import frc.robot.commands.shooter.ShootCommandGroup;
@@ -47,6 +48,8 @@ public class RobotContainer {
         new JoystickButton(oi.controller, Constants.OIConstants.SHOOT_BUTTON).whenPressed(new ShootCommandGroup(drive, feeder, intake, limelight, shooter));
         new JoystickButton(oi.controller, Constants.OIConstants.STOP_SHOOT_BUTTON).whenReleased(new StopShooter(drive, feeder, intake, shooter));
         new JoystickButton(oi.controller, Constants.OIConstants.LIGHTS_TOGGLE_BUTTON).whenPressed(new LightToggle(limelight));
+
+        new JoystickButton(oi.leftStick, Constants.OIConstants.FLIP_BUTTON).whenPressed(new Flip(drive));
     }
 
     public Command getAutonomousCommand() {

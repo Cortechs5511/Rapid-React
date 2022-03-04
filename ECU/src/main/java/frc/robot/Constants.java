@@ -55,6 +55,7 @@ public final class Constants {
         public static final int SHOOT_BUTTON = 5;
         public static final int STOP_SHOOT_BUTTON = 6;
         public static final int LIGHTS_TOGGLE_BUTTON = 7;
+        public static final int FLIP_BUTTON = 8;
     }
 
     public static class IntakeConstants {
@@ -118,6 +119,7 @@ public final class Constants {
         public static final double SHOOTER_RPM_TOLERANCE = 200.0;
         public static final double DWELL_TIME = 0.5;
         public static final double SHOOTER_TIMEOUT = 1.0;
+
     }
 
 }
