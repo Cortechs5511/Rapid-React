@@ -56,6 +56,7 @@ public final class Constants {
         public static final int STOP_SHOOT_BUTTON = 6;
         public static final int LIGHTS_TOGGLE_BUTTON = 7;
         public static final int FLIP_BUTTON = 8;
+        public static final int HALF_SPEED_BUTTON = 9;
     }
 
     public static class IntakeConstants {

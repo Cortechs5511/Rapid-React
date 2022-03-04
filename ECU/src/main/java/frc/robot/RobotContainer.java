@@ -1,6 +1,11 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.auto.AutoCommand;
 import frc.robot.commands.collector.Eject;
 import frc.robot.commands.collector.SetFeederPower;
 import frc.robot.commands.collector.SetIntakePower;
@@ -10,24 +15,15 @@ import frc.robot.commands.shooter.LightToggle;
 import frc.robot.commands.shooter.ShootCommandGroup;
 import frc.robot.commands.shooter.StopShooter;
 import frc.robot.subsystems.*;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 public class RobotContainer {
+    final SendableChooser<AutoRoutine> chooser = new SendableChooser<>();
     private final Drive drive = new Drive();
     private final Intake intake = new Intake();
     private final Feeder feeder = new Feeder();
     private final Shooter shooter = new Shooter();
     private final Limelight limelight = new Limelight();
     private final OI oi = OI.getInstance();
-
-    enum AutoRoutine {
-        WaitCommand, AutoCommand
-    }
-
-    final SendableChooser<AutoRoutine> chooser = new SendableChooser<>();
 
     public RobotContainer() {
         drive.setDefaultCommand(new SetSpeed(drive));
@@ -50,9 +46,21 @@ public class RobotContainer {
         new JoystickButton(oi.controller, Constants.OIConstants.LIGHTS_TOGGLE_BUTTON).whenPressed(new LightToggle(limelight));
 
         new JoystickButton(oi.leftStick, Constants.OIConstants.FLIP_BUTTON).whenPressed(new Flip(drive));
+        new JoystickButton(oi.leftStick, Constants.OIConstants.HALF_SPEED_BUTTON).whenPressed(() -> drive.setMaxPower(0.5)).whenReleased(() -> drive.setMaxPower(1.0));
     }
 
     public Command getAutonomousCommand() {
-        return new WaitCommand(1.0);
+        switch (chooser.getSelected()) {
+            case WaitCommand:
+                return new WaitCommand(2.0);
+            case AutoCommand:
+                return new AutoCommand(drive);
+            default:
+                return new WaitCommand(1.0);
+        }
+    }
+
+    enum AutoRoutine {
+        WaitCommand, AutoCommand
     }
 }
