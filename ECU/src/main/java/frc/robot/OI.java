@@ -86,8 +86,8 @@ public class OI {
      * @return double value of joystick
      */
     public double getLeftYDeadband() {
-        double leftY;
-        if ((leftY = Math.abs(getLeftY())) < OIConstants.DEADBAND) {
+        double leftY = getLeftY();
+        if (Math.abs(leftY) < OIConstants.DEADBAND) {
             return 0;
         }
 
@@ -100,8 +100,8 @@ public class OI {
      * @return double value of joystick
      */
     public double getRightYDeadband() {
-        double rightY;
-        if ((rightY = Math.abs(getRightY())) < OIConstants.DEADBAND) {
+        double rightY = getRightY();
+        if (Math.abs(rightY) < OIConstants.DEADBAND) {
             return 0;
         }
 
