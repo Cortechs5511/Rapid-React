@@ -49,8 +49,8 @@ public final class Constants {
 
         // TODO: Bind all buttons
         public static final int INTAKE_BUTTON = 5;
-        public static final int WRIST_UP_BUTTON = 2;
-        public static final int WRIST_DOWN_BUTTON = 3;
+        public static final int WRIST_UP_AXIS = 2;
+        public static final int WRIST_DOWN_AXIS = 3;
         public static final int OUTTAKE_BUTTON = 4;
         public static final int SHOOT_BUTTON = 5;
         public static final int STOP_SHOOT_BUTTON = 6;
