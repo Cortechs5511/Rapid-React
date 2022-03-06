@@ -8,7 +8,7 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
     // Change before competition -- inhibits extraneous SmartDashboard logging
-    public static final boolean DIAGNOSTICS = true;
+    public static final boolean DIAGNOSTICS = false;
     public static final double DWELL_PERIOD = 0.5;
 
     public static class DriveConstants {
@@ -19,7 +19,7 @@ public final class Constants {
 
         public static final double VOLTAGE_COMPENSATION = 11;
         public static final IdleMode IDLE_MODE = IdleMode.kBrake;
-        public static final double RAMP_RATE = 0.5;
+        public static final double RAMP_RATE = 0.05;
         public static final int CURRENT_LIMIT = 80;
 
         public static final double PID_MIN_OUTPUT = 0;
@@ -45,7 +45,7 @@ public final class Constants {
         public static final int RIGHT_STICK_PORT = 1;
         public static final int XBOX_CONTROLLER_PORT = 2;
 
-        public static final double DEADBAND = 0.1;
+        public static final double DEADBAND = 0.05;
 
         // TODO: Bind all buttons
         public static final int INTAKE_BUTTON = 5;
@@ -72,8 +72,8 @@ public final class Constants {
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
         // TODO: Adjust powers
-        public static final double INTAKE_POWER = 0.3;
-        public static final double WRIST_POWER = 0.3;
+        public static final double INTAKE_POWER = 0.7;
+        public static final double WRIST_POWER = 0.5;
     }
 
     public static class FeederConstants {
