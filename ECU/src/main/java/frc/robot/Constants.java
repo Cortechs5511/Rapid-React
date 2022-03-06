@@ -43,12 +43,12 @@ public final class Constants {
     public static class OIConstants {
         public static final int LEFT_STICK_PORT = 0;
         public static final int RIGHT_STICK_PORT = 1;
-        public static final int XBOX_CONTROLLER_PORT = 3;
+        public static final int XBOX_CONTROLLER_PORT = 2;
 
         public static final double DEADBAND = 0.1;
 
         // TODO: Bind all buttons
-        public static final int INTAKE_BUTTON = 1;
+        public static final int INTAKE_BUTTON = 5;
         public static final int WRIST_UP_BUTTON = 2;
         public static final int WRIST_DOWN_BUTTON = 3;
         public static final int OUTTAKE_BUTTON = 4;
@@ -82,7 +82,7 @@ public final class Constants {
         public static final int TOWER_2_ID = 42;
 
         public static final boolean INVERT_FEEDER = false;
-        public static final boolean INVERT_TOWER_1 = false;
+        public static final boolean INVERT_TOWER_1 = true;
         public static final boolean INVERT_TOWER_2 = false;
 
         public static final int CURRENT_LIMIT = 40;
@@ -94,8 +94,8 @@ public final class Constants {
         public static final int BOTTOM_SENSOR_PORT = 1;
         public static final int TOP_SENSOR_PORT = 2;
 
-        public static final double FEEDER_POWER = 0.3;
-        public static final double TOWER_POWER = 0.3;
+        public static final double FEEDER_POWER = 0.5;
+        public static final double TOWER_POWER = 0.5;
 
         public static final double EJECT_TIMEOUT = 5.0;
         public static final double FEED_TIMEOUT = 0.5;

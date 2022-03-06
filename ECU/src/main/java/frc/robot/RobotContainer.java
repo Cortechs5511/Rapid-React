@@ -40,7 +40,7 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(oi.controller, Constants.OIConstants.OUTTAKE_BUTTON).whenPressed(new Eject(feeder, intake));
+        new JoystickButton(oi.controller, Constants.OIConstants.OUTTAKE_BUTTON).whenPressed(new Eject(feeder, intake)).whenReleased(new SetFeederPower(feeder));
         new JoystickButton(oi.controller, Constants.OIConstants.SHOOT_BUTTON).whenPressed(new ShootCommandGroup(drive, feeder, intake, limelight, shooter));
         new JoystickButton(oi.controller, Constants.OIConstants.STOP_SHOOT_BUTTON).whenReleased(new StopShooter(drive, feeder, intake, shooter));
         new JoystickButton(oi.controller, Constants.OIConstants.LIGHTS_TOGGLE_BUTTON).whenPressed(new LightToggle(limelight));

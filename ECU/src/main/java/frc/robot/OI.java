@@ -50,7 +50,7 @@ public class OI {
      * @return double 1 if intake is pressed, else 0
      */
     public double getIntake() {
-        return controller.getRawButtonPressed(OIConstants.INTAKE_BUTTON) ? 1 : 0;
+        return controller.getRawButton(OIConstants.INTAKE_BUTTON) ? 1 : 0;
     }
 
     /**
@@ -59,7 +59,7 @@ public class OI {
      * @return double 1 if wrist up is pressed, else 0
      */
     public double getWristUp() {
-        return controller.getRawButtonPressed(OIConstants.WRIST_UP_BUTTON) ? 1 : 0;
+        return controller.getRawButton(OIConstants.WRIST_UP_BUTTON) ? 1 : 0;
     }
 
     /**
@@ -68,7 +68,7 @@ public class OI {
      * @return double 1 if wrist down is pressed, else 0
      */
     public double getWristDown() {
-        return controller.getRawButtonPressed(OIConstants.WRIST_DOWN_BUTTON) ? 1 : 0;
+        return controller.getRawButton(OIConstants.WRIST_DOWN_BUTTON) ? 1 : 0;
     }
 
     /**
