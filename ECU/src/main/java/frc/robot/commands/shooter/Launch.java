@@ -2,6 +2,7 @@ package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants.FeederConstants;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.ShooterConstants;
@@ -26,7 +27,7 @@ public class Launch extends CommandBase {
         this.intake = intake;
         this.shooter = shooter;
 
-        addRequirements(this.drive, this.feeder, this.intake, limelight, this.shooter);
+        addRequirements(this.drive, this.feeder, this.intake, limelight, (Subsystem) this.shooter);
     }
 
     @Override

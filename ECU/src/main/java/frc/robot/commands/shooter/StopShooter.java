@@ -2,12 +2,10 @@ package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
 import frc.robot.OI;
-import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Feeder;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.*;
 
 /**
  * The goal of this is to immediately cancel the ejection of any game pieces, and to give back control to the driver
@@ -29,7 +27,7 @@ public class StopShooter extends CommandBase {
         this.intake = intake;
         this.shooter = shooter;
 
-        addRequirements(this.drive, this.feeder, this.intake, this.shooter);
+        addRequirements(this.drive, this.feeder, this.intake, (Subsystem) this.shooter);
     }
 
     @Override

@@ -102,8 +102,11 @@ public final class Constants {
     }
 
     public static class ShooterConstants {
-        public static final int LEFT_SHOOTER_ID = 50;
-        public static final int RIGHT_SHOOTER_ID = 51;
+        public static final int BOTTOM_SHOOTER_ID = 50;
+        public static final int TOP_SHOOTER_ID = 51;
+
+        public static final boolean INVERT_BOTTOM_SHOOTER = false;
+        public static final boolean INVERT_TOP_SHOOTER = true;
 
         public static final double VOLTAGE_COMPENSATION = 11.5;
         public static final double LONG_RAMP_RATE = 1.5;
@@ -114,13 +117,14 @@ public final class Constants {
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
         public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true, 80, 0, 0);
 
-        public static final boolean INVERT_LEFT_SHOOTER = false;
-        public static final boolean INVERT_RIGHT_SHOOTER = true;
-
         public static final double SHOOTER_RPM_TOLERANCE = 200.0;
         public static final double DWELL_TIME = 0.5;
         public static final double SHOOTER_TIMEOUT = 1.0;
 
+        public static final double PID_P = 0;
+        public static final double PID_I = 0;
+        public static final double PID_D = 0;
+        public static final double PID_FF = 0;
     }
 
 }

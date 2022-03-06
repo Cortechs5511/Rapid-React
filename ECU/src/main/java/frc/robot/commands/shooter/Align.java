@@ -3,6 +3,7 @@ package frc.robot.commands.shooter;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.OI;
@@ -26,7 +27,7 @@ public class Align extends CommandBase {
         this.limelight = limelight;
         this.shooter = shooter;
 
-        addRequirements(this.drive, this.limelight, this.shooter);
+        addRequirements(this.drive, this.limelight, (Subsystem) this.shooter);
     }
 
     @Override

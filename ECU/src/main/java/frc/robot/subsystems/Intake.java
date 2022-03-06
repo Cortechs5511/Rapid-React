@@ -9,8 +9,6 @@ public class Intake extends SubsystemBase {
     private final WPI_TalonSRX wristMotor = createIntakeController(IntakeConstants.WRIST_ID, IntakeConstants.INVERT_WRIST);
 
     public Intake() {
-        // intakeMotor.setInverted(IntakeConstants.INVERT_INTAKE);
-        // wristMotor.setInverted(IntakeConstants.INVERT_WRIST);
     }
 
     /**
