@@ -1,12 +1,16 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants.DriveConstants;;
 
 public class Intake extends SubsystemBase {
-    private final WPI_TalonSRX intakeMotor = createIntakeController(IntakeConstants.INTAKE_ID, IntakeConstants.INVERT_INTAKE);
-    private final WPI_TalonSRX wristMotor = createIntakeController(IntakeConstants.WRIST_ID, IntakeConstants.INVERT_WRIST);
+    private final WPI_TalonSRX intakeMotor = createIntakeTalon(IntakeConstants.INTAKE_ID, IntakeConstants.INVERT_INTAKE);
+    private final CANSparkMax wristMotor = createIntakeSparkMAX(IntakeConstants.WRIST_ID, IntakeConstants.INVERT_WRIST);
 
     public Intake() {
     }
@@ -36,7 +40,7 @@ public class Intake extends SubsystemBase {
      * @param invert boolean whether to invert
      * @return WPI_TalonSRX
      */
-    private WPI_TalonSRX createIntakeController(int id, boolean invert) {
+    private WPI_TalonSRX createIntakeTalon(int id, boolean invert) {
         WPI_TalonSRX controller = new WPI_TalonSRX(id);
 
         controller.configFactoryDefault();
@@ -50,6 +54,30 @@ public class Intake extends SubsystemBase {
         controller.setInverted(invert);
         controller.setNeutralMode(IntakeConstants.NEUTRAL_MODE);
 
+        return controller;
+    }
+
+
+    /**
+     * Create intake (SPARK MAX) motor controller with preferred configuration
+     *
+     * @param id     CAN ID of motor controller
+     * @param invert boolean whether to invert
+     * @return CANSparkMax
+     */
+    private CANSparkMax createIntakeSparkMAX(int id, boolean invert) {
+        CANSparkMax controller = new CANSparkMax(id, MotorType.kBrushless);
+        controller.restoreFactoryDefaults();
+
+        controller.enableVoltageCompensation(DriveConstants.VOLTAGE_COMPENSATION);
+        controller.setIdleMode(DriveConstants.IDLE_MODE);
+        controller.setOpenLoopRampRate(DriveConstants.RAMP_RATE);
+        controller.setClosedLoopRampRate(DriveConstants.RAMP_RATE);
+
+        controller.setSmartCurrentLimit(DriveConstants.CURRENT_LIMIT);
+        controller.setSecondaryCurrentLimit(100);
+
+        controller.setInverted(invert);
         return controller;
     }
 
