@@ -16,7 +16,6 @@ public class Limelight extends SubsystemBase {
     private double x;
     private double v;
 
-    private double RPMAdjustment;
 
     public Limelight() {
         // Turn lights off
@@ -63,7 +62,6 @@ public class Limelight extends SubsystemBase {
     @Override
     public void periodic() {
         x = tx.getDouble(0.0);
-        double y = ty.getDouble(0.0);
         v = tv.getDouble(0.0);
 
         SmartDashboard.putNumber("Limelight/Limelight X", x);
