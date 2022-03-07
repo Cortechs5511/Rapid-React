@@ -23,7 +23,6 @@ public class Eject extends CommandBase {
 
     @Override
     public void initialize() {
-        feeder.setFeeder(-FeederConstants.FEEDER_POWER);
         feeder.setTower(-FeederConstants.TOWER_POWER);
         intake.setIntake(-IntakeConstants.INTAKE_POWER);
 
@@ -43,7 +42,6 @@ public class Eject extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        feeder.setFeeder(0.0);
         feeder.setTower(0.0);
         intake.setIntake(0.0);
     }

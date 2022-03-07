@@ -77,11 +77,9 @@ public final class Constants {
     }
 
     public static class FeederConstants {
-        public static final int FEEDER_ID = 40;
-        public static final int TOWER_1_ID = 41;
-        public static final int TOWER_2_ID = 42;
+        public static final int TOWER_1_ID = 40;
+        public static final int TOWER_2_ID = 41;
 
-        public static final boolean INVERT_FEEDER = false;
         public static final boolean INVERT_TOWER_1 = true;
         public static final boolean INVERT_TOWER_2 = false;
 
@@ -90,11 +88,9 @@ public final class Constants {
         public static final double RAMP_RATE = 0.25;
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
-        // TODO: set ports and power
         public static final int BOTTOM_SENSOR_PORT = 1;
         public static final int TOP_SENSOR_PORT = 2;
 
-        public static final double FEEDER_POWER = 0.5;
         public static final double TOWER_POWER = 0.5;
 
         public static final double EJECT_TIMEOUT = 5.0;

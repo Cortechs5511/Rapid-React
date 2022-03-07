@@ -32,7 +32,6 @@ public class StopShooter extends CommandBase {
 
     @Override
     public void initialize() {
-        feeder.setFeeder(0);
         feeder.setTower(0);
         intake.setIntake(0);
         shooter.setPower(0);

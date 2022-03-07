@@ -58,10 +58,8 @@ public class Launch extends CommandBase {
 
         // Feed if feeding conditions met
         if (feedCount.get() > FeederConstants.FEED_TIMEOUT) {
-            feeder.setFeeder(FeederConstants.FEEDER_POWER);
             feeder.setTower(FeederConstants.TOWER_POWER);
         } else {
-            feeder.setFeeder(0);
             feeder.setTower(0);
         }
 
@@ -82,7 +80,6 @@ public class Launch extends CommandBase {
         feedCount.reset();
 
         intake.setIntake(0);
-        feeder.setFeeder(0);
         feeder.setTower(0);
 
         shooter.setPower(0);
