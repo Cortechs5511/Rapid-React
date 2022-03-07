@@ -34,7 +34,7 @@ public class StopShooter extends CommandBase {
     public void initialize() {
         feeder.setTower(0);
         intake.setIntake(0);
-        shooter.setPower(0);
+        shooter.setBottomPower(0);
 
         timeout.reset();
         timeout.start();

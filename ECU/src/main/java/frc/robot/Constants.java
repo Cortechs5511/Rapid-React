@@ -8,7 +8,7 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
     // Change before competition -- inhibits extraneous SmartDashboard logging
-    public static final boolean DIAGNOSTICS = false;
+    public static final boolean DIAGNOSTICS = true;
     public static final double DWELL_PERIOD = 0.5;
 
     public static class DriveConstants {
@@ -74,6 +74,7 @@ public final class Constants {
         // TODO: Adjust powers
         public static final double INTAKE_POWER = 0.7;
         public static final double WRIST_POWER = 0.5;
+        public static final double WRIST_DOWN_POWER = 0.2;
     }
 
     public static class FeederConstants {
@@ -107,10 +108,12 @@ public final class Constants {
         public static final double VOLTAGE_COMPENSATION = 11.5;
         public static final double LONG_RAMP_RATE = 1.5;
         public static final double SHORT_RAMP_RATE = 0.01;
-        public static final double UNITS_PER_ROTATION = 2048;
-        public static final double RPM_TO_UNITS = 60 / UNITS_PER_ROTATION;
 
-        public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
+        // getSelectedSensorVelocity: units (2048/rotation) per 100ms
+        public static final double UNITS_PER_ROTATION = 2048;
+        public static final double RPM_TO_UNITS = 600 / UNITS_PER_ROTATION;
+
+        public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
         public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true, 80, 0, 0);
 
         public static final double SHOOTER_RPM_TOLERANCE = 200.0;

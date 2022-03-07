@@ -52,7 +52,7 @@ public class Align extends CommandBase {
             drive.setPower(oi.getLeftYDeadband() / 3, oi.getRightYDeadband() / 3);
         }
 
-        if (Math.abs(targetSpeed - shooter.getSpeed()) < ShooterConstants.SHOOTER_RPM_TOLERANCE) {
+        if (Math.abs(targetSpeed - shooter.getBottomSpeed()) < ShooterConstants.SHOOTER_RPM_TOLERANCE) {
             count.start();
         } else {
             count.reset();
@@ -61,13 +61,13 @@ public class Align extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return (count.hasElapsed(ShooterConstants.DWELL_TIME) && Math.abs(targetSpeed - shooter.getSpeed()) < ShooterConstants.SHOOTER_RPM_TOLERANCE && Math.abs(drive.getLeftVelocity()) < DriveConstants.DRIVE_VELOCITY_TOLERANCE && Math.abs(drive.getRightVelocity()) < DriveConstants.DRIVE_VELOCITY_TOLERANCE);
+        return (count.hasElapsed(ShooterConstants.DWELL_TIME) && Math.abs(targetSpeed - shooter.getBottomSpeed()) < ShooterConstants.SHOOTER_RPM_TOLERANCE && Math.abs(drive.getLeftVelocity()) < DriveConstants.DRIVE_VELOCITY_TOLERANCE && Math.abs(drive.getRightVelocity()) < DriveConstants.DRIVE_VELOCITY_TOLERANCE);
     }
 
     @Override
     public void end(boolean interrupted) {
         drive.setPower(0, 0);
-        shooter.setSpeed(limelight.calculateRPM());
+        shooter.setBottomSpeed(limelight.calculateRPM());
         shooter.setRampRate(ShooterConstants.SHORT_RAMP_RATE);
         limelight.setLight(false);
         count.reset();

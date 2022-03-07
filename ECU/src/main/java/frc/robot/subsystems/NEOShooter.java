@@ -19,24 +19,24 @@ public class NEOShooter extends SubsystemBase implements Shooter {
     private final RelativeEncoder topEncoder = topShooter.getEncoder();
 
     @Override
-    public double getSpeed() {
+    public double getBottomSpeed() {
         return bottomEncoder.getVelocity();
     }
 
     @Override
-    public void setSpeed(double speed) {
+    public void setBottomSpeed(double speed) {
         bottomPID.setReference(speed, CANSparkMax.ControlType.kVelocity);
         topPID.setReference(speed, CANSparkMax.ControlType.kVelocity);
     }
 
     @Override
-    public void setPower(double power) {
+    public void setBottomPower(double power) {
         bottomShooter.set(power);
         topShooter.set(power);
     }
 
     @Override
-    public double getSetpoint() {
+    public double getBottomSetpoint() {
         return bottomShooter.get();
     }
 
@@ -51,7 +51,7 @@ public class NEOShooter extends SubsystemBase implements Shooter {
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
-            SmartDashboard.putNumber("Shooter/Bottom Speed", getSpeed());
+            SmartDashboard.putNumber("Shooter/Bottom Speed", getBottomSpeed());
             SmartDashboard.putNumber("Shooter/Top Speed", topEncoder.getVelocity());
 
             SmartDashboard.putNumber("Shooter/Bottom Current", bottomShooter.getOutputCurrent());
@@ -92,5 +92,9 @@ public class NEOShooter extends SubsystemBase implements Shooter {
         pid.setFF(ShooterConstants.PID_FF);
 
         return pid;
+    }
+
+    public void setTopPower(double power) {
+        // TODO Auto-generated method stub
     }
 }

@@ -16,7 +16,7 @@ public class Feeder extends SubsystemBase {
     public boolean getBottomSensor() {
         return bottomSensor.get();
     }
-    
+
     public boolean getTopSensor() {
         return topSensor.get();
     }
@@ -62,7 +62,8 @@ public class Feeder extends SubsystemBase {
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
-            SmartDashboard.putBoolean("Feeder/Tower Sensor", getBottomSensor());
+            SmartDashboard.putBoolean("Feeder/Bottom Sensor", getBottomSensor());
+            SmartDashboard.putBoolean("Feeder/Top Sensor", getTopSensor());
         }
     }
 }

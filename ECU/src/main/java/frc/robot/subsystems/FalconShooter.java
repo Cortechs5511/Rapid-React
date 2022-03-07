@@ -12,39 +12,54 @@ public class FalconShooter extends SubsystemBase implements Shooter {
     private final WPI_TalonFX topShooter = createShooterController(ShooterConstants.TOP_SHOOTER_ID, ShooterConstants.INVERT_TOP_SHOOTER);
 
     public FalconShooter() {
-        topShooter.set(ControlMode.Follower, ShooterConstants.BOTTOM_SHOOTER_ID);
     }
 
-    public double getSpeed() {
-        return bottomShooter.getSelectedSensorVelocity() / ShooterConstants.RPM_TO_UNITS;
+    public double getBottomSpeed() {
+        return bottomShooter.getSelectedSensorVelocity() * ShooterConstants.RPM_TO_UNITS;
+    }
+
+    public double getTopSpeed() {
+        return topShooter.getSelectedSensorVelocity() * ShooterConstants.RPM_TO_UNITS;
     }
 
     /**
-     * Sets the shooter to a certain speed
+     * Sets the bottom wheel to a certain speed
      *
      * @param speed target velocity, RPM
      *                                                                               TODO: find units
      */
-    public void setSpeed(double speed) {
+    public void setBottomSpeed(double speed) {
         bottomShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
     }
 
     /**
-     * Sets shooter to open loop output
+     * Sets bottom wheel to open loop output
      *
      * @param power double speed [0.0, 1.0]
      */
-    public void setPower(double power) {
+    public void setBottomPower(double power) {
         bottomShooter.set(ControlMode.PercentOutput, power);
     }
 
+    
     /**
-     * Returns the most recently set PID reference value
+     * Sets top wheel to open loop output
+     *
+     * @param power double speed [0.0, 1.0]
+     */
+    public void setTopPower(double power) {
+        topShooter.set(ControlMode.PercentOutput, power);
+    }
+
+    // TODO: duplicate all of the bottom wheel methods for top wheel and remove all follower binds
+
+    /**
+     * Returns the most recently set PID reference value for bottom
      *
      * @return double reference value, RPM
      * TODO: confirm units in RPM
      */
-    public double getSetpoint() {
+    public double getBottomSetpoint() {
         return bottomShooter.getClosedLoopTarget() / ShooterConstants.RPM_TO_UNITS;
     }
 
@@ -63,7 +78,8 @@ public class FalconShooter extends SubsystemBase implements Shooter {
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
-            SmartDashboard.putNumber("Shooter/Speed", getSpeed());
+            SmartDashboard.putNumber("Shooter/Bottom Speed", getBottomSpeed());
+            SmartDashboard.putNumber("Shooter/Top Speed", getTopSpeed());
             SmartDashboard.putNumber("Shooter/Current", bottomShooter.getSupplyCurrent());
             SmartDashboard.putNumber("Shooter/Temperature", bottomShooter.getTemperature());
         }

@@ -12,6 +12,7 @@ import frc.robot.commands.collector.SetIntakePower;
 import frc.robot.commands.drive.Flip;
 import frc.robot.commands.drive.SetSpeed;
 import frc.robot.commands.shooter.LightToggle;
+import frc.robot.commands.shooter.SetShooterPower;
 import frc.robot.commands.shooter.ShootCommandGroup;
 import frc.robot.commands.shooter.StopShooter;
 import frc.robot.subsystems.*;
@@ -21,7 +22,7 @@ public class RobotContainer {
     private final Drive drive = new Drive();
     private final Intake intake = new Intake();
     private final Feeder feeder = new Feeder();
-    private final Shooter shooter = new FalconShooter();
+    private final FalconShooter shooter = new FalconShooter();
     private final Limelight limelight = new Limelight();
     private final OI oi = OI.getInstance();
 
@@ -29,6 +30,9 @@ public class RobotContainer {
         drive.setDefaultCommand(new SetSpeed(drive));
         intake.setDefaultCommand(new SetIntakePower(intake));
         feeder.setDefaultCommand(new SetFeederPower(feeder));
+
+        // for testing only
+        shooter.setDefaultCommand(new SetShooterPower(shooter));
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         chooser.addOption("Auto command (placeholder)", AutoRoutine.AutoCommand);

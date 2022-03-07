@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 public interface Shooter {
-    double getSpeed();
+    double getBottomSpeed();
 
     /**
      * Sets the shooter to a certain speed
@@ -9,14 +9,17 @@ public interface Shooter {
      * @param speed target velocity, RPM
      *                                                                               TODO: find units
      */
-    void setSpeed(double speed);
+    void setBottomSpeed(double speed);
 
     /**
      * Sets shooter to open loop output
      *
      * @param power double speed [0.0, 1.0]
      */
-    void setPower(double power);
+    void setBottomPower(double power);
+
+    // TODO: see comment in falcon shooter
+    void setTopPower(double power);
 
     /**
      * Returns the most recently set PID reference value
@@ -25,7 +28,7 @@ public interface Shooter {
      * TODO: confirm units in RPM
      */
 
-    double getSetpoint();
+    double getBottomSetpoint();
 
     /**
      * Sets shooter controllers to adopt given ramp rate

@@ -35,7 +35,7 @@ public class Launch extends CommandBase {
         timeout.reset();
         feedCount.reset();
 
-        targetSpeed = shooter.getSpeed();
+        targetSpeed = shooter.getBottomSpeed();
 
         intake.setIntake(IntakeConstants.INTAKE_POWER);
     }
@@ -50,7 +50,7 @@ public class Launch extends CommandBase {
         }
 
         // If RPM within tolerance, begin timeout for feeding
-        if (Math.abs(shooter.getSpeed() - targetSpeed) < ShooterConstants.SHOOTER_RPM_TOLERANCE) {
+        if (Math.abs(shooter.getBottomSpeed() - targetSpeed) < ShooterConstants.SHOOTER_RPM_TOLERANCE) {
             feedCount.start();
         } else {
             feedCount.reset();
@@ -71,7 +71,7 @@ public class Launch extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return (timeout.get() > ShooterConstants.SHOOTER_TIMEOUT) || (shooter.getSpeed() < 1000);
+        return (timeout.get() > ShooterConstants.SHOOTER_TIMEOUT) || (shooter.getBottomSpeed() < 1000);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Launch extends CommandBase {
         intake.setIntake(0);
         feeder.setTower(0);
 
-        shooter.setPower(0);
+        shooter.setBottomPower(0);
         shooter.setRampRate(ShooterConstants.LONG_RAMP_RATE);
 
         drive.setPower(0, 0);
