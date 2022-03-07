@@ -1,12 +1,14 @@
 package frc.robot.commands.collector;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.OI;
 import frc.robot.Constants.FeederConstants;
 import frc.robot.subsystems.Feeder;
 
 
 public class SetFeederPower extends CommandBase {
     private final Feeder feeder;
+    private final OI oi = OI.getInstance();
 
     public SetFeederPower(Feeder feeder) {
         this.feeder = feeder;
@@ -32,7 +34,12 @@ public class SetFeederPower extends CommandBase {
             towerPower = FeederConstants.TOWER_POWER;
         }
 
-        feeder.setTower(towerPower);
+        if (!oi.getOuttake()) {
+            feeder.setTower(towerPower);
+        } else {
+            feeder.setTower(-FeederConstants.TOWER_POWER);
+        }
+       
     }
 
     @Override

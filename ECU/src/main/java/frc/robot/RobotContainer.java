@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.auto.TrajectoryFollower;
-import frc.robot.commands.collector.Eject;
 import frc.robot.commands.collector.SetFeederPower;
 import frc.robot.commands.collector.SetIntakePower;
 import frc.robot.commands.drive.Flip;
@@ -44,7 +43,6 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(oi.controller, Constants.OIConstants.OUTTAKE_BUTTON).whenPressed(new Eject(feeder, intake)).whenReleased(new SetFeederPower(feeder));
         new JoystickButton(oi.controller, Constants.OIConstants.SHOOT_BUTTON).whenPressed(new ShootCommandGroup(drive, feeder, intake, limelight, shooter));
         new JoystickButton(oi.controller, Constants.OIConstants.STOP_SHOOT_BUTTON).whenReleased(new StopShooter(drive, feeder, intake, shooter));
         new JoystickButton(oi.controller, Constants.OIConstants.LIGHTS_TOGGLE_BUTTON).whenPressed(new LightToggle(limelight));

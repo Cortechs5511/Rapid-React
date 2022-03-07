@@ -74,7 +74,7 @@ public class Intake extends SubsystemBase {
         controller.setOpenLoopRampRate(DriveConstants.RAMP_RATE);
         controller.setClosedLoopRampRate(DriveConstants.RAMP_RATE);
 
-        controller.setSmartCurrentLimit(DriveConstants.CURRENT_LIMIT);
+        controller.setSmartCurrentLimit(IntakeConstants.CURRENT_LIMIT);
         controller.setSecondaryCurrentLimit(100);
 
         controller.setInverted(invert);

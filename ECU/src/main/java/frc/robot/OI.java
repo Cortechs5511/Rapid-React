@@ -54,6 +54,15 @@ public class OI {
     }
 
     /**
+     * Returns state of outtake binding as a bool 
+     * 
+     * @return bool if outtake is pressed
+     */
+    public boolean getOuttake() {
+        return controller.getRawButton(OIConstants.OUTTAKE_BUTTON);
+    }
+
+    /**
      * Returns state of wrist up binding as a double
      *
      * @return double 1 if wrist up is pressed, else 0
