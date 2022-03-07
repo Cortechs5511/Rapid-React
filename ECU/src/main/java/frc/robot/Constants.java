@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
@@ -38,6 +39,21 @@ public final class Constants {
         public static final double ANGLE_I = 0.0;
         public static final double ANGLE_D = 0.0;
         public static final double ANGLE_PID_LIMIT = 0.3;
+
+        public static final double TRACK_WIDTH = 0.6858;
+        public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(TRACK_WIDTH);
+
+        // TODO: characterize
+        public static final double KS = 0;
+        public static final double KV = 0;
+        public static final double KA = 0;
+    }
+
+    public static class AutoConstants {
+
+        public static final double RAMSETE_BETA = 0;
+        public static final double RAMSETE_ZETA = 0;
+
     }
 
     public static class OIConstants {
@@ -71,7 +87,6 @@ public final class Constants {
         public static final double RAMP_RATE = 0.25;
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
-        // TODO: Adjust powers
         public static final double INTAKE_POWER = 0.7;
         public static final double WRIST_POWER = 0.5;
         public static final double WRIST_DOWN_POWER = 0.2;

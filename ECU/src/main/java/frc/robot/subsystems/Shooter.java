@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+// TODO: deprecate this
 public interface Shooter {
     double getBottomSpeed();
 
@@ -7,7 +8,6 @@ public interface Shooter {
      * Sets the shooter to a certain speed
      *
      * @param speed target velocity, RPM
-     *                                                                               TODO: find units
      */
     void setBottomSpeed(double speed);
 
@@ -25,7 +25,6 @@ public interface Shooter {
      * Returns the most recently set PID reference value
      *
      * @return double reference value, RPM
-     * TODO: confirm units in RPM
      */
 
     double getBottomSetpoint();

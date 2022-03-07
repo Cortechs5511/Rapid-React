@@ -26,7 +26,6 @@ public class FalconShooter extends SubsystemBase implements Shooter {
      * Sets the bottom wheel to a certain speed
      *
      * @param speed target velocity, RPM
-     *                                                                               TODO: find units
      */
     public void setBottomSpeed(double speed) {
         bottomShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);

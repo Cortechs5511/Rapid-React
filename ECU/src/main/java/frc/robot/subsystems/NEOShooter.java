@@ -95,6 +95,5 @@ public class NEOShooter extends SubsystemBase implements Shooter {
     }
 
     public void setTopPower(double power) {
-        // TODO Auto-generated method stub
     }
 }

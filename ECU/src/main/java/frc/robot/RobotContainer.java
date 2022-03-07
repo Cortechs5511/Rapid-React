@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.auto.AutoCommand;
+import frc.robot.commands.auto.TrajectoryFollower;
 import frc.robot.commands.collector.Eject;
 import frc.robot.commands.collector.SetFeederPower;
 import frc.robot.commands.collector.SetIntakePower;
@@ -58,7 +58,8 @@ public class RobotContainer {
             case WaitCommand:
                 return new WaitCommand(2.0);
             case AutoCommand:
-                return new AutoCommand(drive);
+                return new WaitCommand(2.0);
+                // return new TrajectoryFollower(drive);
             default:
                 return new WaitCommand(1.0);
         }
