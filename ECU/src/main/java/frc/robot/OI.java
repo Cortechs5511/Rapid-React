@@ -49,34 +49,34 @@ public class OI {
      *
      * @return double 1 if intake is pressed, else 0
      */
-    public int getOuttake() {
-        return controller.getXButton() ? 1 : 0;
+    public double getIntake() {
+        return controller.getRawButton(OIConstants.INTAKE_BUTTON) ? 1 : 0;
     }
 
     /**
      * Returns state of outtake binding as a bool 
      * 
-     * @return int 1 if intake is pressed else 0
+     * @return bool if outtake is pressed
      */
-    public int getIntake() {
-        return controller.getYButton() ? 1 : 0;
+    public boolean getOuttake() {
+        return controller.getRawButton(OIConstants.OUTTAKE_BUTTON);
     }
 
     /**
      * Returns state of wrist up binding as a double
      *
-     * @return int 1 if wrist up is pressed, else 0
+     * @return double 1 if wrist up is pressed, else 0
      */
-    public int getWristUp() {
+    public double getWristUp() {
         return controller.getRawAxis(OIConstants.WRIST_UP_AXIS) > 0.5 ? 1 : 0;
     }
 
     /**
      * Returns state of wrist down binding as a double
      *
-     * @return int 1 if wrist down is pressed, else 0
+     * @return double 1 if wrist down is pressed, else 0
      */
-    public int getWristDown() {
+    public double getWristDown() {
         return controller.getRawAxis(OIConstants.WRIST_DOWN_AXIS) > 0.5 ? 1 : 0;
     }
 

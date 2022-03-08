@@ -22,6 +22,7 @@ public class TrajectoryFollower extends CommandBase {
             Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
 
             if (resetPos) {
+                
                 drive.resetOdometry();
             }
 
