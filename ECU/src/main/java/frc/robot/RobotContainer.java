@@ -21,7 +21,7 @@ public class RobotContainer {
     private final Drive drive = new Drive();
     private final Intake intake = new Intake();
     private final Feeder feeder = new Feeder();
-    private final FalconShooter shooter = new FalconShooter();
+    private final Shooter shooter = new Shooter();
     private final Limelight limelight = new Limelight();
     private final OI oi = OI.getInstance();
 

@@ -7,7 +7,7 @@ import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.*;
 
 public class ShootCommandGroup extends SequentialCommandGroup {
-    public ShootCommandGroup(Drive drive, Feeder feeder, Intake intake, Limelight limelight, FalconShooter shooter) {
+    public ShootCommandGroup(Drive drive, Feeder feeder, Intake intake, Limelight limelight, Shooter shooter) {
         super(
                 new LightOn(limelight),
                 new WaitCommand(ShooterConstants.DWELL_TIME),

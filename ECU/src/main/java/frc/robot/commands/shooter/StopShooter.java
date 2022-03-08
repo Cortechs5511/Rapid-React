@@ -16,12 +16,12 @@ public class StopShooter extends CommandBase {
     private final Drive drive;
     private final Feeder feeder;
     private final Intake intake;
-    private final FalconShooter shooter;
+    private final Shooter shooter;
     private final OI oi = OI.getInstance();
 
     private final Timer timeout = new Timer();
 
-    public StopShooter(Drive drive, Feeder feeder, Intake intake, FalconShooter shooter) {
+    public StopShooter(Drive drive, Feeder feeder, Intake intake, Shooter shooter) {
         this.drive = drive;
         this.feeder = feeder;
         this.intake = intake;

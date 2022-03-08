@@ -14,14 +14,14 @@ public class Launch extends CommandBase {
     private final Drive drive;
     private final Feeder feeder;
     private final Intake intake;
-    private final FalconShooter shooter;
+    private final Shooter shooter;
     private final OI oi = OI.getInstance();
 
     private double targetSpeed;
     private final Timer timeout = new Timer();
     private final Timer feedCount = new Timer();
 
-    public Launch(Drive drive, Feeder feeder, Intake intake, Limelight limelight, FalconShooter shooter) {
+    public Launch(Drive drive, Feeder feeder, Intake intake, Limelight limelight, Shooter shooter) {
         this.drive = drive;
         this.feeder = feeder;
         this.intake = intake;
