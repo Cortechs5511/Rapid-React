@@ -61,11 +61,15 @@ public class RobotContainer {
                 return new WaitCommand(2.0);
                 // return new TrajectoryFollower(drive);
             case threeBall:
-                return TrajectoryFollower.getPath("output/3ball1.wpilib.json", m_drive, true).andThen(stop());
+                return TrajectoryFollower.getPath("output/3ball1.wpilib.json", m_drive, true).andThen(stop())
+                .andThen(TrajectoryFollower.getPath("output/3ball1red.wpilib.json", m_drive, true));
             case twoBall:
                 return TrajectoryFollower.getPath("output/2ball1.wpilib.json", m_drive, true)
                         .andThen(TrajectoryFollower.getPath("output/2ball2.wpilib.json", m_drive, true))
-                        .andThen(TrajectoryFollower.getPath("output/2ball3.wpilib.json", m_drive, true));
+                        .andThen(TrajectoryFollower.getPath("output/2ball3.wpilib.json", m_drive, true))
+                        .andThen(TrajectoryFollower.getPath("output/2ball1red.wpilib.json", m_drive, true))
+                        .andThen(TrajectoryFollower.getPath("output/2ball2red.wpilib.json", m_drive, true))
+                        .andThen(TrajectoryFollower.getPath("output/2ball3red.wpilib.json", m_drive, true));
             default:
                 return new WaitCommand(1.0);
         }
