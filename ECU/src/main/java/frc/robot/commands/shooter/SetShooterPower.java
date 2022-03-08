@@ -3,12 +3,12 @@ package frc.robot.commands.shooter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.FalconShooter;
 
 public class SetShooterPower extends CommandBase {
-    Shooter shooter;
+    FalconShooter shooter;
 
-    public SetShooterPower(Shooter shooter) {
+    public SetShooterPower(FalconShooter shooter) {
         this.shooter = shooter;
         addRequirements((Subsystem) this.shooter);
     }

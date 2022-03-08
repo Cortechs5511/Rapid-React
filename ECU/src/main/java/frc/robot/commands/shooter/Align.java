@@ -9,20 +9,20 @@ import frc.robot.Constants.ShooterConstants;
 import frc.robot.OI;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.FalconShooter;
 
 
 public class Align extends CommandBase {
     private final Drive drive;
     private final Limelight limelight;
-    private final Shooter shooter;
+    private final FalconShooter shooter;
     private final OI oi = OI.getInstance();
 
     private final PIDController anglePID = new PIDController(DriveConstants.ANGLE_P, DriveConstants.ANGLE_I, DriveConstants.ANGLE_D);
     private final Timer count = new Timer();
     private double targetSpeed;
 
-    public Align(Drive drive, Limelight limelight, Shooter shooter) {
+    public Align(Drive drive, Limelight limelight, FalconShooter shooter) {
         this.drive = drive;
         this.limelight = limelight;
         this.shooter = shooter;
