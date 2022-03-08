@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
-
+/**
+ * @deprecated Do not see a need for an interface only used in FalconShooter.java
+ */
 @Deprecated
 public interface Shooter {
     double getBottomSpeed();

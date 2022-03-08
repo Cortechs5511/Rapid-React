@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.ShooterConstants;
 
+ /**
+  * @deprecated Switched motors to NEOs
+  */
 @Deprecated
 public class NEOShooter extends SubsystemBase implements Shooter {
     private final CANSparkMax bottomShooter = createShooterController(ShooterConstants.BOTTOM_SHOOTER_ID, ShooterConstants.INVERT_BOTTOM_SHOOTER);
