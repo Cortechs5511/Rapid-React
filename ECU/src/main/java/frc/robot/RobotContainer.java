@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.auto.TrajectoryFollower;
@@ -34,9 +35,8 @@ public class RobotContainer {
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
-        chooser.addOption("Auto command (placeholder)", AutoRoutine.AutoCommand);
-        chooser.addOption("3 ball auto", AutoRoutine.threeBall);
-        chooser.addOption("2 ball autos", AutoRoutine.twoBall);
+        chooser.addOption("3 ball auto", AutoRoutine.ThreeCargoBlue);
+        chooser.addOption("2 ball autos", AutoRoutine.TwoCargoBlue);
 
         chooser.setDefaultOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         configureButtonBindings();
@@ -53,29 +53,35 @@ public class RobotContainer {
         new JoystickButton(oi.rightStick, Constants.OIConstants.HALF_SPEED_BUTTON).whenPressed(() -> drive.setMaxPower(0.5)).whenReleased(() -> drive.setMaxPower(1.0));
     }
 
-    public Command getAutonomousCommand(autonMode choice) {
-        switch (choice) {
+    public Command getAutonomousCommand() {
+        Command autoCommand;
+
+        switch (chooser.getSelected()) {
             case WaitCommand:
-                return new WaitCommand(2.0);
-            case AutoCommand:
-                return new WaitCommand(2.0);
-                // return new TrajectoryFollower(drive);
-            case threeBall:
-                return TrajectoryFollower.getPath("output/3ball1.wpilib.json", m_drive, true).andThen(stop())
-                .andThen(TrajectoryFollower.getPath("output/3ball1red.wpilib.json", m_drive, true));
-            case twoBall:
-                return TrajectoryFollower.getPath("output/2ball1.wpilib.json", m_drive, true)
-                        .andThen(TrajectoryFollower.getPath("output/2ball2.wpilib.json", m_drive, true))
-                        .andThen(TrajectoryFollower.getPath("output/2ball3.wpilib.json", m_drive, true))
-                        .andThen(TrajectoryFollower.getPath("output/2ball1red.wpilib.json", m_drive, true))
-                        .andThen(TrajectoryFollower.getPath("output/2ball2red.wpilib.json", m_drive, true))
-                        .andThen(TrajectoryFollower.getPath("output/2ball3red.wpilib.json", m_drive, true));
+                autoCommand = new WaitCommand(2.0);
+                break;
+            case ThreeCargoBlue:
+                autoCommand = TrajectoryFollower.getPath("output/3ball1.wpilib.json", drive, true);
+                break;
+            case TwoCargoBlue:
+                autoCommand = TrajectoryFollower.getPath("output/2ball1.wpilib.json", drive, true);
+                break;
+            case ThreeCargoRed:
+                autoCommand = TrajectoryFollower.getPath("output/3ball1red.wpilib.json", drive, true);
+                break;
+            case TwoCargoRed:
+                autoCommand = TrajectoryFollower.getPath("output/2ball1red.wpilib.json", drive, true);
+                break;
             default:
-                return new WaitCommand(1.0);
+                autoCommand = new WaitCommand(1.0);
+                break;
         }
+
+        assert autoCommand != null;
+        return autoCommand.andThen(new RunCommand(() -> drive.setPower(0, 0)));
     }
 
     enum AutoRoutine {
-        WaitCommand, AutoCommand, threeBall, twoBall
+        WaitCommand, ThreeCargoBlue, ThreeCargoRed, TwoCargoBlue, TwoCargoRed
     }
 }
