@@ -35,6 +35,8 @@ public class RobotContainer {
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         chooser.addOption("Auto command (placeholder)", AutoRoutine.AutoCommand);
+        chooser.addOption("3 ball auto", AutoRoutine.threeBall);
+        chooser.addOption("2 ball autos", AutoRoutine.twoBall);
 
         chooser.setDefaultOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         configureButtonBindings();
@@ -51,19 +53,25 @@ public class RobotContainer {
         new JoystickButton(oi.rightStick, Constants.OIConstants.HALF_SPEED_BUTTON).whenPressed(() -> drive.setMaxPower(0.5)).whenReleased(() -> drive.setMaxPower(1.0));
     }
 
-    public Command getAutonomousCommand() {
-        switch (chooser.getSelected()) {
+    public Command getAutonomousCommand(autonMode choice) {
+        switch (choice) {
             case WaitCommand:
                 return new WaitCommand(2.0);
             case AutoCommand:
                 return new WaitCommand(2.0);
                 // return new TrajectoryFollower(drive);
+            case threeBall:
+                return TrajectoryFollower.getPath("output/3ball1.wpilib.json", m_drive, true).andThen(stop());
+            case twoBall:
+                return TrajectoryFollower.getPath("output/2ball1.wpilib.json", m_drive, true)
+                        .andThen(TrajectoryFollower.getPath("output/2ball2.wpilib.json", m_drive, true))
+                        .andThen(TrajectoryFollower.getPath("output/2ball3.wpilib.json", m_drive, true));
             default:
                 return new WaitCommand(1.0);
         }
     }
 
     enum AutoRoutine {
-        WaitCommand, AutoCommand
+        WaitCommand, AutoCommand, threeBall, twoBall
     }
 }
