@@ -40,6 +40,15 @@ public class FalconShooter extends SubsystemBase implements Shooter {
         bottomShooter.set(ControlMode.PercentOutput, power);
     }
 
+    /**
+     * Sets the top wheel to a certain speed
+     *
+     * @param speed target velocity, RPM
+     */
+    public void setTopSpeed(double speed) {
+        topShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
+    }
+
     
     /**
      * Sets top wheel to open loop output
@@ -50,8 +59,6 @@ public class FalconShooter extends SubsystemBase implements Shooter {
         topShooter.set(ControlMode.PercentOutput, power);
     }
 
-    // TODO: duplicate all of the bottom wheel methods for top wheel and remove all follower binds
-
     /**
      * Returns the most recently set PID reference value for bottom
      *
@@ -60,6 +67,16 @@ public class FalconShooter extends SubsystemBase implements Shooter {
      */
     public double getBottomSetpoint() {
         return bottomShooter.getClosedLoopTarget() / ShooterConstants.RPM_TO_UNITS;
+    }
+
+    /**
+     * Returns the most recently set PID reference value for top
+     *
+     * @return double reference value, RPM
+     * TODO: confirm units in RPM
+     */
+    public double getTopSetpoint() {
+        return topShooter.getClosedLoopTarget() / ShooterConstants.RPM_TO_UNITS;
     }
 
     /**
@@ -79,8 +96,10 @@ public class FalconShooter extends SubsystemBase implements Shooter {
         if (Constants.DIAGNOSTICS) {
             SmartDashboard.putNumber("Shooter/Bottom Speed", getBottomSpeed());
             SmartDashboard.putNumber("Shooter/Top Speed", getTopSpeed());
-            SmartDashboard.putNumber("Shooter/Current", bottomShooter.getSupplyCurrent());
-            SmartDashboard.putNumber("Shooter/Temperature", bottomShooter.getTemperature());
+            SmartDashboard.putNumber("Shooter/Bottom Current", bottomShooter.getSupplyCurrent());
+            SmartDashboard.putNumber("Shooter/Top Current", topShooter.getSupplyCurrent());
+            SmartDashboard.putNumber("Shooter/Bottom Temperature", bottomShooter.getTemperature());
+            SmartDashboard.putNumber("Shooter/Top Temperature", topShooter.getTemperature());
         }
     }
 

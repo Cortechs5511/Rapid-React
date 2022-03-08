@@ -65,18 +65,18 @@ public class OI {
     /**
      * Returns state of wrist up binding as a double
      *
-     * @return double 1 if wrist up is pressed, else 0
+     * @return int 1 if wrist up is pressed, else 0
      */
-    public double getWristUp() {
+    public int getWristUp() {
         return controller.getRawAxis(OIConstants.WRIST_UP_AXIS) > 0.5 ? 1 : 0;
     }
 
     /**
      * Returns state of wrist down binding as a double
      *
-     * @return double 1 if wrist down is pressed, else 0
+     * @return int 1 if wrist down is pressed, else 0
      */
-    public double getWristDown() {
+    public int getWristDown() {
         return controller.getRawAxis(OIConstants.WRIST_DOWN_AXIS) > 0.5 ? 1 : 0;
     }
 

@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
-// TODO: deprecate this
+
+@Deprecated
 public interface Shooter {
     double getBottomSpeed();
 

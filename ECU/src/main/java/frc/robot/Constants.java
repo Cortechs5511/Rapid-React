@@ -64,10 +64,11 @@ public final class Constants {
         public static final double DEADBAND = 0.05;
 
         // TODO: Bind all buttons
-        public static final int OUTTAKE_BUTTON = 5;
+        // TODO: Comment which controller each goes on for less confusion (low priority)
+        public static final int OUTTAKE_BUTTON = 5; //Not used
         public static final int WRIST_UP_AXIS = 2;
         public static final int WRIST_DOWN_AXIS = 3;
-        public static final int INTAKE_BUTTON = 4;
+        public static final int INTAKE_BUTTON = 4; //Not used
         public static final int SHOOT_BUTTON = 5;
         public static final int STOP_SHOOT_BUTTON = 6;
         public static final int LIGHTS_TOGGLE_BUTTON = 7;
