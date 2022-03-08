@@ -24,12 +24,15 @@ public class SetIntakePower extends CommandBase {
 
     @Override
     public void execute() {
-        if (!oi.getOuttake()) {
+        if (oi.getIntake()==1) {
+            intake.setIntake(oi.getIntake() * IntakeConstants.INTAKE_POWER);
+            intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
+        } else if(oi.getOuttake()==1){
+            intake.setIntake(-1 * IntakeConstants.INTAKE_POWER);
+            intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
+        } else {
             intake.setIntake(oi.getIntake() * IntakeConstants.INTAKE_POWER);
             intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER - oi.getIntake() * IntakeConstants.WRIST_DOWN_POWER);
-        } else {
-            intake.setIntake(IntakeConstants.INTAKE_POWER);
-            intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
         }
     }
 

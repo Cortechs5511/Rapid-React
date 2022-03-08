@@ -64,10 +64,10 @@ public final class Constants {
         public static final double DEADBAND = 0.05;
 
         // TODO: Bind all buttons
-        public static final int INTAKE_BUTTON = 5;
+        public static final int OUTTAKE_BUTTON = 5;
         public static final int WRIST_UP_AXIS = 2;
         public static final int WRIST_DOWN_AXIS = 3;
-        public static final int OUTTAKE_BUTTON = 4;
+        public static final int INTAKE_BUTTON = 4;
         public static final int SHOOT_BUTTON = 5;
         public static final int STOP_SHOOT_BUTTON = 6;
         public static final int LIGHTS_TOGGLE_BUTTON = 7;
@@ -87,7 +87,7 @@ public final class Constants {
         public static final double RAMP_RATE = 0.25;
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
-        public static final double INTAKE_POWER = 0.7;
+        public static final double INTAKE_POWER = -0.7;
         public static final double WRIST_POWER = 0.5;
         public static final double WRIST_DOWN_POWER = 0.2;
     }
@@ -96,8 +96,8 @@ public final class Constants {
         public static final int TOWER_1_ID = 40;
         public static final int TOWER_2_ID = 41;
 
-        public static final boolean INVERT_TOWER_1 = true;
-        public static final boolean INVERT_TOWER_2 = false;
+        public static final boolean INVERT_TOWER_1 = false;
+        public static final boolean INVERT_TOWER_2 = true;
 
         public static final int CURRENT_LIMIT = 40;
         public static final int PEAK_CURRENT_LIMIT = 60;

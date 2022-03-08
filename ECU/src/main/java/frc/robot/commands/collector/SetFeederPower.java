@@ -34,10 +34,12 @@ public class SetFeederPower extends CommandBase {
             towerPower = FeederConstants.TOWER_POWER;
         }
 
-        if (!oi.getOuttake()) {
-            feeder.setTower(towerPower);
-        } else {
+        if (oi.getIntake()==1) {
             feeder.setTower(-FeederConstants.TOWER_POWER);
+        } else if(oi.getOuttake()==1){
+            feeder.setTower(FeederConstants.TOWER_POWER);
+        } else {
+            feeder.setTower(towerPower);
         }
        
     }
