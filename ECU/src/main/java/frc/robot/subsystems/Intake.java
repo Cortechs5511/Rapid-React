@@ -5,8 +5,10 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.IntakeConstants;
-import frc.robot.Constants.DriveConstants;;
+import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
     private final WPI_TalonSRX intakeMotor = createIntakeTalon(IntakeConstants.INTAKE_ID, IntakeConstants.INVERT_INTAKE);
@@ -39,7 +41,7 @@ public class Intake extends SubsystemBase {
     * @return output current as double 
     */
     public double getIntakeCurrent(){
-        intakeMotor.getOutputCurrent();
+        return intakeMotor.getStatorCurrent();   
     }
 
     /**
@@ -94,6 +96,7 @@ public class Intake extends SubsystemBase {
     public void periodic() {
         if(Constants.DIAGNOSTICS){
             SmartDashboard.putNumber("Intake/Wheel Current", getIntakeCurrent());
+            SmartDashboard.putNumber("Intake/Wrist Power", wristMotor.get());
         }
     }
 }
