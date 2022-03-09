@@ -34,6 +34,15 @@ public class Intake extends SubsystemBase {
     }
 
     /**
+    *Get intake wheel motor current
+    *
+    * @return output current as double 
+    */
+    public double getIntakeCurrent(){
+        intakeMotor.getOutputCurrent();
+    }
+
+    /**
      * Create intake (Talon SRX) motor controller with preferred configuration
      *
      * @param id     CAN ID of motor controller
@@ -83,5 +92,8 @@ public class Intake extends SubsystemBase {
 
     @Override
     public void periodic() {
+        if(Constants.DIAGNOSTICS){
+            SmartDashboard.putNumber("Intake/Wheel Current", getIntakeCurrent());
+        }
     }
 }
