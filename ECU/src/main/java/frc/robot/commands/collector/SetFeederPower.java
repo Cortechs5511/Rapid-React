@@ -41,7 +41,7 @@ public class SetFeederPower extends CommandBase {
         } else {
             feeder.setTower(towerPower);
         }
-       
+    
     }
 
     @Override

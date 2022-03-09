@@ -90,7 +90,7 @@ public final class Constants {
 
         public static final double INTAKE_POWER = -0.7;
         public static final double WRIST_POWER = 0.5;
-        public static final double WRIST_DOWN_POWER = 0.2;
+        public static final double WRIST_DOWN_POWER = -0.01;
     }
 
     public static class FeederConstants {

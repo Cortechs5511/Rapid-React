@@ -122,7 +122,7 @@ public class Shooter extends SubsystemBase{
         shooterController.configClosedloopRamp(ShooterConstants.LONG_RAMP_RATE);
         shooterController.configVoltageCompSaturation(ShooterConstants.VOLTAGE_COMPENSATION);
 
-        shooterController.configPeakOutputReverse(0);
+        // shooterController.configPeakOutputReverse(0);
 
         return shooterController;
     }

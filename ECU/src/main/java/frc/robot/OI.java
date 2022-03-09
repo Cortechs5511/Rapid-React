@@ -47,19 +47,19 @@ public class OI {
     /**
      * Returns state of intake binding as a double
      *
-     * @return double 1 if intake is pressed, else 0
+     * @return int 1 if outtake is pressed, else 0
      */
-    public double getIntake() {
-        return controller.getRawButton(OIConstants.INTAKE_BUTTON) ? 1 : 0;
+    public int getOuttake() {
+        return controller.getXButton() ? 1 : 0;
     }
 
     /**
      * Returns state of outtake binding as a bool 
      * 
-     * @return bool if outtake is pressed
+     * @return int 1 if intake is pressed else, 0
      */
-    public boolean getOuttake() {
-        return controller.getRawButton(OIConstants.OUTTAKE_BUTTON);
+    public int getIntake() {
+        return controller.getYButton() ? 1 : 0;
     }
 
     /**
