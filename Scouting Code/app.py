@@ -13,12 +13,11 @@ if(data is not None):
 
 try:
     data = data.drop(["Timestamp", "Name", "Qual #"], axis = 1)
-    # teams = data["Team #"].to_list()
-    # data = data.set_index("Team #")
 except:
     pass
 
 if(data is not None):
     teamNum = st.selectbox("Select Team #", data)
     teamData = data.loc[(data['Team #'] == teamNum)]
+    # TODO: Make it work correctly
     st.markdown("Points scored: " + str(teamData['# of upper goal scored'].mean()))
