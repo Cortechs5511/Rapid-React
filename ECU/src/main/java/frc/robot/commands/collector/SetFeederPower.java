@@ -22,26 +22,7 @@ public class SetFeederPower extends CommandBase {
 
     @Override
     public void execute() {
-        boolean bottomSensor = feeder.getBottomSensor();
-        boolean topSensor = feeder.getTopSensor();
-
-        double towerPower = 0;
-
-        // Index cargo based off of progress in feeder
-        if (topSensor) {
-            towerPower = 0;
-        } else if (bottomSensor) {
-            towerPower = FeederConstants.TOWER_POWER;
-        }
-
-        if (oi.getIntake()==1) {
-            feeder.setTower(-FeederConstants.TOWER_POWER);
-        } else if(oi.getOuttake()==1){
-            feeder.setTower(FeederConstants.TOWER_POWER);
-        } else {
-            feeder.setTower(towerPower);
-        }
-    
+        feeder.setTower((oi.getFeederUp() - oi.getFeederDown()) * FeederConstants.TOWER_POWER);
     }
 
     @Override

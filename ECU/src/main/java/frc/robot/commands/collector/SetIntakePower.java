@@ -24,18 +24,11 @@ public class SetIntakePower extends CommandBase {
 
     @Override
     public void execute() {
-        if (oi.getIntake()==1) {
-            intake.setIntake(IntakeConstants.INTAKE_POWER);
-            intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER - IntakeConstants.WRIST_DOWN_POWER);
-            // TODO: Potentially change how fast the wrist lifts when the motor stalls
-            if (intake.getIntakeCurrent() < -20){
-                intake.setWrist(IntakeConstants.WRIST_POWER);
-            }
-        } else if(oi.getOuttake()==1){
-            intake.setIntake(-1 * IntakeConstants.INTAKE_POWER);
-            intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
+        intake.setIntake((oi.getIntake() - oi.getOuttake()) * IntakeConstants.INTAKE_POWER);
+        
+        if (intake.getIntakeCurrent() < IntakeConstants.WRIST_BUMP_THRESHOLD) {
+            intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER + IntakeConstants.WRIST_DOWN_POWER);
         } else {
-            intake.setIntake(0);
             intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
         }
     }

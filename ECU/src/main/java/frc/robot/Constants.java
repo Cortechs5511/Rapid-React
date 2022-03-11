@@ -85,12 +85,14 @@ public final class Constants {
 
         public static final int CURRENT_LIMIT = 40;
         public static final int PEAK_CURRENT_LIMIT = 60;
+        public static final int WRIST_CURRENT_LIMIT = 20;
         public static final double RAMP_RATE = 0.25;
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
         public static final double INTAKE_POWER = -0.7;
         public static final double WRIST_POWER = 0.5;
-        public static final double WRIST_DOWN_POWER = -0.01;
+        public static final double WRIST_DOWN_POWER = 0.05;
+        public static final double WRIST_BUMP_THRESHOLD = -20;
     }
 
     public static class FeederConstants {
