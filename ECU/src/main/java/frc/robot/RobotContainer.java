@@ -92,8 +92,8 @@ public class RobotContainer {
 
         // assert autoCommand != null;
 
-        Command autoCommand = driveTimedCommand;
-        return autoCommand.andThen(new RunCommand(() -> drive.setPower(0, 0)));
+        Command autoCommand = new AutoShootCommandGroup(drive, feeder, shooter).andThen(new RunCommand(() -> drive.setPower(-0.4, -0.4))).andThen(new WaitCommand(2.0)).andThen(new RunCommand(() -> drive.setPower(0, 0)));
+        return autoCommand;
     }
 
     enum AutoRoutine {

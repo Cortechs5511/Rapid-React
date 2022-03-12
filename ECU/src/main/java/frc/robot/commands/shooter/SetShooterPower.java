@@ -35,9 +35,9 @@ public class SetShooterPower extends CommandBase {
             shooter.setTopPower(0);
         }
 
-        if (oi.leftStick.getPOV() == 0) {
+        if (oi.leftStick.getRawButtonPressed(4)) {
             tempCount++;
-        } else if (oi.leftStick.getPOV() == 180) {
+        } else if (oi.leftStick.getRawButtonPressed(3)) {
             tempCount--;
         } else {
             tempCount = 0;
