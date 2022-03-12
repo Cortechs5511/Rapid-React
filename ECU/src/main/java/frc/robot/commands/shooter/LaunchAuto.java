@@ -39,10 +39,10 @@ public class LaunchAuto extends CommandBase {
 
         targetSpeed = shooter.getBottomSpeed();
 
-        shooter.setBottomPower(0.35);
-        shooter.setTopPower(0.65);
+        shooter.setBottomPower(0.0);
+        shooter.setTopPower(0.45);
 
-        System.out.println("Launched");
+        // System.out.println("Launched");
     }
 
     @Override

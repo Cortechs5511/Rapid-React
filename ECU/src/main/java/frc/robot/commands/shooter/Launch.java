@@ -32,7 +32,7 @@ public class Launch extends CommandBase {
         shooter.setBottomPower(shooter.bottomSpeedChanging);
         shooter.setTopPower(shooter.topSpeedChanging);
 
-        System.out.println("Launched");
+        // System.out.println("Launched");
     }
 
     @Override

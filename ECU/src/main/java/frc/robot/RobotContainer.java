@@ -31,7 +31,7 @@ public class RobotContainer {
     private final Shooter shooter = new Shooter();
     // private final Limelight limelight = new Limelight();
     private final OI oi = OI.getInstance();
-    private final DriveTimed driveTimedCommand = new DriveTimed(drive, 2, -0.4);
+    private final DriveTimed driveTimedCommand = new DriveTimed(drive, 2, 0.4);
 
     public RobotContainer() {
         drive.setDefaultCommand(new SetSpeed(drive));
