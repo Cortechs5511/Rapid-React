@@ -1,7 +1,5 @@
 package frc.robot;
 
-import java.lang.invoke.ConstantCallSite;
-
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -61,7 +59,6 @@ public class RobotContainer {
 
         new JoystickButton(oi.rightStick, Constants.OIConstants.SHOOT_BUTTON).whenPressed(new ShootCommandGroup(feeder, intake, shooter));
         new JoystickButton(oi.rightStick, Constants.OIConstants.STOP_SHOOT_BUTTON).whenReleased(new StopShooter(shooter));
-        // new JoystickButton(oi.controller, Constants.OIConstants.LIGHTS_TOGGLE_BUTTON).whenPressed(new LightToggle());
 
         new JoystickButton(oi.leftStick, Constants.OIConstants.FLIP_BUTTON).whenPressed(new Flip(drive));
         new JoystickButton(oi.rightStick, Constants.OIConstants.HALF_SPEED_BUTTON).whenPressed(() -> drive.setMaxPower(0.5)).whenReleased(() -> drive.setMaxPower(1.0));
