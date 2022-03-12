@@ -7,30 +7,40 @@ import frc.robot.Constants.ShooterConstants;
 import frc.robot.OI;
 import frc.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.Timer;
 
-public class Launch extends CommandBase {
+
+public class LaunchAuto extends CommandBase {
+    private final Drive drive;
     private final Shooter shooter;
     private final OI oi = OI.getInstance();
+
+    private Timer timer = new Timer();
+    private double stop;
 
     private double targetSpeed;
     private final Timer timeout = new Timer();
     private final Timer feedCount = new Timer();
 
-    public Launch(Shooter shooter) {
+    public LaunchAuto(Drive drive, Limelight limelight, Shooter shooter, double time) {
+        this.drive = drive;
         this.shooter = shooter;
+        stop = time;
 
-        addRequirements((Subsystem) this.shooter);
+        addRequirements(this.drive, limelight, (Subsystem) this.shooter);
     }
 
     @Override
     public void initialize() {
         timeout.reset();
+        timer.reset();
+        timer.start();
         feedCount.reset();
 
         targetSpeed = shooter.getBottomSpeed();
 
-        shooter.setBottomPower(shooter.bottomSpeedChanging);
-        shooter.setTopPower(shooter.topSpeedChanging);
+        shooter.setBottomPower(0.35);
+        shooter.setTopPower(0.65);
 
         System.out.println("Launched");
     }
@@ -40,8 +50,8 @@ public class Launch extends CommandBase {
         // If the top sensor is empty, begin timeout for command halt
         // TODO: Remove sensors from code if they are not added to robot
 
-        shooter.setBottomPower(shooter.bottomSpeedChanging);
-        shooter.setTopPower(shooter.topSpeedChanging);
+        shooter.setBottomPower(0.35);
+        shooter.setTopPower(0.65);
 
         // If RPM within tolerance, begin timeout for feeding
         if (Math.abs(shooter.getBottomSpeed() - targetSpeed) < ShooterConstants.SHOOTER_RPM_TOLERANCE) {
@@ -49,11 +59,16 @@ public class Launch extends CommandBase {
         } else {
             feedCount.reset();
         }
+
+        // Keep robot stationary unless priority set
+        if (oi.getShooterPriority()) {
+            drive.setPower(oi.getLeftYDeadband(), oi.getRightYDeadband());
+        }
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return (timer.get() > this.stop);
         //return (timeout.get() > ShooterConstants.SHOOTER_TIMEOUT);
     }
 
@@ -64,5 +79,7 @@ public class Launch extends CommandBase {
 
         shooter.setBottomPower(0);
         shooter.setRampRate(ShooterConstants.LONG_RAMP_RATE);
+
+        drive.setPower(0, 0);
     }
 }

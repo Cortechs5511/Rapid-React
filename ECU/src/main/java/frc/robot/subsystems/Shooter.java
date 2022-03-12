@@ -10,6 +10,8 @@ import frc.robot.Constants.ShooterConstants;
 public class Shooter extends SubsystemBase{
     private final WPI_TalonFX bottomShooter = createShooterController(ShooterConstants.BOTTOM_SHOOTER_ID, ShooterConstants.INVERT_BOTTOM_SHOOTER);
     private final WPI_TalonFX topShooter = createShooterController(ShooterConstants.TOP_SHOOTER_ID, ShooterConstants.INVERT_TOP_SHOOTER);
+    public double topSpeedChanging = 0.65;
+    public double bottomSpeedChanging = 0.35;
 
     public Shooter() {
     }
@@ -29,6 +31,21 @@ public class Shooter extends SubsystemBase{
      */
     public void setBottomSpeed(double speed) {
         bottomShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
+    }
+
+    public void raiseShooterSpeed() {
+        topSpeedChanging += 0.01;
+        bottomSpeedChanging += 0.01;
+    }
+
+    public void lowerShooterSpeed() {
+        topSpeedChanging -= 0.01;
+        bottomSpeedChanging -= 0.01;
+    }
+
+    public void defaultShooterSpeed() {
+        topSpeedChanging = 0.65;
+        bottomSpeedChanging = 0.35;
     }
 
     /**

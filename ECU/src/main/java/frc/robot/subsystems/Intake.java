@@ -48,8 +48,8 @@ public class Intake extends SubsystemBase {
     public double getWristCurrent(){
         return wristMotor.getOutputCurrent();
 
-     
-    }
+    
+    
     }
     /**
      * Create intake (Talon SRX) motor controller with preferred configuration
