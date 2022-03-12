@@ -31,14 +31,11 @@ public class RobotContainer {
     private final Shooter shooter = new Shooter();
     // private final Limelight limelight = new Limelight();
     private final OI oi = OI.getInstance();
-    private final DriveTimed driveTimedCommand = new DriveTimed(drive, 2, 0.4);
 
     public RobotContainer() {
         drive.setDefaultCommand(new SetSpeed(drive));
         intake.setDefaultCommand(new SetIntakePower(intake));
         feeder.setDefaultCommand(new SetFeederPower(feeder));
-
-        // for testing only
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
@@ -92,8 +89,12 @@ public class RobotContainer {
 
         // assert autoCommand != null;
 
-        Command autoCommand = new AutoShootCommandGroup(drive, feeder, shooter).andThen(new RunCommand(() -> drive.setPower(-0.4, -0.4))).andThen(new WaitCommand(2.0)).andThen(new RunCommand(() -> drive.setPower(0, 0)));
-        return autoCommand;
+        // Command autoCommand = new AutoShootCommandGroup(drive, feeder, shooter).andThen(new RunCommand(() -> drive.setPower(-0.4, -0.4))).andThen(new WaitCommand(2.0)).andThen(new RunCommand(() -> drive.setPower(0, 0)));
+        // return autoCommand;
+        
+        // return new RunCommand(() -> drive.setPower(0.4, 0.4)).andThen(new WaitCommand(3.0).andThen(new RunCommand(() -> drive.setPower(0, 0))));
+        
+        return new DriveTimed(drive, 2.0, 0.5);
     }
 
     enum AutoRoutine {

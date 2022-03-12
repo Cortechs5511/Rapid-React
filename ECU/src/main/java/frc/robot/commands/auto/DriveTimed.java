@@ -25,7 +25,9 @@ public class DriveTimed extends CommandBase {
     }
 
     @Override
-    public void execute() {}
+    public void execute() {
+        m_drive.setPower(speed, speed);
+    }
 
     @Override
     public void end(boolean interrupted) {

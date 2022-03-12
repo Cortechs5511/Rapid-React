@@ -21,14 +21,14 @@ public class SetShooterPower extends CommandBase {
     public void initialize() {
         shooter.setBottomPower(0);
 
-        SmartDashboard.putNumber("Shooter/Bottom Shooter Power", 0.0);
+        SmartDashboard.putNumber("Shooter/Bottom Shooter Power", 0.45);
         SmartDashboard.putNumber("Shooter/Top Shooter Power", 0.0);
     }
 
     @Override
     public void execute() {
         if (shooting) {
-            shooter.setBottomPower(SmartDashboard.getNumber("Shooter/Bottom Shooter Power", 0.0));
+            shooter.setBottomPower(SmartDashboard.getNumber("Shooter/Bottom Shooter Power", 0.45));
             shooter.setTopPower(SmartDashboard.getNumber("Shooter/Top Shooter Power", 0.0));    
         } else {
             shooter.setBottomPower(0);
