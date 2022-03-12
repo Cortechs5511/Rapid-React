@@ -57,8 +57,8 @@ public class RobotContainer {
         new JoystickButton(oi.rightStick, Constants.OIConstants.SHOOT_SPEED_UP).whenPressed(new RaiseShooterSpeed(shooter));
         new JoystickButton(oi.rightStick, Constants.OIConstants.SHOOT_SPEED_RESET).whenPressed(new DefaultShooterSpeed(shooter));
 
-        new JoystickButton(oi.rightStick, Constants.OIConstants.SHOOT_BUTTON).whenPressed(new ShootCommandGroup(feeder, intake, shooter));
-        new JoystickButton(oi.rightStick, Constants.OIConstants.STOP_SHOOT_BUTTON).whenReleased(new StopShooter(shooter));
+        // new JoystickButton(oi.rightStick, Constants.OIConstants.SHOOT_BUTTON).whenPressed(new ShootCommandGroup(feeder, intake, shooter));
+        // new JoystickButton(oi.rightStick, Constants.OIConstants.STOP_SHOOT_BUTTON).whenReleased(new StopShooter(shooter));
 
         new JoystickButton(oi.leftStick, Constants.OIConstants.FLIP_BUTTON).whenPressed(new Flip(drive));
         new JoystickButton(oi.rightStick, Constants.OIConstants.HALF_SPEED_BUTTON).whenPressed(() -> drive.setMaxPower(0.5)).whenReleased(() -> drive.setMaxPower(1.0));

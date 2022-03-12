@@ -48,6 +48,12 @@ public class SetShooterPower extends CommandBase {
         } else if (tempCount < -20) {
             SmartDashboard.putNumber("Shooter/Bottom Shooter Power", SmartDashboard.getNumber("Shooter/Bottom Shooter Power", 0) - 0.01);
         }
+
+        if (oi.rightStick.getRawButton(1)) {
+            shooting = true;
+        } else if (oi.rightStick.getRawButton(3)) {
+            shooting = false;
+        }
     }
 
     @Override
