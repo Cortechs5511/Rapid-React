@@ -31,6 +31,9 @@ public class SetIntakePower extends CommandBase {
         } else {
             intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
         }
+        if (intake.getWristCurrent() > IntakeConstants.WRIST_CURRENT_LIMIT) { 
+            intake.setWrist(0);
+        }
     }
 
     @Override

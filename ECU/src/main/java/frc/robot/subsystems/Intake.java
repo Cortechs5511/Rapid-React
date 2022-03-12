@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import java.util.Set;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -43,7 +45,12 @@ public class Intake extends SubsystemBase {
     public double getIntakeCurrent(){
         return intakeMotor.getStatorCurrent();   
     }
+    public double getWristCurrent(){
+        return wristMotor.getOutputCurrent();
 
+     
+    }
+    }
     /**
      * Create intake (Talon SRX) motor controller with preferred configuration
      *
@@ -97,6 +104,8 @@ public class Intake extends SubsystemBase {
         if(Constants.DIAGNOSTICS){
             SmartDashboard.putNumber("Intake/Wheel Current", getIntakeCurrent());
             SmartDashboard.putNumber("Intake/Wrist Power", wristMotor.get());
+            SmartDashboard.putNumber("Intake/Wrist Current", getWristCurrent());
         }
+    
     }
 }
