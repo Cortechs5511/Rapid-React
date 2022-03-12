@@ -85,7 +85,7 @@ public final class Constants {
 
         public static final int CURRENT_LIMIT = 40;
         public static final int PEAK_CURRENT_LIMIT = 60;
-        public static final int WRIST_CURRENT_LIMIT = 20;
+        public static final int WRIST_CURRENT_LIMIT = 30;
         public static final double RAMP_RATE = 0.25;
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
