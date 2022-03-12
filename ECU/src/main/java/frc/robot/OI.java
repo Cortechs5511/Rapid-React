@@ -50,7 +50,7 @@ public class OI {
      * @return int 1 if outtake is pressed, else 0
      */
     public int getOuttake() {
-        return controller.getXButton() ? 1 : 0;
+        return Math.abs(controller.getRawAxis(1)) > 0.5 || Math.abs(controller.getRawAxis(5)) > 0.5 ? 1 : 0;
     }
 
     /**
@@ -59,7 +59,7 @@ public class OI {
      * @return int 1 if intake is pressed else, 0
      */
     public int getIntake() {
-        return controller.getYButton() ? 1 : 0;
+        return (controller.getYButton() || controller.getXButton() || controller.getAButton() || controller.getBButton()) ? 1 : 0;
     }
 
     /**
@@ -78,6 +78,24 @@ public class OI {
      */
     public double getWristDown() {
         return controller.getRawAxis(OIConstants.WRIST_DOWN_AXIS) > 0.5 ? 1 : 0;
+    }
+
+    /**
+     * Returns feeder up bind
+     * 
+     * @return double 1 if feeder up is pushed
+     */
+    public double getFeederUp() {
+        return controller.getPOV() == 180 ? 1 : 0;
+    }
+
+    /**
+     * Returns feeder down bind
+     * 
+     * @return double 1 if feeder down is pushed
+     */
+    public double getFeederDown() {
+        return controller.getPOV() == 0 ? 1 : 0;
     }
 
     /**
