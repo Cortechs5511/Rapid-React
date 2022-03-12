@@ -68,7 +68,7 @@ public class OI {
      * @return double 1 if wrist up is pressed, else 0
      */
     public double getWristUp() {
-        return controller.getRawAxis(OIConstants.WRIST_UP_AXIS) > 0.5 ? 1 : 0;
+        return controller.getLeftBumper() ? 1 : 0;
     }
 
     /**
@@ -77,7 +77,7 @@ public class OI {
      * @return double 1 if wrist down is pressed, else 0
      */
     public double getWristDown() {
-        return controller.getRawAxis(OIConstants.WRIST_DOWN_AXIS) > 0.5 ? 1 : 0;
+        return controller.getRightBumper() ? 1 : 0;
     }
 
     /**
