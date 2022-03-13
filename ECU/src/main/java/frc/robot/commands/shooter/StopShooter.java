@@ -13,41 +13,48 @@ import frc.robot.subsystems.*;
  * and operator inputs are handed to the drivetrain in a degraded mode.
  */
 public class StopShooter extends CommandBase {
+    private final Drive drive;
+    private final Feeder feeder;
+    private final Intake intake;
     private final Shooter shooter;
-    // private final Limelight limelight;
+    private final Limelight limelight;
     private final OI oi = OI.getInstance();
 
     private final Timer timeout = new Timer();
 
-    public StopShooter(Shooter shooter) {
-        // this.limelight = limelight;
+    public StopShooter(Drive drive, Feeder feeder, Intake intake, Limelight limelight, Shooter shooter) {
+        this.drive = drive;
+        this.feeder = feeder;
+        this.intake = intake;
+        this.limelight = limelight;
         this.shooter = shooter;
 
-        // addRequirements(this.limelight, (Subsystem) this.shooter);
-        addRequirements((Subsystem) this.shooter);
+        addRequirements(this.drive, this.feeder, this.intake, this.limelight, this.shooter);
     }
 
     @Override
     public void initialize() {
+        feeder.setTower(0);
+        intake.setIntake(0);
+        shooter.setBottomPower(0);
+        limelight.setLight(false);
 
         timeout.reset();
         timeout.start();
-        // if(limelight.getLightStatus()) {
-        //     limelight.setLight(false);
-        // }
     }
 
     @Override
     public void execute() {
+        drive.setPower(oi.getLeftYDeadband(), oi.getRightYDeadband());
     }
 
     @Override
     public boolean isFinished() {
-        // TODO: Make this return true when this Command no longer needs to run execute()
         return timeout.hasElapsed(Constants.DWELL_PERIOD);
     }
 
     @Override
     public void end(boolean interrupted) {
+        drive.setPower(0, 0);
     }
 }
