@@ -99,15 +99,6 @@ public class OI {
     }
 
     /**
-     * Returns shooter priority bind, forcing driver control during shooting
-     *
-     * @return true if both triggers are actuated
-     */
-    public boolean getShooterPriority() {
-        return leftStick.getTrigger() && rightStick.getTrigger();
-    }
-
-    /**
      * Returns the value of left joystick with values within deadband truncated
      *
      * @return double value of joystick

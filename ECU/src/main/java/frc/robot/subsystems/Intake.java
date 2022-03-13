@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-import java.util.Set;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -13,8 +11,8 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
-    private final WPI_TalonSRX intakeMotor = createIntakeTalon(IntakeConstants.INTAKE_ID, IntakeConstants.INVERT_INTAKE);
-    private final CANSparkMax wristMotor = createIntakeSparkMAX(IntakeConstants.WRIST_ID, IntakeConstants.INVERT_WRIST);
+    private final WPI_TalonSRX intakeMotor = createIntakeTalon();
+    private final CANSparkMax wristMotor = createIntakeSparkMAX();
 
     public Intake() {
     }
@@ -54,12 +52,10 @@ public class Intake extends SubsystemBase {
     /**
      * Create intake (Talon SRX) motor controller with preferred configuration
      *
-     * @param id     CAN ID of motor controller
-     * @param invert boolean whether to invert
      * @return WPI_TalonSRX
      */
-    private WPI_TalonSRX createIntakeTalon(int id, boolean invert) {
-        WPI_TalonSRX controller = new WPI_TalonSRX(id);
+    private WPI_TalonSRX createIntakeTalon() {
+        WPI_TalonSRX controller = new WPI_TalonSRX(IntakeConstants.INTAKE_ID);
 
         controller.configFactoryDefault();
 
@@ -69,7 +65,7 @@ public class Intake extends SubsystemBase {
         controller.configOpenloopRamp(IntakeConstants.RAMP_RATE);
         controller.configClosedloopRamp(IntakeConstants.RAMP_RATE);
 
-        controller.setInverted(invert);
+        controller.setInverted(IntakeConstants.INVERT_INTAKE);
         controller.setNeutralMode(IntakeConstants.NEUTRAL_MODE);
 
         return controller;
@@ -79,12 +75,10 @@ public class Intake extends SubsystemBase {
     /**
      * Create intake (SPARK MAX) motor controller with preferred configuration
      *
-     * @param id     CAN ID of motor controller
-     * @param invert boolean whether to invert
      * @return CANSparkMax
      */
-    private CANSparkMax createIntakeSparkMAX(int id, boolean invert) {
-        CANSparkMax controller = new CANSparkMax(id, MotorType.kBrushless);
+    private CANSparkMax createIntakeSparkMAX() {
+        CANSparkMax controller = new CANSparkMax(IntakeConstants.WRIST_ID, MotorType.kBrushless);
         controller.restoreFactoryDefaults();
 
         controller.enableVoltageCompensation(DriveConstants.VOLTAGE_COMPENSATION);
@@ -95,7 +89,7 @@ public class Intake extends SubsystemBase {
         controller.setSmartCurrentLimit(IntakeConstants.WRIST_CURRENT_LIMIT);
         controller.setSecondaryCurrentLimit(100);
 
-        controller.setInverted(invert);
+        controller.setInverted(IntakeConstants.INVERT_WRIST);
         return controller;
     }
 

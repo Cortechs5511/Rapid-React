@@ -2,15 +2,11 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxPIDController;
 
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
-import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -26,9 +22,6 @@ public class Drive extends SubsystemBase {
 
     private final RelativeEncoder leftEncoder = createEncoder(leftFollower);
     private final RelativeEncoder rightEncoder = createEncoder(rightFollower);
-
-    private final SparkMaxPIDController leftPIDController = createPID(leftLeader);
-    private final SparkMaxPIDController rightPIDController = createPID(rightLeader);
 
     private final AHRS gyro = new AHRS(Port.kMXP);
     private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(0));
@@ -99,17 +92,6 @@ public class Drive extends SubsystemBase {
     }
 
     /**
-     * Commands PID reference (m/s) on both motors
-     *
-     * @param leftSpeed  double left motor setpoint
-     * @param rightSpeed double right motor setpoint
-     */
-    public void setPIDReference(double leftSpeed, double rightSpeed) {
-        leftPIDController.setReference(leftSpeed, ControlType.kVelocity);
-        rightPIDController.setReference(rightSpeed, ControlType.kVelocity);
-    }
-
-    /**
      * Creates a CANSparkMax controller with preferred settings
      *
      * @param port       applicable CAN port
@@ -145,63 +127,6 @@ public class Drive extends SubsystemBase {
         encoder.setVelocityConversionFactor(DriveConstants.ENCODER_TO_METERS);
 
         return encoder;
-    }
-
-    /**
-     * Creates a PID controller from CANSparkMax
-     *
-     * @param controller CANSparkMax controller
-     * @return SparkMaxPIDController
-     */
-    private SparkMaxPIDController createPID(CANSparkMax controller) {
-        SparkMaxPIDController pid = controller.getPIDController();
-
-        pid.setP(DriveConstants.PID_P);
-        pid.setI(DriveConstants.PID_I);
-        pid.setD(DriveConstants.PID_D);
-        pid.setFF(DriveConstants.PID_FF);
-
-        pid.setOutputRange(DriveConstants.PID_MIN_OUTPUT, DriveConstants.PID_MAX_OUTPUT);
-
-        return pid;
-    }
-
-    /**
-     * Resets odometry for auto 
-     */
-    public void resetOdometry() {
-        leftEncoder.setPosition(0);
-        rightEncoder.setPosition(0);
-        odometry.resetPosition(new Pose2d(), Rotation2d.fromDegrees(gyro.getYaw()));
-    }
-
-    /**
-     * Returns Pose2D of robot odometry
-     * 
-     * @return Pose2D robot position (x, y) in meters
-     */
-    public Pose2d getPose() {
-        return odometry.getPoseMeters();
-    }
-
-    /**
-     * Returns wheel speeds for autonomous
-     * 
-     * @return DifferentialDriveWheelSpeeds 
-     */
-    public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-        return new DifferentialDriveWheelSpeeds(leftEncoder.getVelocity(), rightEncoder.getVelocity());
-    }
-
-    /**
-     * Sets desired output voltage for drivetrain
-     * 
-     * @param leftVolts double volts for left side
-     * @param rightVolts double volts for right side
-     */
-    public void setVolts(double leftVolts, double rightVolts) {
-        leftLeader.setVoltage(leftVolts);
-        rightLeader.setVoltage(rightVolts);
     }
 
     @Override

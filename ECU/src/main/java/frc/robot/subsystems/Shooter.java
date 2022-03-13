@@ -10,8 +10,6 @@ import frc.robot.Constants.ShooterConstants;
 public class Shooter extends SubsystemBase{
     private final WPI_TalonFX bottomShooter = createShooterController(ShooterConstants.BOTTOM_SHOOTER_ID, ShooterConstants.INVERT_BOTTOM_SHOOTER);
     private final WPI_TalonFX topShooter = createShooterController(ShooterConstants.TOP_SHOOTER_ID, ShooterConstants.INVERT_TOP_SHOOTER);
-    public double topSpeedChanging = 0.0;
-    public double bottomSpeedChanging = 0.45;
 
     public Shooter() {
     }
@@ -25,30 +23,6 @@ public class Shooter extends SubsystemBase{
     }
 
     /**
-     * Sets the bottom wheel to a certain speed
-     *
-     * @param speed target velocity, RPM
-     */
-    public void setBottomSpeed(double speed) {
-        bottomShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
-    }
-
-    public void raiseShooterSpeed() {
-        topSpeedChanging += 0.01;
-        bottomSpeedChanging += 0.01;
-    }
-
-    public void lowerShooterSpeed() {
-        topSpeedChanging -= 0.01;
-        bottomSpeedChanging -= 0.01;
-    }
-
-    public void defaultShooterSpeed() {
-        topSpeedChanging = 0.65;
-        bottomSpeedChanging = 0.35;
-    }
-
-    /**
      * Sets bottom wheel to open loop output
      *
      * @param power double speed [0.0, 1.0]
@@ -57,16 +31,7 @@ public class Shooter extends SubsystemBase{
         bottomShooter.set(ControlMode.PercentOutput, power);
     }
 
-    /**
-     * Sets the top wheel to a certain speed
-     *
-     * @param speed target velocity, RPM
-     */
-    public void setTopSpeed(double speed) {
-        topShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
-    }
 
-    
     /**
      * Sets top wheel to open loop output
      *
@@ -74,38 +39,6 @@ public class Shooter extends SubsystemBase{
      */
     public void setTopPower(double power) {
         topShooter.set(ControlMode.PercentOutput, power);
-    }
-
-    /**
-     * Returns the most recently set PID reference value for bottom
-     *
-     * @return double reference value, RPM
-     * TODO: confirm units in RPM
-     */
-    public double getBottomSetpoint() {
-        return bottomShooter.getClosedLoopTarget() / ShooterConstants.RPM_TO_UNITS;
-    }
-
-    /**
-     * Returns the most recently set PID reference value for top
-     *
-     * @return double reference value, RPM
-     * TODO: confirm units in RPM
-     */
-    public double getTopSetpoint() {
-        return topShooter.getClosedLoopTarget() / ShooterConstants.RPM_TO_UNITS;
-    }
-
-    /**
-     * Sets shooter controllers to adopt given ramp rate
-     *
-     * @param rate double ramp rate in seconds from neutral to full
-     */
-    public void setRampRate(double rate) {
-        bottomShooter.configOpenloopRamp(rate);
-        topShooter.configOpenloopRamp(rate);
-        bottomShooter.configClosedloopRamp(rate);
-        topShooter.configClosedloopRamp(rate);
     }
 
     @Override

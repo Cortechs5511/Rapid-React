@@ -7,9 +7,6 @@ import frc.robot.commands.collector.SetFeederPower;
 import frc.robot.commands.collector.SetIntakePower;
 import frc.robot.commands.drive.Flip;
 import frc.robot.commands.drive.SetSpeed;
-import frc.robot.commands.shooter.DefaultShooterSpeed;
-import frc.robot.commands.shooter.LowerShooterSpeed;
-import frc.robot.commands.shooter.RaiseShooterSpeed;
 import frc.robot.commands.shooter.SetShooterPower;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Feeder;
@@ -33,10 +30,6 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        new JoystickButton(oi.rightStick, Constants.OIConstants.SHOOT_SPEED_DOWN).whenPressed(new LowerShooterSpeed(shooter));
-        new JoystickButton(oi.rightStick, Constants.OIConstants.SHOOT_SPEED_UP).whenPressed(new RaiseShooterSpeed(shooter));
-        new JoystickButton(oi.rightStick, Constants.OIConstants.SHOOT_SPEED_RESET).whenPressed(new DefaultShooterSpeed(shooter));
-
         new JoystickButton(oi.leftStick, Constants.OIConstants.FLIP_BUTTON).whenPressed(new Flip(drive));
         new JoystickButton(oi.rightStick, Constants.OIConstants.HALF_SPEED_BUTTON).whenPressed(() -> drive.setMaxPower(0.5)).whenReleased(() -> drive.setMaxPower(1.0));
     }

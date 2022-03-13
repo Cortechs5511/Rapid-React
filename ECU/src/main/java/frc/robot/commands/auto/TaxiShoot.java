@@ -11,7 +11,7 @@ public class TaxiShoot extends CommandBase {
     private final Shooter shooter;
     private final Drive drive;
 
-    Timer shootTimer = new Timer();
+    final Timer shootTimer = new Timer();
 
     public TaxiShoot(Feeder feeder, Shooter shooter, Drive drive) {
         this.feeder = feeder;
