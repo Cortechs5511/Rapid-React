@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.auto.DriveTimed;
+import frc.robot.commands.auto.TaxiShoot;
 import frc.robot.commands.auto.TrajectoryFollower;
 import frc.robot.commands.collector.SetFeederPower;
 import frc.robot.commands.collector.SetIntakePower;
@@ -94,7 +95,10 @@ public class RobotContainer {
         
         // return new RunCommand(() -> drive.setPower(0.4, 0.4)).andThen(new WaitCommand(3.0).andThen(new RunCommand(() -> drive.setPower(0, 0))));
         
-        return new DriveTimed(drive, 2.0, 0.5);
+        return new TaxiShoot(feeder, shooter, drive);
+        // return new DriveTimed(drive, 2.0, 0.5);
+
+        
     }
 
     enum AutoRoutine {
