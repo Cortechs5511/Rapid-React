@@ -12,7 +12,7 @@ public class DefaultShooterSpeed extends CommandBase {
 
     public DefaultShooterSpeed(Shooter shooter) {
         this.shooter = shooter;
-        addRequirements((Subsystem) this.shooter);
+        addRequirements(this.shooter);
     }
 
     @Override

@@ -15,8 +15,8 @@ public class LaunchAuto extends CommandBase {
     private final Shooter shooter;
     private final OI oi = OI.getInstance();
 
-    private Timer timer = new Timer();
-    private double stop;
+    private final Timer timer = new Timer();
+    private final double stop;
 
     private double targetSpeed;
     private final Timer timeout = new Timer();
@@ -27,7 +27,7 @@ public class LaunchAuto extends CommandBase {
         this.shooter = shooter;
         stop = time;
 
-        addRequirements(this.drive, limelight, (Subsystem) this.shooter);
+        addRequirements(this.drive, limelight, this.shooter);
     }
 
     @Override

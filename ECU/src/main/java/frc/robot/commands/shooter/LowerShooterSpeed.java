@@ -10,7 +10,7 @@ public class LowerShooterSpeed extends CommandBase {
 
     public LowerShooterSpeed(Shooter shooter) {
         this.shooter = shooter;
-        addRequirements((Subsystem) this.shooter);
+        addRequirements(this.shooter);
     }
 
     @Override

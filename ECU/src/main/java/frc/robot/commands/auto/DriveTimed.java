@@ -5,9 +5,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drive;
 
 public class DriveTimed extends CommandBase {
-    private Timer timer = new Timer();
-    private Drive m_drive;
-    private double stop, speed;
+    private final Timer timer = new Timer();
+    private final Drive m_drive;
+    private final double stop;
+    private final double speed;
 
     public DriveTimed(Drive drive, double time, double power) {
         stop = time;

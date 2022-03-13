@@ -19,7 +19,7 @@ public class Launch extends CommandBase {
     public Launch(Shooter shooter) {
         this.shooter = shooter;
 
-        addRequirements((Subsystem) this.shooter);
+        addRequirements(this.shooter);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class SetShooterPower extends CommandBase {
 
     public SetShooterPower(Shooter shooter) {
         this.shooter = shooter;
-        addRequirements((Subsystem) this.shooter);
+        addRequirements(this.shooter);
     }
 
     @Override

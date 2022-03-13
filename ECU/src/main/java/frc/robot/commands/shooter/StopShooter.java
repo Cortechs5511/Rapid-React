@@ -24,7 +24,7 @@ public class StopShooter extends CommandBase {
         this.shooter = shooter;
 
         // addRequirements(this.limelight, (Subsystem) this.shooter);
-        addRequirements((Subsystem) this.shooter);
+        addRequirements(this.shooter);
     }
 
     @Override

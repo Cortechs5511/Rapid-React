@@ -27,7 +27,7 @@ public class Align extends CommandBase {
         this.limelight = limelight;
         this.shooter = shooter;
 
-        addRequirements(this.drive, this.limelight, (Subsystem) this.shooter);
+        addRequirements(this.drive, this.limelight, this.shooter);
     }
 
     @Override

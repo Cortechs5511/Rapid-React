@@ -10,7 +10,7 @@ public class RaiseShooterSpeed extends CommandBase {
 
     public RaiseShooterSpeed(Shooter shooter) {
         this.shooter = shooter;
-        addRequirements((Subsystem) this.shooter);
+        addRequirements(this.shooter);
     }
 
     @Override
