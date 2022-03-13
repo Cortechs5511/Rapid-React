@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.FeederConstants;
 
-@SuppressWarnings("ALL")
 public class Feeder extends SubsystemBase {
     private final WPI_TalonSRX tower1Motor = createFeederController(FeederConstants.TOWER_1_ID, FeederConstants.INVERT_TOWER_1);
+    private final WPI_TalonSRX tower2Motor = createFeederController(FeederConstants.TOWER_2_ID, FeederConstants.INVERT_TOWER_2);
 
     private final DigitalInput bottomSensor = new DigitalInput(FeederConstants.BOTTOM_SENSOR_PORT);
     private final DigitalInput topSensor = new DigitalInput(FeederConstants.TOP_SENSOR_PORT);
@@ -23,8 +23,6 @@ public class Feeder extends SubsystemBase {
     }
 
     public Feeder() {
-        WPI_TalonSRX tower2Motor = createFeederController(FeederConstants.TOWER_2_ID, FeederConstants.INVERT_TOWER_2);
-        tower2Motor.follow(tower1Motor);
     }
 
     /**
@@ -34,6 +32,16 @@ public class Feeder extends SubsystemBase {
      */
     public void setTower(double power) {
         tower1Motor.set(power);
+        tower2Motor.set(power);
+    }
+
+    /**
+     * Sets the two tower motors (polybelt) to opposite powers
+     * @param power double power
+     */
+    public void holdTower(double power) {
+        tower1Motor.set(power);
+        tower2Motor.set(-power);
     }
 
     /**

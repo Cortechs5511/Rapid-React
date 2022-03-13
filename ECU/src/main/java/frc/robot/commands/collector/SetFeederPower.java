@@ -22,7 +22,11 @@ public class SetFeederPower extends CommandBase {
 
     @Override
     public void execute() {
-        feeder.setTower((oi.getFeederUp() - oi.getFeederDown()) * FeederConstants.TOWER_POWER);
+        if (oi.getIntake() > 0.5) {
+            feeder.holdTower(FeederConstants.HOLD_TOWER_POWER);
+        } else {
+            feeder.setTower((oi.getFeederUp() - oi.getFeederDown()) * FeederConstants.TOWER_POWER);
+        }
     }
 
     @Override

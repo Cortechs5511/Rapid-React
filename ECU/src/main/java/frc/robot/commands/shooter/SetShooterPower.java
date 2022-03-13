@@ -8,6 +8,7 @@ import frc.robot.subsystems.Shooter;
 public class SetShooterPower extends CommandBase {
     private final Shooter shooter;
     private final OI oi = OI.getInstance();
+
     boolean shooting = false;
     int tempCount = 0;
 
@@ -26,26 +27,20 @@ public class SetShooterPower extends CommandBase {
 
     @Override
     public void execute() {
+        double bottomPower = SmartDashboard.getNumber("Shooter/Bottom Shooter Power", 0.45);
+
         if (shooting) {
-            shooter.setBottomPower(SmartDashboard.getNumber("Shooter/Bottom Shooter Power", 0.45));
+            shooter.setBottomPower(bottomPower);
             shooter.setTopPower(SmartDashboard.getNumber("Shooter/Top Shooter Power", 0.0));    
         } else {
             shooter.setBottomPower(0);
             shooter.setTopPower(0);
         }
 
-        if (oi.leftStick.getRawButtonPressed(4)) {
-            tempCount++;
+        if (oi.leftStick.getRawButtonPressed(1)) {
+            SmartDashboard.putNumber("Shooter/Bottom Shooter Power", bottomPower + 0.01);
         } else if (oi.leftStick.getRawButtonPressed(3)) {
-            tempCount--;
-        } else {
-            tempCount = 0;
-        }
-
-        if (tempCount > 20) {
-            SmartDashboard.putNumber("Shooter/Bottom Shooter Power", SmartDashboard.getNumber("Shooter/Bottom Shooter Power", 0) + 0.01);
-        } else if (tempCount < -20) {
-            SmartDashboard.putNumber("Shooter/Bottom Shooter Power", SmartDashboard.getNumber("Shooter/Bottom Shooter Power", 0) - 0.01);
+            SmartDashboard.putNumber("Shooter/Bottom Shooter Power", bottomPower - 0.01);
         }
 
         if (oi.rightStick.getRawButton(1)) {

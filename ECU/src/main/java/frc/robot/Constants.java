@@ -75,6 +75,7 @@ public final class Constants {
         public static final int TOP_SENSOR_PORT = 2;
 
         public static final double TOWER_POWER = 0.7;
+        public static final double HOLD_TOWER_POWER = 0.4;
 
     }
 
