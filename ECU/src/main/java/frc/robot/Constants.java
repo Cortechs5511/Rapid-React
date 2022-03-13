@@ -69,15 +69,14 @@ public final class Constants {
         public static final int WRIST_UP_AXIS = 2;
         public static final int WRIST_DOWN_AXIS = 3;
         public static final int INTAKE_BUTTON = 4; //Not used
-        //public static final int SHOOT_BUTTON = 5;
-        public static final int NEW_SHOOT_BUTTON = 1;
-        public static final int NEW_STOP_SHOOT_BUTTON = 3;
-        //public static final int STOP_SHOOT_BUTTON = 6;
+        public static final int SHOOT_BUTTON = 1;
+        public static final int SHOOT_SPEED_DOWN = 2;
+        public static final int STOP_SHOOT_BUTTON = 3;
+        public static final int SHOOT_SPEED_UP = 4;
+        public static final int SHOOT_SPEED_RESET = 11;
         public static final int LIGHTS_TOGGLE_BUTTON = 7;
         public static final int FLIP_BUTTON = 2;
         public static final int HALF_SPEED_BUTTON = 2;
-        public static final int WRIST_DOWN_BUTTON = 6;
-        public static final int WRIST_UP_BUTTON = 5;
     }
 
     public static class IntakeConstants {
@@ -114,7 +113,7 @@ public final class Constants {
         public static final int BOTTOM_SENSOR_PORT = 1;
         public static final int TOP_SENSOR_PORT = 2;
 
-        public static final double TOWER_POWER = 0.5;
+        public static final double TOWER_POWER = 0.7;
 
         public static final double EJECT_TIMEOUT = 5.0;
         public static final double FEED_TIMEOUT = 0.5;
