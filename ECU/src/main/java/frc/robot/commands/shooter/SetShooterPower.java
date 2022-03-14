@@ -37,7 +37,7 @@ public class SetShooterPower extends CommandBase {
             shooter.setTopPower(0);
         }
 
-        if (oi.leftStick.getRawButtonPressed(1)) {
+        if (oi.leftStick.getRawButtonPressed(4)) {
             SmartDashboard.putNumber("Shooter/Bottom Shooter Power", bottomPower + 0.01);
         } else if (oi.leftStick.getRawButtonPressed(3)) {
             SmartDashboard.putNumber("Shooter/Bottom Shooter Power", bottomPower - 0.01);
