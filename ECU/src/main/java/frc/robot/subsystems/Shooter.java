@@ -41,6 +41,15 @@ public class Shooter extends SubsystemBase{
         topShooter.set(ControlMode.PercentOutput, power);
     }
 
+    /**
+     * Returns whether shooter is operating
+     * 
+     * @return boolean whether either motor setpoint is above zero
+     */
+    public boolean getShooting() {
+        return (bottomShooter.get() > 0) || (topShooter.get() > 0);
+    }
+
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
@@ -76,6 +85,4 @@ public class Shooter extends SubsystemBase{
 
         return shooterController;
     }
-
-
 }
