@@ -23,7 +23,7 @@ public class RobotContainer {
         drive.setDefaultCommand(new SetSpeed(drive));
         Intake intake = new Intake();
         intake.setDefaultCommand(new SetIntakePower(intake));
-        feeder.setDefaultCommand(new SetFeederPower(feeder));
+        feeder.setDefaultCommand(new SetFeederPower(feeder, shooter));
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 
         configureButtonBindings();
