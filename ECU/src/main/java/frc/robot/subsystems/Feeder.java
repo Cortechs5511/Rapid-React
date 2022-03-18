@@ -14,6 +14,13 @@ public class Feeder extends SubsystemBase {
     private final DigitalInput bottomSensor = new DigitalInput(FeederConstants.BOTTOM_SENSOR_PORT);
     private final DigitalInput topSensor = new DigitalInput(FeederConstants.TOP_SENSOR_PORT);
 
+    public double gettower1Current(){
+        return tower1Motor.getStatorCurrent();
+    }
+    public double gettower2Current(){
+        return tower2Motor.getStatorCurrent();
+    }
+   
     public boolean getBottomSensor() {
         return bottomSensor.get();
     }
@@ -30,6 +37,7 @@ public class Feeder extends SubsystemBase {
      *
      * @param power double power
      */
+    
     public void setTower(double power) {
         tower1Motor.set(power);
         tower2Motor.set(power);
@@ -42,6 +50,7 @@ public class Feeder extends SubsystemBase {
     public void holdTower(double power) {
         tower1Motor.set(power);
         tower2Motor.set(-power);
+    
     }
 
     /**
@@ -73,6 +82,12 @@ public class Feeder extends SubsystemBase {
         if (Constants.DIAGNOSTICS) {
             SmartDashboard.putBoolean("Feeder/Bottom Sensor", getBottomSensor());
             SmartDashboard.putBoolean("Feeder/Top Sensor", getTopSensor());
+            SmartDashboard.putNumber("Feeder/Tower 1 Current", gettower1Current());
+            SmartDashboard.putNumber("Feeder/ Tower 2 Current", gettower2Current());
+            
+            
+
         }
+    
     }
 }
