@@ -38,6 +38,8 @@ public class SetShooterPower extends CommandBase {
         if (shooting) {
             shooter.setBottomPower(bottomPower);
             shooter.setTopPower(topPower);    
+
+            // Shooter speed advisory
         } else {
             shooter.setBottomPower(0);
             shooter.setTopPower(0);

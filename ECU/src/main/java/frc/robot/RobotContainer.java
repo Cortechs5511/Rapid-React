@@ -28,7 +28,7 @@ public class RobotContainer {
         feeder.setDefaultCommand(new SetFeederPower(feeder, shooter));
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 
-        CommandScheduler.getInstance().schedule(new ShooterSpeedAdvisory(shooter));
+        // CommandScheduler.getInstance().schedule(new ShooterSpeedAdvisory(shooter));
 
         configureButtonBindings();
     }
