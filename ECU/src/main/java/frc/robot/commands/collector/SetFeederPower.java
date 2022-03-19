@@ -30,7 +30,7 @@ public class SetFeederPower extends CommandBase {
         } else if (shooter.getShooting() || !feeder.getTopSensor()) {
             feeder.setTower((oi.getFeederUp() - oi.getFeederDown()) * FeederConstants.TOWER_POWER);
         } else {
-            feeder.setTower(0);
+            feeder.setTower((oi.getFeederUp() - oi.getFeederDown()) * FeederConstants.TOWER_POWER);
         }
     }
 
