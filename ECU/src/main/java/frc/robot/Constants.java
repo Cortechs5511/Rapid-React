@@ -23,6 +23,7 @@ public final class Constants {
         public static final double GEARING = (44f / 24f) * (68f / 11f);
         public static final double WHEEL_DIAMETER = Units.inchesToMeters(6);
         public static final double ENCODER_TO_METERS = WHEEL_DIAMETER / GEARING;
+        public static final double AUTO_POWER = 0.3;
 
     }
 
@@ -100,5 +101,8 @@ public final class Constants {
 
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
         public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true, 80, 0, 0);
+
+        // Max slew rate to alert operator not to feed, in rpm per 20ms
+        public static final double ALERT_THRESHOLD = 2;
     }
 }

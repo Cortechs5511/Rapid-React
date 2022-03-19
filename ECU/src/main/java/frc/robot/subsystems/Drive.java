@@ -39,18 +39,40 @@ public class Drive extends SubsystemBase {
         gyro.reset();
     }
 
+    /**
+     * Get position of left encoder
+     * 
+     * @return double encoder sensed position, meters
+     */
     public double getLeftPosition() {
         return leftEncoder.getPosition();
     }
 
+    /**
+     * Get position of right encoder
+     * 
+     * @return double encoder sensed position, meters
+     */
     public double getRightPosition() {
         return rightEncoder.getPosition();
     }
 
+    /**
+     * Get velocity of left encoder
+     * Note that this has a ~100ms phase lag
+     * 
+     * @return double encoder velocity, meters per second
+     */
     public double getLeftVelocity() {
         return leftEncoder.getVelocity();
     }
 
+    /**
+     * Get velocity of right encoder
+     * Note that this has a ~100ms phase lag
+     * 
+     * @return double encoder velocity, meters per second
+     */
     public double getRightVelocity() {
         return rightEncoder.getVelocity();
     }
@@ -65,7 +87,7 @@ public class Drive extends SubsystemBase {
     /**
      * Sets drivetrain set() limitation interpolation value for both motors
      *
-     * @param power double max power value
+     * @param power double max power value out of 1
      */
     public void setMaxPower(double power) {
         maxPower = power;
@@ -78,8 +100,8 @@ public class Drive extends SubsystemBase {
     /**
      * Commands setpoint value out of 1 (voltage compensated) on both motors
      *
-     * @param leftSpeed  double left motor setpoint
-     * @param rightSpeed double right motor setpoint
+     * @param leftSpeed  double left motor setpoint out of maxPower
+     * @param rightSpeed double right motor setpoint out of maxPower
      */
     public void setPower(double leftSpeed, double rightSpeed) {
         if (!inverted) {

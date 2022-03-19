@@ -14,10 +14,20 @@ public class Shooter extends SubsystemBase{
     public Shooter() {
     }
 
+    /**
+     * Returns the speed of the shooter bottom wheel
+     * 
+     * @return double rotational speed of bottom, RPM
+     */
     public double getBottomSpeed() {
         return bottomShooter.getSelectedSensorVelocity() * ShooterConstants.RPM_TO_UNITS;
     }
 
+    /**
+     * Returns the speed of the top bottom wheel
+     * 
+     * @return double rotational speed of top, RPM
+     */
     public double getTopSpeed() {
         return topShooter.getSelectedSensorVelocity() * ShooterConstants.RPM_TO_UNITS;
     }

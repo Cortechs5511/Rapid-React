@@ -18,37 +18,42 @@ public class Intake extends SubsystemBase {
     }
 
     /**
-     * Set wrist motor to open loop power
+     * Set wrist motor to power
      *
-     * @param speed double speed
+     * @param speed double speed out of 1
      */
     public void setWrist(double speed) {
         wristMotor.set(speed);
     }
 
     /**
-     * Set intake motor to open loop power
+     * Set intake motor to power
      *
-     * @param speed double speed
+     * @param speed double speed out of 1
      */
     public void setIntake(double speed) {
         intakeMotor.set(speed);
     }
 
     /**
-    *Get intake wheel motor current
-    *
-    * @return output current as double 
-    */
-    public double getIntakeCurrent(){
-        return intakeMotor.getStatorCurrent();   
+     * Get intake wheel motor current
+     *
+     * @return double output current in amperes
+     */
+    public double getIntakeCurrent() {
+        return intakeMotor.getStatorCurrent();
     }
-    public double getWristCurrent(){
+
+    /**
+     * Get wrist motor current
+     * 
+     * @return double output current in amperes
+     */
+    public double getWristCurrent() {
         return wristMotor.getOutputCurrent();
 
-    
-    
     }
+
     /**
      * Create intake (Talon SRX) motor controller with preferred configuration
      *
@@ -70,7 +75,6 @@ public class Intake extends SubsystemBase {
 
         return controller;
     }
-
 
     /**
      * Create intake (SPARK MAX) motor controller with preferred configuration
@@ -95,11 +99,11 @@ public class Intake extends SubsystemBase {
 
     @Override
     public void periodic() {
-        if(Constants.DIAGNOSTICS){
+        if (Constants.DIAGNOSTICS) {
             SmartDashboard.putNumber("Intake/Wheel Current", getIntakeCurrent());
             SmartDashboard.putNumber("Intake/Wrist Power", wristMotor.get());
             SmartDashboard.putNumber("Intake/Wrist Current", getWristCurrent());
         }
-    
+
     }
 }
