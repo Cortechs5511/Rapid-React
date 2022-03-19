@@ -8,7 +8,7 @@ import edu.wpi.first.math.util.Units;
 
 public final class Constants {
     // Change before competition -- inhibits extraneous SmartDashboard logging
-    public static final boolean DIAGNOSTICS = true;
+    public static final boolean DIAGNOSTICS = false;
 
     public static class DriveConstants {
         public static final int LEFT_LEADER_ID = 10;
@@ -87,7 +87,7 @@ public final class Constants {
         public static final boolean INVERT_TOP_SHOOTER = true;
 
         public static final double VOLTAGE_COMPENSATION = 11.5;
-        public static final double LONG_RAMP_RATE = 1.5;
+        public static final double LONG_RAMP_RATE = 1.0;
 
         // getSelectedSensorVelocity: units (2048/rotation) per 100ms
         public static final double UNITS_PER_ROTATION = 2048;
@@ -95,9 +95,5 @@ public final class Constants {
 
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
         public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true, 80, 0, 0);
-
     }
-
 }
-
-

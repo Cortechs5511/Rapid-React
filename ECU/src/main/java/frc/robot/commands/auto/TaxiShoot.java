@@ -31,12 +31,14 @@ public class TaxiShoot extends CommandBase {
     public void execute() {
         double time = shootTimer.get();
         if (time < 1.0) {
-            shooter.setBottomPower(0.45);
+            shooter.setBottomPower(0.48);
+            shooter.setTopPower(0.32);
         } else if (time < 7.0) {
             feeder.setTower(-0.6);
         } else {
             feeder.setTower(0);
             shooter.setBottomPower(0.0);
+            shooter.setTopPower(0.0);
             drive.setPower(0.4, 0.4);
         }
     }

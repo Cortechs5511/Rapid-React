@@ -11,20 +11,17 @@ public class Feeder extends SubsystemBase {
     private final WPI_TalonSRX tower1Motor = createFeederController(FeederConstants.TOWER_1_ID, FeederConstants.INVERT_TOWER_1);
     private final WPI_TalonSRX tower2Motor = createFeederController(FeederConstants.TOWER_2_ID, FeederConstants.INVERT_TOWER_2);
 
-    private final DigitalInput bottomSensor = new DigitalInput(FeederConstants.BOTTOM_SENSOR_PORT);
+    // private final DigitalInput bottomSensor = new DigitalInput(FeederConstants.BOTTOM_SENSOR_PORT);
     private final DigitalInput topSensor = new DigitalInput(FeederConstants.TOP_SENSOR_PORT);
 
-    public double gettower1Current(){
+    public double getTower1Current(){
         return tower1Motor.getStatorCurrent();
     }
-    public double gettower2Current(){
+    
+    public double getTower2Current(){
         return tower2Motor.getStatorCurrent();
     }
    
-    public boolean getBottomSensor() {
-        return bottomSensor.get();
-    }
-
     public boolean getTopSensor() {
         return topSensor.get();
     }
@@ -50,7 +47,6 @@ public class Feeder extends SubsystemBase {
     public void holdTower(double power) {
         tower1Motor.set(power);
         tower2Motor.set(-power);
-    
     }
 
     /**
@@ -80,14 +76,10 @@ public class Feeder extends SubsystemBase {
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
-            SmartDashboard.putBoolean("Feeder/Bottom Sensor", getBottomSensor());
+            // SmartDashboard.putBoolean("Feeder/Bottom Sensor", getBottomSensor());
             SmartDashboard.putBoolean("Feeder/Top Sensor", getTopSensor());
-            SmartDashboard.putNumber("Feeder/Tower 1 Current", gettower1Current());
-            SmartDashboard.putNumber("Feeder/ Tower 2 Current", gettower2Current());
-            
-            
-
+            SmartDashboard.putNumber("Feeder/Tower 1 Current", getTower1Current());
+            SmartDashboard.putNumber("Feeder/ ower 2 Current", getTower2Current());
         }
-    
     }
 }
