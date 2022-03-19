@@ -2,7 +2,7 @@ package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Feeder;
@@ -33,19 +33,19 @@ public class TaxiShoot extends CommandBase {
     public void execute() {
         double time = shootTimer.get();
 
-        if (time < 1.0) {
-            // Speed up shooter for 1 second
+        if (time < AutoConstants.SHOOTER_WINDUP_TIME) {
+            // Accelerate shooter
             shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER);
             shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER);
-        } else if (time < 7.0) {
-            // Feed for 6 seconds
+        } else if (time < AutoConstants.FEED_TIME + AutoConstants.SHOOTER_WINDUP_TIME) {
+            // Feed 
             feeder.setTower(-0.6);
         } else {
             // Stop shooter, feeder, and drive back for 3 seconds.
             feeder.setTower(0);
             shooter.setBottomPower(0.0);
             shooter.setTopPower(0.0);
-            drive.setPower(DriveConstants.AUTO_POWER, DriveConstants.AUTO_POWER);
+            drive.setPower(AutoConstants.AUTO_POWER, AutoConstants.AUTO_POWER);
         }
     }
 
@@ -56,6 +56,6 @@ public class TaxiShoot extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return shootTimer.hasElapsed(10.0);
+        return shootTimer.hasElapsed(AutoConstants.AUTO_TIMEOUT);
     }
 }
