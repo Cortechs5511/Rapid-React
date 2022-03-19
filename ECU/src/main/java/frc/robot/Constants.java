@@ -7,7 +7,6 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
-    // Change before competition -- inhibits extraneous SmartDashboard logging
     public static final boolean DIAGNOSTICS = false;
 
     public static class DriveConstants {
@@ -75,7 +74,7 @@ public final class Constants {
         public static final int TOP_SENSOR_PORT = 2;
 
         public static final double TOWER_POWER = 0.8;
-        public static final double HOLD_TOWER_POWER = 0.4;
+        public static final double HOLD_TOWER_POWER = 0.6;
 
     }
 
@@ -88,6 +87,12 @@ public final class Constants {
 
         public static final double VOLTAGE_COMPENSATION = 11.5;
         public static final double LONG_RAMP_RATE = 1.0;
+
+        public static final double TOP_SHOOTER_POWER = 0.32;
+        public static final double TOP_SHOOTER_POWER_LOW = 0.15;
+
+        public static final double BOTTOM_SHOOTER_POWER = 0.48;
+        public static final double BOTTOM_SHOOTER_POWER_LOW = 0.20;
 
         // getSelectedSensorVelocity: units (2048/rotation) per 100ms
         public static final double UNITS_PER_ROTATION = 2048;
