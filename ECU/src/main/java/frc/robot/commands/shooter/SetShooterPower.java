@@ -16,6 +16,8 @@ public class SetShooterPower extends CommandBase {
     double bottomPower = ShooterConstants.BOTTOM_SHOOTER_POWER;
     double topPower = ShooterConstants.TOP_SHOOTER_POWER;
 
+    double lastSpeed = 0;
+
     public SetShooterPower(Shooter shooter) {
         this.shooter = shooter;
         addRequirements(this.shooter);
@@ -39,7 +41,21 @@ public class SetShooterPower extends CommandBase {
             shooter.setBottomPower(bottomPower);
             shooter.setTopPower(topPower);    
 
-            // Shooter speed advisory
+            // Shooter speed advisory for operator
+            double speed = shooter.getBottomSpeed();
+
+            if ((speed - lastSpeed) > ShooterConstants.ALERT_THRESHOLD) {
+                oi.setRumble(0.6);
+            } else {
+                oi.setRumble(0);
+            }
+            
+            // TODO: Remove when 
+            SmartDashboard.putNumber("Debug/Shooter Speed", speed);
+            SmartDashboard.putNumber("Debug/Last Shooter Speed", lastSpeed);
+            SmartDashboard.putNumber("Debug/Shooter Difference", speed - lastSpeed);
+
+            lastSpeed = speed;
         } else {
             shooter.setBottomPower(0);
             shooter.setTopPower(0);

@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import frc.robot.Constants.OIConstants;
 
 public class OI {
@@ -126,5 +127,14 @@ public class OI {
         return rightY;
     }
 
+    /**
+     * Sets rumble value of controller to specified intensity
+     * 
+     * @param intensity double value to set up to 1
+     */
+    public void setRumble(double intensity) {
+        controller.setRumble(RumbleType.kLeftRumble, intensity);
+        controller.setRumble(RumbleType.kRightRumble, intensity);
+    }
 
 }

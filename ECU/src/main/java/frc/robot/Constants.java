@@ -109,6 +109,6 @@ public final class Constants {
         public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true, 80, 0, 0);
 
         // Max slew rate to alert operator not to feed, in rpm per 20ms
-        public static final double ALERT_THRESHOLD = 2;
+        public static final double ALERT_THRESHOLD = 10;
     }
 }
