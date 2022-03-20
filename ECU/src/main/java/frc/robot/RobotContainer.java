@@ -1,7 +1,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.auto.TaxiShoot;
 import frc.robot.commands.collector.SetFeederPower;
@@ -9,7 +8,6 @@ import frc.robot.commands.collector.SetIntakePower;
 import frc.robot.commands.drive.Flip;
 import frc.robot.commands.drive.SetSpeed;
 import frc.robot.commands.shooter.SetShooterPower;
-import frc.robot.commands.shooter.ShooterSpeedAdvisory;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Intake;
@@ -27,8 +25,6 @@ public class RobotContainer {
         intake.setDefaultCommand(new SetIntakePower(intake));
         feeder.setDefaultCommand(new SetFeederPower(feeder, shooter));
         shooter.setDefaultCommand(new SetShooterPower(shooter));
-
-        // CommandScheduler.getInstance().schedule(new ShooterSpeedAdvisory(shooter));
 
         configureButtonBindings();
     }

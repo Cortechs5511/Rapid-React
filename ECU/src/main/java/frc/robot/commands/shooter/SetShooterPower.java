@@ -49,11 +49,6 @@ public class SetShooterPower extends CommandBase {
             } else {
                 oi.setRumble(0);
             }
-            
-            // TODO: Remove when 
-            SmartDashboard.putNumber("Debug/Shooter Speed", speed);
-            SmartDashboard.putNumber("Debug/Last Shooter Speed", lastSpeed);
-            SmartDashboard.putNumber("Debug/Shooter Difference", speed - lastSpeed);
 
             lastSpeed = speed;
         } else {
@@ -96,7 +91,6 @@ public class SetShooterPower extends CommandBase {
             shooting = false;
         }
     }
-
 
 
     @Override
