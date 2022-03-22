@@ -56,36 +56,30 @@ public class SetShooterPower extends CommandBase {
             shooter.setTopPower(0);
         }
 
-        // Speed adjustment of bottom wheel
-        if (oi.leftStick.getRawButtonPressed(4)) {
-            bottomPower += 0.01;
-            topPower += 0.01;
+        // Speed adjustment
+        int leftPOV = oi.leftStick.getPOV();
+        int rightPOV = oi.rightStick.getPOV();
+    
+        if (leftPOV != -1 || rightPOV != -1) {
+            if (leftPOV == 0) {
+                topPower += 0.01;
+            } else if (leftPOV == 180) {
+                topPower -= 0.01;
+            }
 
-            putPowers(topPower, bottomPower);
-        } else if (oi.leftStick.getRawButtonPressed(3)) {
-            bottomPower -= 0.01;
-            topPower -= 0.01;
+            if (rightPOV == 0) {
+                bottomPower += 0.01;
+            } else if (rightPOV == 180) {
+                bottomPower -= 0.01;
+            }
 
             putPowers(topPower, bottomPower);
         }
 
         // Toggle shooting on and off
         if (oi.rightStick.getRawButton(1)) {
-            // Set to high goal shooting
+            // Set to shoot
             shooting = true;
-
-            bottomPower = ShooterConstants.BOTTOM_SHOOTER_POWER;
-            topPower = ShooterConstants.TOP_SHOOTER_POWER;
-
-            putPowers(topPower, bottomPower);
-        } else if (oi.leftStick.getRawButton(1)) {
-            // Set to low goal shooting
-            shooting = true;
-
-            bottomPower = ShooterConstants.BOTTOM_SHOOTER_POWER_LOW;
-            topPower = ShooterConstants.TOP_SHOOTER_POWER_LOW;
-
-            putPowers(topPower, bottomPower);
         } else if (oi.rightStick.getRawButton(3)) {
             // Stop
             shooting = false;
