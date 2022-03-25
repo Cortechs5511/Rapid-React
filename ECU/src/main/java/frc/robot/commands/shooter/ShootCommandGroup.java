@@ -4,6 +4,7 @@ package frc.robot.commands.shooter;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.ShooterConstants;
+import frc.robot.commands.limelight.LightOn;
 import frc.robot.subsystems.*;
 
 public class ShootCommandGroup extends SequentialCommandGroup {
