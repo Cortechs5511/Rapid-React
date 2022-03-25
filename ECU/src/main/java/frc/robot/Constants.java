@@ -4,16 +4,19 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.revrobotics.CANSparkMax.IdleMode;
 
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.util.Units;
 
 public final class Constants {
     public static final boolean DIAGNOSTICS = false;
-
+    public static final double DWELL_PERIOD = 0.5;
     public static class AutoConstants {
         public static final double SHOOTER_WINDUP_TIME = 1.0;
         public static final double FEED_TIME = 5.0;
         public static final double AUTO_POWER = 0.3;
         public static final double AUTO_TIMEOUT = 10.0;
+        public static final double RAMSETE_BETA = 0;
+        public static final double RAMSETE_ZETA = 0;
 
     }
 
@@ -31,8 +34,27 @@ public final class Constants {
         public static final double GEARING = (44f / 24f) * (68f / 11f);
         public static final double WHEEL_DIAMETER = Units.inchesToMeters(6);
         public static final double ENCODER_TO_METERS = WHEEL_DIAMETER / GEARING;
-    }
+        public static final double DRIVE_VELOCITY_TOLERANCE = 1;
 
+        public static final double PID_MIN_OUTPUT = 0;
+        public static final double PID_MAX_OUTPUT = 0;
+        public static final double PID_P = 0;
+        public static final double PID_I = 0;
+        public static final double PID_D = 0;
+        public static final double PID_FF = 0;
+
+        public static final double ANGLE_P = 0.0;
+        public static final double ANGLE_I = 0.0;
+        public static final double ANGLE_D = 0.0;
+        public static final double ANGLE_PID_LIMIT = 0.3;
+
+        public static final double TRACK_WIDTH = 0.6858;
+        public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(TRACK_WIDTH);
+
+        public static final double KS = 0;
+        public static final double KV = 0;
+        public static final double KA = 0;
+    }
     public static class OIConstants {
         public static final int LEFT_STICK_PORT = 0;
         public static final int RIGHT_STICK_PORT = 1;
@@ -83,6 +105,9 @@ public final class Constants {
 
         public static final double TOWER_POWER = 0.5;
         public static final double HOLD_TOWER_POWER = 0.5;
+
+        public static final double EJECT_TIMEOUT = 5.0;
+        public static final double FEED_TIMEOUT = 0.5;
     }
 
     public static class ShooterConstants {
@@ -94,13 +119,14 @@ public final class Constants {
 
         public static final double VOLTAGE_COMPENSATION = 11.5;
         public static final double LONG_RAMP_RATE = 1.0;
+        public static final double SHORT_RAMP_RATE = 0.01;
 
         public static final double TOP_SHOOTER_POWER = 0.32;
         public static final double TOP_SHOOTER_POWER_LOW = 0.15;
 
         public static final double BOTTOM_SHOOTER_POWER = 0.48;
         public static final double BOTTOM_SHOOTER_POWER_LOW = 0.20;
-
+        
         // getSelectedSensorVelocity: units (2048/rotation) per 100ms
         public static final double UNITS_PER_ROTATION = 2048;
         public static final double RPM_TO_UNITS = 600 / UNITS_PER_ROTATION;
@@ -110,5 +136,13 @@ public final class Constants {
 
         // Max slew rate to alert operator not to feed, in rpm per 20ms
         public static final double ALERT_THRESHOLD = 10;
+        public static final double SHOOTER_RPM_TOLERANCE = 200.0;
+        public static final double DWELL_TIME = 0.5;
+        public static final double SHOOTER_TIMEOUT = 1.0;
+
+        public static final double PID_P = 0;
+        public static final double PID_I = 0;
+        public static final double PID_D = 0;
+        public static final double PID_FF = 0;
     }
 }

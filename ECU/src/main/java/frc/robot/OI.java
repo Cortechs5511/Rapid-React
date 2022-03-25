@@ -99,6 +99,9 @@ public class OI {
         return controller.getPOV() == 0 ? 1 : 0;
     }
 
+    public boolean getShooterPriority() {
+        return leftStick.getTrigger() && rightStick.getTrigger();
+    }
     /**
      * Returns the value of left joystick with values within deadband truncated
      *

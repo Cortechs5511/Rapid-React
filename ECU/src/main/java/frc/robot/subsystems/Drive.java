@@ -5,6 +5,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.I2C.Port;
@@ -136,6 +137,12 @@ public class Drive extends SubsystemBase {
         return controller;
     }
 
+    public void resetOdometry() {
+        leftEncoder.setPosition(0);
+        rightEncoder.setPosition(0);
+        odometry.resetPosition(new Pose2d(), Rotation2d.fromDegrees(gyro.getYaw()));
+    }
+    
     /**
      * Creates an encoder object from NEO with preferred settings
      *
