@@ -44,35 +44,12 @@ public class Launch extends CommandBase {
     public void execute() {
         // If the top sensor is empty, begin timeout for command halt
         // TODO: Remove sensors from code if they are not added to robot
-        if (!feeder.getTopSensor()) {
-            timeout.reset();
-        } else if (feedCount.get() > FeederConstants.FEED_TIMEOUT) {
-            timeout.start();
-        }
-
-        // If RPM within tolerance, begin timeout for feeding
-        if (Math.abs(shooter.getBottomSpeed() - targetSpeed) < ShooterConstants.SHOOTER_RPM_TOLERANCE) {
-            feedCount.start();
-        } else {
-            feedCount.reset();
-        }
-
-        // Feed if feeding conditions met
-        if (feedCount.get() > FeederConstants.FEED_TIMEOUT) {
-            feeder.setTower(FeederConstants.TOWER_POWER);
-        } else {
-            feeder.setTower(0);
-        }
-
-        // Keep robot stationary unless priority set
-        if (oi.getShooterPriority()) {
-            drive.setPower(oi.getLeftYDeadband(), oi.getRightYDeadband());
-        }
+        feeder.setTower(FeederConstants.TOWER_POWER);
     }
 
     @Override
     public boolean isFinished() {
-        return (timeout.get() > ShooterConstants.SHOOTER_TIMEOUT) || (shooter.getBottomSpeed() < 1000);
+        return false;
     }
 
     @Override

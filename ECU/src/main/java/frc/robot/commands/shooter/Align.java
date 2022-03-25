@@ -68,7 +68,6 @@ public class Align extends CommandBase {
     public void end(boolean interrupted) {
         drive.setPower(0, 0);
         shooter.setBottomSpeed(limelight.calculateRPM());
-        shooter.setRampRate(ShooterConstants.SHORT_RAMP_RATE);
         limelight.setLight(false);
         count.reset();
     }

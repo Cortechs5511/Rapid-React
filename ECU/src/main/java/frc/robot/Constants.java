@@ -118,8 +118,7 @@ public final class Constants {
         public static final boolean INVERT_TOP_SHOOTER = true;
 
         public static final double VOLTAGE_COMPENSATION = 11.5;
-        public static final double LONG_RAMP_RATE = 1.0;
-        public static final double SHORT_RAMP_RATE = 0.01;
+        public static final double LONG_RAMP_RATE = .75;
 
         public static final double TOP_SHOOTER_POWER = 0.32;
         public static final double TOP_SHOOTER_POWER_LOW = 0.15;
