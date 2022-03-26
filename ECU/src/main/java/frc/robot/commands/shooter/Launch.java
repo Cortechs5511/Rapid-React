@@ -66,5 +66,6 @@ public class Launch extends CommandBase {
         shooter.setRampRate(ShooterConstants.LONG_RAMP_RATE);
 
         drive.setPower(0, 0);
+        limelight.setLight(false);
     }
 }

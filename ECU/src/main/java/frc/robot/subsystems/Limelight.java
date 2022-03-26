@@ -23,7 +23,7 @@ public class Limelight extends SubsystemBase {
      *
      * @return double calculated power for top shooter
      */
-    public double calculateTopPower() {
+    public double getTopPower() {
         double power = 0;
 
         return power;
@@ -34,7 +34,7 @@ public class Limelight extends SubsystemBase {
      *
      * @return double calculated power for bottom shooter
      */
-    public double calculateBottomPower() {
+    public double getBottomPower() {
         double power = 0;
 
         return power;

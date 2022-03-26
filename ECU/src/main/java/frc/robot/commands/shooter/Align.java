@@ -40,7 +40,7 @@ public class Align extends CommandBase {
     @Override
     public void execute() {
         double x = limelight.getX();
-        targetSpeed = limelight.calculateRPM();
+        targetSpeed = limelight.getBottomPower();
 
         if (!oi.getShooterPriority()) {
             // Clamp values to range
@@ -67,9 +67,7 @@ public class Align extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         drive.setPower(0, 0);
-        shooter.setBottomSpeed(limelight.calculateRPM());
-        shooter.setRampRate(ShooterConstants.SHORT_RAMP_RATE);
-        limelight.setLight(false);
+        shooter.setBottomSpeed(limelight.getBottomPower());
         count.reset();
     }
 }
