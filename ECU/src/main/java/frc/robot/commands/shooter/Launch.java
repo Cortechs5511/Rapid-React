@@ -17,7 +17,6 @@ public class Launch extends CommandBase {
     private final Shooter shooter;
     private final OI oi = OI.getInstance();
 
-    private double targetSpeed;
     private final Timer timeout = new Timer();
     private final Timer feedCount = new Timer();
 
@@ -35,15 +34,13 @@ public class Launch extends CommandBase {
         timeout.reset();
         feedCount.reset();
 
-        targetSpeed = shooter.getBottomSpeed();
 
         intake.setIntake(IntakeConstants.INTAKE_POWER);
     }
 
     @Override
     public void execute() {
-        // If the top sensor is empty, begin timeout for command halt
-        // TODO: Remove sensors from code if they are not added to robot
+        drive.setPower(oi.getLeftYDeadband(), oi.getRightYDeadband());
         feeder.setTower(FeederConstants.TOWER_POWER);
     }
 
