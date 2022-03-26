@@ -13,29 +13,31 @@ public class Limelight extends SubsystemBase {
     private final NetworkTableEntry tv = table.getEntry("tv");
     private final NetworkTableEntry ledMode = table.getEntry("ledMode");
 
-    private double v;
-
-
     public Limelight() {
         // Turn lights off
         ledMode.setNumber(1);
     }
 
     /**
-     * Method to return desired shooter RPM
+     * Method to return desired top shooter power
      *
-     * @return double calculated RPM for shooter
+     * @return double calculated power for top shooter
      */
-    public double calculateRPM() {
-        // Math for determining the flat rpm from estimated distance
-        // currently setting rpm to 0, but that should be changed for actual testing
-        double rpm = 0;
-        
-        if (v != 0) {
-            return rpm;
-        } else {
-            return 0;
-        }
+    public double calculateTopPower() {
+        double power = 0;
+
+        return power;
+    }
+    
+    /**
+     * Method to return desired bottom shooter power
+     *
+     * @return double calculated power for bottom shooter
+     */
+    public double calculateBottomPower() {
+        double power = 0;
+
+        return power;
     }
 
     /**

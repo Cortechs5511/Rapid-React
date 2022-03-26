@@ -15,6 +15,7 @@ public class Launch extends CommandBase {
     private final Feeder feeder;
     private final Intake intake;
     private final Shooter shooter;
+    private final Limelight limelight;
     private final OI oi = OI.getInstance();
 
     private final Timer timeout = new Timer();
@@ -25,6 +26,7 @@ public class Launch extends CommandBase {
         this.feeder = feeder;
         this.intake = intake;
         this.shooter = shooter;
+        this.limelight = limelight;
 
         addRequirements(this.drive, this.feeder, this.intake, limelight, (Subsystem) this.shooter);
     }
@@ -42,6 +44,9 @@ public class Launch extends CommandBase {
     public void execute() {
         drive.setPower(oi.getLeftYDeadband(), oi.getRightYDeadband());
         feeder.setTower(FeederConstants.TOWER_POWER);
+
+        shooter.setBottomPower(limelight.getBottomPower());
+        shooter.setTopPower(limelight.getTopPower());
     }
 
     @Override
