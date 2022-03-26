@@ -13,15 +13,12 @@ public class Limelight extends SubsystemBase {
     private final NetworkTableEntry tv = table.getEntry("tv");
     private final NetworkTableEntry ledMode = table.getEntry("ledMode");
 
-    private double x;
     private double v;
 
 
     public Limelight() {
         // Turn lights off
         ledMode.setNumber(1);
-        SmartDashboard.putNumber("Shooter/Flat RPM", 0);
-        SmartDashboard.putBoolean("Limelight/Limelight Lights", false);
     }
 
     /**
@@ -30,11 +27,6 @@ public class Limelight extends SubsystemBase {
      * @return double calculated RPM for shooter
      */
     public double calculateRPM() {
-        double flatRPM = SmartDashboard.getNumber("Shooter/Flat RPM", 0);
-        if (flatRPM != 0) {
-            return flatRPM;
-        }
-        
         // Math for determining the flat rpm from estimated distance
         // currently setting rpm to 0, but that should be changed for actual testing
         double rpm = 0;
@@ -46,14 +38,48 @@ public class Limelight extends SubsystemBase {
         }
     }
 
+    /**
+     * Returns target x deviation
+     * 
+     * @return double x in degrees
+     */
     public double getX() {
-        return x;
+        return tx.getDouble(0.0);
     }
 
+    /**
+     * Returns target y deviation
+     * 
+     * @return double y in degrees
+     */
+    public double getY() {
+        return ty.getDouble(0.0);
+    }
+
+    /**
+     * Returns whether a valid target is selected or not.
+     * This is based off of target validity value.
+     * 
+     * @return boolean whether target is valid or not
+     */
+    public boolean getValidTarget() {
+        return tv.getDouble(0.0) != 0.0;
+    }
+
+    /**
+     * Returns light status 
+     * 
+     * @return boolean light on
+     */
     public boolean getLightStatus() {
         return ledMode.getDouble(1) == 3;
     }
 
+    /**
+     * Sets lights
+     * 
+     * @param on boolean desired light state
+     */
     public void setLight(boolean on) {
         ledMode.setNumber(on ? 3 : 1); // 3 = on, 1 = off
         SmartDashboard.putBoolean("Limelight/Limelight Lights", on);
@@ -61,10 +87,5 @@ public class Limelight extends SubsystemBase {
 
     @Override
     public void periodic() {
-        x = tx.getDouble(0.0);
-        v = tv.getDouble(0.0);
-
-        SmartDashboard.putNumber("Limelight/Limelight X", x);
-        SmartDashboard.putBoolean("Limelight/Limelight Valid Target", v == 0);
     }
 }
