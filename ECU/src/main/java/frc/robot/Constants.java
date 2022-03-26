@@ -31,6 +31,10 @@ public final class Constants {
         public static final double GEARING = (44f / 24f) * (68f / 11f);
         public static final double WHEEL_DIAMETER = Units.inchesToMeters(6);
         public static final double ENCODER_TO_METERS = WHEEL_DIAMETER / GEARING;
+
+        public static final double Ks = 0.20163;
+        public static final double Kv = 2.9383;
+        public static final double Ka = 0.45516;
     }
 
     public static class OIConstants {
