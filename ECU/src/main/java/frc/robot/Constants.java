@@ -71,7 +71,7 @@ public final class Constants {
         public static final int WRIST_ID = 30;
         public static final int INTAKE_ID = 31;
 
-        public static final boolean INVERT_INTAKE = true;
+        public static final boolean INVERT_INTAKE = false;
         public static final boolean INVERT_WRIST = false;
 
         public static final int CURRENT_LIMIT = 40;
@@ -81,7 +81,7 @@ public final class Constants {
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
 
-        public static final double INTAKE_POWER = -0.9;
+        public static final double INTAKE_POWER = 0.8;
         public static final double WRIST_POWER = 0.5;
         public static final double WRIST_DOWN_POWER = 0.05;
         public static final double WRIST_BUMP_THRESHOLD = -20;
