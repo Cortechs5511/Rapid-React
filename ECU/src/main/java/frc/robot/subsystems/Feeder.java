@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -10,10 +9,6 @@ import frc.robot.Constants.FeederConstants;
 public class Feeder extends SubsystemBase {
     private final WPI_TalonSRX tower1Motor = createFeederController(FeederConstants.TOWER_1_ID, FeederConstants.INVERT_TOWER_1);
     private final WPI_TalonSRX tower2Motor = createFeederController(FeederConstants.TOWER_2_ID, FeederConstants.INVERT_TOWER_2);
-
-    // private final DigitalInput bottomSensor = new DigitalInput(FeederConstants.BOTTOM_SENSOR_PORT);
-    private final DigitalInput topSensor = new DigitalInput(FeederConstants.TOP_SENSOR_PORT);
-
 
     public Feeder() {
     }
@@ -34,15 +29,6 @@ public class Feeder extends SubsystemBase {
      */
     public double getTower2Current(){
         return tower2Motor.getStatorCurrent();
-    }
-   
-    /**
-     * Get state of top sensor
-     * 
-     * @return boolean whether DIO of sensor returns true
-     */
-    public boolean getTopSensor() {
-        return topSensor.get();
     }
 
     /**
@@ -92,8 +78,6 @@ public class Feeder extends SubsystemBase {
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
-            // SmartDashboard.putBoolean("Feeder/Bottom Sensor", getBottomSensor());
-            SmartDashboard.putBoolean("Feeder/Top Sensor", getTopSensor());
             SmartDashboard.putNumber("Feeder/Tower 1 Current", getTower1Current());
             SmartDashboard.putNumber("Feeder/Tower 2 Current", getTower2Current());
         }

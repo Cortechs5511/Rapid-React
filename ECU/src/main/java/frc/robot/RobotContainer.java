@@ -23,10 +23,9 @@ public class RobotContainer {
     private final OI oi = OI.getInstance();
 
     public RobotContainer() {
-        Intake intake = new Intake();
         drive.setDefaultCommand(new SetSpeed(drive));
         intake.setDefaultCommand(new SetIntakePower(intake));
-        feeder.setDefaultCommand(new SetFeederPower(feeder, shooter));
+        feeder.setDefaultCommand(new SetFeederPower(feeder));
         limelight.setDefaultCommand(new LimelightDisplay(limelight));
         // for testing only
         shooter.setDefaultCommand(new SetShooterPower(shooter));

@@ -92,8 +92,8 @@ public final class Constants {
         public static final int TOWER_1_ID = 40;
         public static final int TOWER_2_ID = 41;
 
-        public static final boolean INVERT_TOWER_1 = false;
-        public static final boolean INVERT_TOWER_2 = true;
+        public static final boolean INVERT_TOWER_1 = true;
+        public static final boolean INVERT_TOWER_2 = false;
 
         public static final int CURRENT_LIMIT = 40;
         public static final int PEAK_CURRENT_LIMIT = 60;
