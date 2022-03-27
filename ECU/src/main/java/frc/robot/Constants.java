@@ -83,7 +83,7 @@ public final class Constants {
 
         public static final double INTAKE_POWER = 0.8;
         public static final double WRIST_POWER = 0.5;
-        public static final double WRIST_DOWN_POWER = 0.05;
+        public static final double WRIST_DOWN_POWER = -0.05;
         public static final double WRIST_BUMP_THRESHOLD = -20;
     }
 

@@ -47,8 +47,8 @@ public class Feeder extends SubsystemBase {
      * @param power double power
      */
     public void holdTower(double power) {
-        tower1Motor.set(power);
-        tower2Motor.set(-power);
+        tower1Motor.set(-power);
+        tower2Motor.set(power);
     }
 
     /**
