@@ -17,7 +17,6 @@ public final class Constants {
         public static final double AUTO_TIMEOUT = 10.0;
         public static final double RAMSETE_BETA = 0;
         public static final double RAMSETE_ZETA = 0;
-
     }
 
     public static class DriveConstants {
@@ -51,9 +50,9 @@ public final class Constants {
         public static final double TRACK_WIDTH = 0.6858;
         public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(TRACK_WIDTH);
 
-        public static final double KS = 0;
-        public static final double KV = 0;
-        public static final double KA = 0;
+        public static final double Ks = 0.20163;
+        public static final double Kv = 2.9383;
+        public static final double Ka = 0.45516;
     }
     public static class OIConstants {
         public static final int LEFT_STICK_PORT = 0;
