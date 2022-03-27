@@ -69,7 +69,11 @@ public class OI {
      * @return double 1 if wrist up is pressed, else 0
      */
     public double getWristUp() {
-        return controller.getRawAxis(OIConstants.WRIST_UP_AXIS) > 0.5 ? 1 : 0;
+        if (controller.getRawAxis(OIConstants.WRIST_UP_AXIS) > 0.5) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -78,7 +82,12 @@ public class OI {
      * @return double 1 if wrist down is pressed, else 0
      */
     public double getWristDown() {
-        return controller.getRawAxis(OIConstants.WRIST_DOWN_AXIS) > 0.5 ? 1 : 0;
+        if (controller.getRawAxis(OIConstants.WRIST_DOWN_AXIS) > 0.5) {
+            return 1;
+        } else {
+            return 0;
+        }
+
     }
 
     /**
@@ -87,7 +96,11 @@ public class OI {
      * @return double 1 if feeder up is pushed
      */
     public double getFeederUp() {
-        return controller.getPOV() == 180 ? 1 : 0;
+        if (controller.getPOV() == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -96,9 +109,16 @@ public class OI {
      * @return double 1 if feeder down is pushed
      */
     public double getFeederDown() {
-        return controller.getPOV() == 0 ? 1 : 0;
+        if (controller.getPOV() == 180) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
+    public boolean getShooterPriority() {
+        return leftStick.getTrigger() && rightStick.getTrigger();
+    }
     /**
      * Returns the value of left joystick with values within deadband truncated
      *

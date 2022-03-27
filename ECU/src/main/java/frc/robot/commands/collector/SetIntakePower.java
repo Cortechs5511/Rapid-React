@@ -24,15 +24,7 @@ public class SetIntakePower extends CommandBase {
     @Override
     public void execute() {
         intake.setIntake((oi.getIntake() - oi.getOuttake()) * IntakeConstants.INTAKE_POWER);
-        
-        if (intake.getIntakeCurrent() < IntakeConstants.WRIST_BUMP_THRESHOLD) {
-            intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER + IntakeConstants.WRIST_DOWN_POWER);
-        } else {
-            intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
-        }
-        if (intake.getWristCurrent() > IntakeConstants.WRIST_CURRENT_LIMIT) { 
-            intake.setWrist(0);
-        }
+        intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
     }
 
     @Override

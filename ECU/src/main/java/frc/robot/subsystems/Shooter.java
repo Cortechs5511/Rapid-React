@@ -32,6 +32,9 @@ public class Shooter extends SubsystemBase{
         return topShooter.getSelectedSensorVelocity() * ShooterConstants.RPM_TO_UNITS;
     }
 
+    public void setBottomSpeed(double speed) {
+        bottomShooter.set(ControlMode.Velocity, speed * ShooterConstants.RPM_TO_UNITS);
+    }
     /**
      * Sets bottom wheel to open loop output
      *
@@ -59,7 +62,12 @@ public class Shooter extends SubsystemBase{
     public boolean getShooting() {
         return (bottomShooter.get() > 0) || (topShooter.get() > 0);
     }
-
+    public void setRampRate(double rate) {
+        bottomShooter.configOpenloopRamp(rate);
+        topShooter.configOpenloopRamp(rate);
+        bottomShooter.configClosedloopRamp(rate);
+        topShooter.configClosedloopRamp(rate);
+    }
     @Override
     public void periodic() {
         if (Constants.DIAGNOSTICS) {
