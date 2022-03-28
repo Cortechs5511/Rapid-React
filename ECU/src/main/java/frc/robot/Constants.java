@@ -53,6 +53,7 @@ public final class Constants {
         public static final double Ks = 0.20163;
         public static final double Kv = 2.9383;
         public static final double Ka = 0.45516;
+        public static final double Kp = 0.005668;
     }
     public static class OIConstants {
         public static final int LEFT_STICK_PORT = 0;
