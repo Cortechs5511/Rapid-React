@@ -31,8 +31,10 @@ public class RobotContainer {
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
-        chooser.addOption("3 ball auto", AutoRoutine.ThreeCargoBlue);
-        chooser.addOption("2 ball autos", AutoRoutine.TwoCargoBlue);
+        chooser.addOption("3 ball auto blue", AutoRoutine.ThreeCargoBlue);
+        chooser.addOption("2 ball autos blue", AutoRoutine.TwoCargoBlue);
+        chooser.addOption("3 ball auto red", AutoRoutine.ThreeCargoRed);
+        chooser.addOption("2 ball autos red", AutoRoutine.TwoCargoRed);
 
         chooser.setDefaultOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         configureButtonBindings();
@@ -47,6 +49,21 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
         return new TaxiShoot(feeder, shooter, drive);
+        switch (choice) {
+            case ThreeCargoBlue:
+                return TrajectoryFollower.getPath("output/3ball1.wpilib.json", m_drive, true).andThen(stop());
+            case ThreeCargoRed:
+                return TrajectoryFollower.getPath("output/3ball1red.wpilib.json", m_drive, true).andThen(stop());
+            case TwoCargoBlue:
+                return TrajectoryFollower.getPath("output/2ball1.wpilib.json", m_drive, true)
+                        .andThen(TrajectoryFollower.getPath("output/2ball2.wpilib.json", m_drive, false));
+                        .andThen(TrajectoryFollower.getPath("output/2ball3.wpilib.json", m_drive, false));
+            case TwoCargoRed:
+                return TrajectoryFollower.getPath("output/2ball1red.wpilib.json", m_drive, true)
+                        .andThen(TrajectoryFollower.getPath("output/2ball2red.wpilib.json", m_drive, false));
+                        .andThen(TrajectoryFollower.getPath("output/2ball3red.wpilib.json", m_drive, false));
+            default:
+                return new WaitCommand(1.0);   
     }
 
     enum AutoRoutine {
