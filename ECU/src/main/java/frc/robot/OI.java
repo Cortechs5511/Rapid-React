@@ -104,9 +104,8 @@ public class OI {
     public double getWristUp() {
         if (controller.getRawAxis(OIConstants.WRIST_UP_AXIS) > 0.5) {
             return 1;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     /**
@@ -117,10 +116,8 @@ public class OI {
     public double getWristDown() {
         if (controller.getRawAxis(OIConstants.WRIST_DOWN_AXIS) > 0.5) {
             return 1;
-        } else {
-            return 0;
         }
-
+        return 0;
     }
 
     /**
@@ -131,9 +128,8 @@ public class OI {
     public double getFeederUp() {
         if (controller.getPOV() == 0) {
             return 1;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     /**
@@ -144,9 +140,8 @@ public class OI {
     public double getFeederDown() {
         if (controller.getPOV() == 180) {
             return 1;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     public boolean getShooterPriority() {
