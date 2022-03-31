@@ -67,6 +67,21 @@ public final class Constants {
         public static final int HALF_SPEED_BUTTON = 2;
     }
 
+    public static class ClimberConstants {
+
+        public static final double VOLTAGE_COMPENSATION = 11;
+        public static final IdleMode IDLE_MODE = IdleMode.kBrake;
+        public static final double RAMP_RATE = 0.5;
+        public static final int CURRENT_LIMIT = 50;
+
+        public static final int LEFT_CLIMBER_PORT = 0;
+        public static final int RIGHT_CLIMBER_PORT = 0;
+
+        public static final boolean INVERT_LEFT_CLIMBER = false;
+        public static final boolean INVERT_RIGHT_CLIMBER = false;
+
+    }
+
     public static class IntakeConstants {
         public static final int WRIST_ID = 30;
         public static final int INTAKE_ID = 31;
