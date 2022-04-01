@@ -10,6 +10,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
     public static final boolean DIAGNOSTICS = false;
     public static final double DWELL_PERIOD = 0.5;
+
     public static class AutoConstants {
         public static final double SHOOTER_WINDUP_TIME = 1.0;
         public static final double FEED_TIME = 5.0;
@@ -55,6 +56,7 @@ public final class Constants {
         public static final double Ka = 0.45516;
         public static final double Kp = 0.005668;
     }
+
     public static class OIConstants {
         public static final int LEFT_STICK_PORT = 0;
         public static final int RIGHT_STICK_PORT = 1;
@@ -95,7 +97,6 @@ public final class Constants {
         public static final int WRIST_CURRENT_LIMIT = 20;
         public static final double RAMP_RATE = 0.25;
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
-
 
         public static final double INTAKE_POWER = 0.8;
         public static final double WRIST_POWER = 0.5;
@@ -140,13 +141,14 @@ public final class Constants {
 
         public static final double BOTTOM_SHOOTER_POWER = 0.48;
         public static final double BOTTOM_SHOOTER_POWER_LOW = 0.20;
-        
+
         // getSelectedSensorVelocity: units (2048/rotation) per 100ms
         public static final double UNITS_PER_ROTATION = 2048;
         public static final double RPM_TO_UNITS = 600 / UNITS_PER_ROTATION;
 
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Coast;
-        public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true, 80, 0, 0);
+        public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true,
+                80, 0, 0);
 
         // Max slew rate to alert operator not to feed, in rpm per 20ms
         public static final double ALERT_THRESHOLD = 10;
