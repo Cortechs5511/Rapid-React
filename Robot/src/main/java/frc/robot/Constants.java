@@ -81,6 +81,7 @@ public final class Constants {
 
         public static final boolean INVERT_LEFT_CLIMBER = false;
         public static final boolean INVERT_RIGHT_CLIMBER = false;
+        public static final double CLIMB_POWER = 0;
 
     }
 
