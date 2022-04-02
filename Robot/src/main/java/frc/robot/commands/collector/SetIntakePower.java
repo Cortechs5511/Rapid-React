@@ -1,5 +1,6 @@
 package frc.robot.commands.collector;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.OI;
@@ -19,12 +20,19 @@ public class SetIntakePower extends CommandBase {
     public void initialize() {
         intake.setIntake(0);
         intake.setWrist(0);
+
+        // TODO: Remove when done testing
+        SmartDashboard.putNumber("Debug/Intake Power", IntakeConstants.INTAKE_POWER);
+        SmartDashboard.putNumber("Debug/Wrist Down Power", IntakeConstants.WRIST_DOWN_POWER);
     }
 
     @Override
     public void execute() {
-        intake.setIntake((oi.getIntake() - oi.getOuttake()) * IntakeConstants.INTAKE_POWER);
-        intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER);
+        double intakePower = SmartDashboard.getNumber("Debug/Intake Power", IntakeConstants.INTAKE_POWER);
+        double wristDownPower = SmartDashboard.getNumber("Debug/Wrist Down Power", IntakeConstants.WRIST_DOWN_POWER);
+    
+        intake.setIntake((oi.getIntake() - oi.getOuttake()) * intakePower);
+        intake.setWrist((oi.getWristUp() - oi.getWristDown()) * IntakeConstants.WRIST_POWER + (oi.getIntake() * wristDownPower));
     }
 
     @Override

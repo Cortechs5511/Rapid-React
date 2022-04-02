@@ -46,12 +46,45 @@ public class OI {
     }
 
     /**
+     * Returns power for left climber with deadband
+     * 
+     * @return double controller left joystick power
+     */
+    public double getLeftClimberPower() {
+        double power = controller.getRawAxis(1);
+
+        if (Math.abs(power) < 2 * OIConstants.DEADBAND) {
+            return 0;
+        }
+
+        return power;
+    }
+
+    /**
+     * Returns power for right climber with deadband
+     * 
+     * @return double controller left joystick power
+     */
+    public double getRightClimberPower() {
+        double power = controller.getRawAxis(5);
+
+        if (Math.abs(power) < 2 * OIConstants.DEADBAND) {
+            return 0;
+        }
+
+        return power;
+    }
+
+    /**
      * Returns state of intake binding as a double
-     *
+     
      * @return int 1 if outtake is pressed, else 0
      */
     public int getOuttake() {
-        return Math.abs(controller.getRawAxis(1)) > 0.5 || Math.abs(controller.getRawAxis(5)) > 0.5 ? 1 : 0;
+        if (controller.getAButton()) {
+            return 1;
+        }
+        return 0;
     }
 
     /**
@@ -60,7 +93,7 @@ public class OI {
      * @return int 1 if intake is pressed else, 0
      */
     public int getIntake() {
-        return (controller.getYButton() || controller.getXButton() || controller.getAButton() || controller.getBButton()) ? 1 : 0;
+        return (controller.getYButton() || controller.getXButton() || controller.getBButton()) ? 1 : 0;
     }
 
     /**
@@ -71,9 +104,8 @@ public class OI {
     public double getWristUp() {
         if (controller.getRawAxis(OIConstants.WRIST_UP_AXIS) > 0.5) {
             return 1;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     /**
@@ -84,10 +116,8 @@ public class OI {
     public double getWristDown() {
         if (controller.getRawAxis(OIConstants.WRIST_DOWN_AXIS) > 0.5) {
             return 1;
-        } else {
-            return 0;
         }
-
+        return 0;
     }
 
     /**
@@ -98,9 +128,8 @@ public class OI {
     public double getFeederUp() {
         if (controller.getPOV() == 0) {
             return 1;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     /**
@@ -111,9 +140,8 @@ public class OI {
     public double getFeederDown() {
         if (controller.getPOV() == 180) {
             return 1;
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     public boolean getShooterPriority() {
