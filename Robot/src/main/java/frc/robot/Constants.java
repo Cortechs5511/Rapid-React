@@ -154,5 +154,12 @@ public final class Constants {
         public static final double SHOOTER_RPM_TOLERANCE = 200.0;
         public static final double DWELL_TIME = 0.5;
         public static final double SHOOTER_TIMEOUT = 1.0;
+    }   
+
+    public static class LimelightConstants {
+        public static final double DISTANCE_A = -0.001996;
+        public static final double DISTANCE_B = 0.09212;
+        public static final double DISTANCE_C = -3.634;
+        public static final double DISTANCE_D = 115.1;
     }
 }
