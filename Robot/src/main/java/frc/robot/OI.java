@@ -47,6 +47,7 @@ public class OI {
         return rightStick.getY();
     }
 
+    //TODO: Make get climber better since I made it - Aniketh
     /**
      * Returns power for left climber 
      * 1 or 1 if stick is past deadband in both directions
@@ -57,9 +58,9 @@ public class OI {
     public double getLeftClimberPower() {
         double power = controller.getRawAxis(1);
 
-        if (power > OIConstants.DEADBAND * 10) {
+        if (controller.getBButton()) {
             return 1;
-        } else if (power < OIConstants.DEADBAND * -10) {
+        } else if (controller.getXButton()) {
             return -1;
         } else {
             return 0;
@@ -76,9 +77,9 @@ public class OI {
     public double getRightClimberPower() {
         double power = controller.getRawAxis(5);
 
-        if (power > OIConstants.DEADBAND * 10) {
+        if (controller.getBButton()) {
             return 1;
-        } else if (power < OIConstants.DEADBAND * -10) {
+        } else if (controller.getXButton()) {
             return -1;
         } else {
             return 0;
@@ -103,7 +104,7 @@ public class OI {
      * @return int 1 if intake is pressed else, 0
      */
     public int getIntake() {
-        return (controller.getYButton() || controller.getXButton() || controller.getBButton()) ? 1 : 0;
+        return (controller.getYButton() /*|| controller.getXButton() || controller.getBButton()*/) ? 1 : 0;
     }
 
     /**

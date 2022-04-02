@@ -10,6 +10,7 @@ import frc.robot.commands.collector.SetFeederPower;
 import frc.robot.commands.collector.SetIntakePower;
 import frc.robot.commands.drive.Flip;
 import frc.robot.commands.drive.SetSpeed;
+import frc.robot.commands.SetClimberPower;
 import frc.robot.commands.limelight.LimelightDisplay;
 import frc.robot.commands.shooter.SetShooterPower;
 import frc.robot.subsystems.*;
@@ -22,6 +23,7 @@ public class RobotContainer {
     private final Feeder feeder = new Feeder();
     private final Shooter shooter = new Shooter();
     private final Limelight limelight = new Limelight();
+    private final Climber climber = new Climber();
     private final OI oi = OI.getInstance();
 
     enum AutoRoutine {
@@ -33,6 +35,7 @@ public class RobotContainer {
         intake.setDefaultCommand(new SetIntakePower(intake));
         feeder.setDefaultCommand(new SetFeederPower(feeder));
         limelight.setDefaultCommand(new LimelightDisplay(limelight));
+        climber.setDefaultCommand(new SetClimberPower(climber));
         // for testing only
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 

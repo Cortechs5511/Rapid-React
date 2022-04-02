@@ -12,7 +12,11 @@ public final class Constants {
     public static final double DWELL_PERIOD = 0.5;
 
     public static class AutoConstants {
+        public static final double TAXISHOOT_SHOOTER_WINDUP_TIME = 1.0;
+        public static final double TAXISHOOT_FEED_TIME = 5.0;
         public static final double SHOOTER_WINDUP_TIME = 1.0;
+        public static final double SHOOTER_TOP_WHEEL_SPEED = 0.3;
+        public static final double SHOOTER_BOTTOM_WHEEL_SPEED = 0.6;
         public static final double FEED_TIME = 5.0;
         public static final double AUTO_POWER = 0.3;
         public static final double AUTO_TIMEOUT = 10.0;
@@ -76,12 +80,11 @@ public final class Constants {
         public static final double RAMP_RATE = 0.5;
         public static final int CURRENT_LIMIT = 50;
 
-        public static final int LEFT_CLIMBER_PORT = 0;
-        public static final int RIGHT_CLIMBER_PORT = 0;
+        public static final int LEFT_CLIMBER_PORT = 60;
+        public static final int RIGHT_CLIMBER_PORT = 61;
 
         public static final boolean INVERT_LEFT_CLIMBER = false;
         public static final boolean INVERT_RIGHT_CLIMBER = false;
-        public static final double CLIMB_POWER = 0;
 
     }
 
@@ -155,7 +158,7 @@ public final class Constants {
         public static final double SHOOTER_RPM_TOLERANCE = 200.0;
         public static final double DWELL_TIME = 0.5;
         public static final double SHOOTER_TIMEOUT = 1.0;
-    }   
+    }
 
     public static class LimelightConstants {
         public static final double DISTANCE_A = -0.001996;
