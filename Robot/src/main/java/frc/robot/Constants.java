@@ -12,7 +12,11 @@ public final class Constants {
     public static final double DWELL_PERIOD = 0.5;
 
     public static class AutoConstants {
+        public static final double TAXISHOOT_SHOOTER_WINDUP_TIME = 1.0;
+        public static final double TAXISHOOT_FEED_TIME = 5.0;
         public static final double SHOOTER_WINDUP_TIME = 1.0;
+        public static final double SHOOTER_TOP_WHEEL_SPEED = 0.3;
+        public static final double SHOOTER_BOTTOM_WHEEL_SPEED = 0.6;
         public static final double FEED_TIME = 5.0;
         public static final double AUTO_POWER = 0.3;
         public static final double AUTO_TIMEOUT = 10.0;
