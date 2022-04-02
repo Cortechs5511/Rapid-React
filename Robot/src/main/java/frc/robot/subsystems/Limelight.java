@@ -5,6 +5,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.ShooterConstants;
 
 public class Limelight extends SubsystemBase {
     private final NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -12,6 +13,9 @@ public class Limelight extends SubsystemBase {
     private final NetworkTableEntry ty = table.getEntry("ty");
     private final NetworkTableEntry tv = table.getEntry("tv");
     private final NetworkTableEntry ledMode = table.getEntry("ledMode");
+
+    // Abstracted distance, in inches
+    private double distance;
 
     public Limelight() {
         // Turn lights off
@@ -24,8 +28,12 @@ public class Limelight extends SubsystemBase {
      * @return double calculated power for top shooter
      */
     public double getTopPower() {
-        double power = 0;
+        if (distance < 0) {
+            return ShooterConstants.TOP_SHOOTER_POWER;
+        }
 
+        // TODO: Fit top shooter power vs. distance and update
+        double power = 0;
         return power;
     }
     
@@ -35,8 +43,14 @@ public class Limelight extends SubsystemBase {
      * @return double calculated power for bottom shooter
      */
     public double getBottomPower() {
-        double power = 0;
+        updateDistance();
 
+        if (distance < 0) {
+            return ShooterConstants.BOTTOM_SHOOTER_POWER;
+        }
+
+        // TODO: Fit bottom shooter power vs. distance and update
+        double power = 0;
         return power;
     }
 
@@ -56,6 +70,19 @@ public class Limelight extends SubsystemBase {
      */
     public double getY() {
         return ty.getDouble(0.0);
+    }
+
+    /**
+     * Runs distance calculation from limelight y and pushes to field "distance"
+     */
+    private void updateDistance() {
+        if (!getValidTarget()) {
+            distance = -1.0;
+            return;
+        }
+
+        double y = getY();
+        distance = -0.001996 * Math.pow(y, 3) + 0.09212 * Math.pow(y, 2) - 3.634 * y + 115.1;
     }
 
     /**

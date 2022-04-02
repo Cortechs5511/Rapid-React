@@ -71,7 +71,6 @@ public final class Constants {
     }
 
     public static class ClimberConstants {
-
         public static final double VOLTAGE_COMPENSATION = 11;
         public static final IdleMode IDLE_MODE = IdleMode.kBrake;
         public static final double RAMP_RATE = 0.5;
@@ -134,7 +133,7 @@ public final class Constants {
         public static final boolean INVERT_TOP_SHOOTER = true;
 
         public static final double VOLTAGE_COMPENSATION = 11.5;
-        public static final double LONG_RAMP_RATE = .75;
+        public static final double LONG_RAMP_RATE = 0.75;
 
         public static final double TOP_SHOOTER_POWER = 0.32;
         public static final double TOP_SHOOTER_POWER_LOW = 0.15;
@@ -155,10 +154,12 @@ public final class Constants {
         public static final double SHOOTER_RPM_TOLERANCE = 200.0;
         public static final double DWELL_TIME = 0.5;
         public static final double SHOOTER_TIMEOUT = 1.0;
+    }   
 
-        public static final double PID_P = 0;
-        public static final double PID_I = 0;
-        public static final double PID_D = 0;
-        public static final double PID_FF = 0;
+    public static class LimelightConstants {
+        public static final double DISTANCE_A = -0.001996;
+        public static final double DISTANCE_B = 0.09212;
+        public static final double DISTANCE_C = -3.634;
+        public static final double DISTANCE_D = 115.1;
     }
 }
