@@ -59,21 +59,31 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
         AutoRoutine choice = chooser.getSelected();
+        Command selected;
+
         switch (choice) {
             case ThreeCargoBlue:
-                return TrajectoryFollower.getPath("output/3ball1.wpilib.json", drive, true);
+
+                selected = TrajectoryFollower.getPath("output/3ball1.wpilib.json", drive, true);
+                
             case ThreeCargoRed:
-                return TrajectoryFollower.getPath("output/3ball1red.wpilib.json", drive, true);
+                
+                selected = TrajectoryFollower.getPath("output/3ball1red.wpilib.json", drive, true);
+     
             case TwoCargoBlue:
-                return TrajectoryFollower.getPath("output/2ball1.wpilib.json", drive, true)
+                selected = TrajectoryFollower.getPath("output/2ball1.wpilib.json", drive, true)
                         .andThen(TrajectoryFollower.getPath("output/2ball2.wpilib.json", drive, false))
                         .andThen(TrajectoryFollower.getPath("output/2ball3.wpilib.json", drive, false));
             case TwoCargoRed:
-                return TrajectoryFollower.getPath("output/2ball1red.wpilib.json", drive, true)
+                selected = TrajectoryFollower.getPath("output/2ball1red.wpilib.json", drive, true)
                         .andThen(TrajectoryFollower.getPath("output/2ball2red.wpilib.json", drive, false))
                         .andThen(TrajectoryFollower.getPath("output/2ball3red.wpilib.json", drive, false));
             default:
                 return new TaxiShoot(feeder, shooter, drive);
+        }
+
+        if (selected == null) {
+            return new TaxiShoot(feeder, shooter, drive);
         }
     }
 }
