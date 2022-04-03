@@ -63,11 +63,9 @@ public class RobotContainer {
 
         switch (choice) {
             case ThreeCargoBlue:
-
                 selected = TrajectoryFollower.getPath("output/3ball1.wpilib.json", drive, true);
                 
             case ThreeCargoRed:
-                
                 selected = TrajectoryFollower.getPath("output/3ball1red.wpilib.json", drive, true);
      
             case TwoCargoBlue:
