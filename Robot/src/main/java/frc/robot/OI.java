@@ -58,9 +58,9 @@ public class OI {
     public double getLeftClimberPower() {
         double power = controller.getRawAxis(1);
 
-        if (controller.getBButton()) {
+        if (power > OIConstants.DEADBAND * 2) {
             return 1;
-        } else if (controller.getXButton()) {
+        } else if (power < OIConstants.DEADBAND * -2) {
             return -1;
         } else {
             return 0;
@@ -77,9 +77,9 @@ public class OI {
     public double getRightClimberPower() {
         double power = controller.getRawAxis(5);
 
-        if (controller.getBButton()) {
+        if (power > OIConstants.DEADBAND * 2) {
             return 1;
-        } else if (controller.getXButton()) {
+        } else if (power < OIConstants.DEADBAND * -2) {
             return -1;
         } else {
             return 0;
