@@ -27,7 +27,7 @@ public class RobotContainer {
     private final OI oi = OI.getInstance();
 
     enum AutoRoutine {
-        WaitCommand, ThreeCargoBlue, ThreeCargoRed, TwoCargoBlue, TwoCargoRed
+        WaitCommand, BlueLeft, BlueRight, BlueMiddle, RedLeft, RedRight, RedMiddle
     }
 
     public RobotContainer() {
@@ -40,10 +40,12 @@ public class RobotContainer {
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
-        chooser.addOption("3 ball auto blue", AutoRoutine.ThreeCargoBlue);
-        chooser.addOption("2 ball autos blue", AutoRoutine.TwoCargoBlue);
-        chooser.addOption("3 ball auto red", AutoRoutine.ThreeCargoRed);
-        chooser.addOption("2 ball autos red", AutoRoutine.TwoCargoRed);
+        chooser.addOption("2 ball auto blue left", AutoRoutine.BlueLeft);
+        chooser.addOption("2 ball autos blue middle", AutoRoutine.BlueMiddle);
+        chooser.addOption("2 ball auto blue right", AutoRoutine.BlueRight);
+        chooser.addOption("2 ball autos red left", AutoRoutine.RedLeft);
+        chooser.addOption("2 ball autos red middle", AutoRoutine.RedMiddle);
+        chooser.addOption("2 ball autos red right", AutoRoutine.RedRight);
 
         chooser.setDefaultOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         configureButtonBindings();
@@ -62,24 +64,23 @@ public class RobotContainer {
         Command selected;
 
         switch (choice) {
-            case ThreeCargoBlue:
-                selected = TrajectoryFollower.getPath("output/3ball1.wpilib.json", drive, true);
-                
-            case ThreeCargoRed:
-                selected = TrajectoryFollower.getPath("output/3ball1red.wpilib.json", drive, true);
-     
-            case TwoCargoBlue:
-                selected = TrajectoryFollower.getPath("output/2ball1.wpilib.json", drive, true)
-                        .andThen(TrajectoryFollower.getPath("output/2ball2.wpilib.json", drive, false))
-                        .andThen(TrajectoryFollower.getPath("output/2ball3.wpilib.json", drive, false));
-            case TwoCargoRed:
-                selected = TrajectoryFollower.getPath("output/2ball1red.wpilib.json", drive, true)
-                        .andThen(TrajectoryFollower.getPath("output/2ball2red.wpilib.json", drive, false))
-                        .andThen(TrajectoryFollower.getPath("output/2ball3red.wpilib.json", drive, false));
+            case BlueLeft:
+                selected = TrajectoryFollower.getPath("output/BlueLeft.wpilib.json", drive, true);    
+            case BlueMiddle:
+                selected = TrajectoryFollower.getPath("output/BlueMiddle.wpilib.json", drive, true);
+            case BlueRight:
+                selected = TrajectoryFollower.getPath("output/BlueRight.wpilib.json", drive, true);
+            case RedLeft:
+                selected = TrajectoryFollower.getPath("output/RedLeft.wpilib.json", drive, true);
+            case RedMiddle:
+                selected = TrajectoryFollower.getPath("output/RedMiddle.wpilib.json", drive, true);
+            case RedRight:
+                selected = TrajectoryFollower.getPath("output/RedRight.wpilib.json", drive, true);
+            case WaitCommand:
+                WaitCommand waitCommand2 = new WaitCommand();
             default:
-                return new TaxiShoot(feeder, shooter, drive);
+                selected = new TaxiShoot(feeder, shooter, drive);
         }
-
         if (selected == null) {
             return new TaxiShoot(feeder, shooter, drive);
         }
