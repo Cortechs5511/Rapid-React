@@ -26,6 +26,7 @@ public class SetShooterPower extends CommandBase {
     @Override
     public void initialize() {
         shooter.setBottomPower(0);
+        shooter.setTopPower(0);
 
         SmartDashboard.putNumber("Shooter/Bottom Shooter Power", bottomPower);
         SmartDashboard.putNumber("Shooter/Top Shooter Power", topPower);

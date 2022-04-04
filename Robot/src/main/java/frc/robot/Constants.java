@@ -133,10 +133,10 @@ public final class Constants {
         public static final int BOTTOM_SHOOTER_ID = 50;
         public static final int TOP_SHOOTER_ID = 51;
 
-        public static final boolean INVERT_BOTTOM_SHOOTER = false;
+        public static final boolean INVERT_BOTTOM_SHOOTER = true;
         public static final boolean INVERT_TOP_SHOOTER = true;
 
-        public static final double VOLTAGE_COMPENSATION = 11.5;
+        public static final double VOLTAGE_COMPENSATION = 11.0;
         public static final double LONG_RAMP_RATE = 0.75;
 
         public static final double TOP_SHOOTER_POWER = 0.32;

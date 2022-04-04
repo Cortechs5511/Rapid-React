@@ -98,6 +98,7 @@ public class Shooter extends SubsystemBase{
         shooterController.configOpenloopRamp(ShooterConstants.LONG_RAMP_RATE);
         shooterController.configClosedloopRamp(ShooterConstants.LONG_RAMP_RATE);
         shooterController.configVoltageCompSaturation(ShooterConstants.VOLTAGE_COMPENSATION);
+        shooterController.enableVoltageCompensation(true);
 
         // shooterController.configPeakOutputReverse(0);
 
