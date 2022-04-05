@@ -100,8 +100,6 @@ public class Shooter extends SubsystemBase{
         shooterController.configVoltageCompSaturation(ShooterConstants.VOLTAGE_COMPENSATION);
         shooterController.enableVoltageCompensation(true);
 
-        // shooterController.configPeakOutputReverse(0);
-
         return shooterController;
     }
 }

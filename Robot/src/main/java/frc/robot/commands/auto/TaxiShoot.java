@@ -34,14 +34,11 @@ public class TaxiShoot extends CommandBase {
         double time = shootTimer.get();
 
         if (time < AutoConstants.TAXISHOOT_SHOOTER_WINDUP_TIME) {
-            // Accelerate shooter
             shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER);
             shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER);
         } else if (time < AutoConstants.TAXISHOOT_FEED_TIME + AutoConstants.TAXISHOOT_SHOOTER_WINDUP_TIME) {
-            // Feed 
             feeder.setTower(0.6);
         } else {
-            // Stop shooter, feeder, and drive back for 3 seconds.
             feeder.setTower(0);
             shooter.setBottomPower(0.0);
             shooter.setTopPower(0.0);

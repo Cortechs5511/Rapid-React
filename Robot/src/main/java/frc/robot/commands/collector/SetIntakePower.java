@@ -21,9 +21,6 @@ public class SetIntakePower extends CommandBase {
         intake.setIntake(0);
         intake.setWrist(0);
 
-        // TODO: Remove when done testing
-        SmartDashboard.putNumber("Debug/Intake Power", IntakeConstants.INTAKE_POWER);
-        SmartDashboard.putNumber("Debug/Wrist Down Power", IntakeConstants.WRIST_DOWN_POWER);
     }
 
     @Override

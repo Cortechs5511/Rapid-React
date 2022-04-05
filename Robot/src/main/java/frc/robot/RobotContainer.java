@@ -36,7 +36,6 @@ public class RobotContainer {
         feeder.setDefaultCommand(new SetFeederPower(feeder));
         limelight.setDefaultCommand(new LimelightDisplay(limelight));
         climber.setDefaultCommand(new SetClimberPower(climber));
-        // for testing only
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
@@ -77,12 +76,13 @@ public class RobotContainer {
             case RedRight:
                 selected = TrajectoryFollower.getPath("output/RedRight.wpilib.json", drive, true);
             case WaitCommand:
-                WaitCommand waitCommand2 = new WaitCommand();
+                selected = TrajectoryFollower.getPath("output/WaitCommand.wpilib.json", drive, true);
             default:
                 selected = new TaxiShoot(feeder, shooter, drive);
         }
         if (selected == null) {
             return new TaxiShoot(feeder, shooter, drive);
         }
+        return selected;
     }
 }

@@ -12,7 +12,6 @@ public class ShootCommandGroup extends SequentialCommandGroup {
         super(
                 new LightOn(limelight),
                 new WaitCommand(ShooterConstants.DWELL_TIME),
-                // new Align(drive, limelight, shooter),
                 new Launch(drive, feeder, intake, limelight, shooter)
         );
     }

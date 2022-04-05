@@ -26,15 +26,9 @@ public class SetClimberPower extends CommandBase {
 
     @Override
     public void execute() {
-        // TODO: Replace testing code with real code
-        double climbPower = SmartDashboard.getNumber("Debug/Climber Power", 0.3);
 
-        climber.setLeftClimberPower(oi.getLeftClimberPower() * climbPower);
-        climber.setRightClimberPower(oi.getRightClimberPower() * climbPower);
-
-        // this is the real code
-        // climber.setLeftClimberPower(oi.getLeftClimberPower() * ClimberConstants.CLIMB_POWER);
-        // climber.setRightClimberPower(oi.getRightClimberPower() * ClimberConstants.CLIMB_POWER);
+        climber.setLeftClimberPower(oi.getLeftClimberPower() * ClimberConstants.CLIMB_POWER);
+        climber.setRightClimberPower(oi.getRightClimberPower() * ClimberConstants.CLIMB_POWER);
     }
 
     @Override

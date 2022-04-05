@@ -43,12 +43,10 @@ public class Align extends CommandBase {
         targetSpeed = limelight.getBottomPower();
 
         if (!oi.getShooterPriority()) {
-            // Clamp values to range
             double setpoint = 0.0;
             double output = Math.max(-DriveConstants.ANGLE_PID_LIMIT, Math.min(DriveConstants.ANGLE_PID_LIMIT, anglePID.calculate(x, setpoint)));
             drive.setPower(output, -output);
         } else {
-            // If priority push button held, drive with third speed
             drive.setPower(oi.getLeftYDeadband() / 3, oi.getRightYDeadband() / 3);
         }
 

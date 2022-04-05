@@ -47,7 +47,6 @@ public class OI {
         return rightStick.getY();
     }
 
-    //TODO: Make get climber better since I made it - Aniketh
     /**
      * Returns power for left climber 
      * 1 or 1 if stick is past deadband in both directions

@@ -85,6 +85,7 @@ public final class Constants {
 
         public static final boolean INVERT_LEFT_CLIMBER = false;
         public static final boolean INVERT_RIGHT_CLIMBER = false;
+        public static final double CLIMB_POWER = 0.85;
 
     }
 
@@ -101,9 +102,9 @@ public final class Constants {
         public static final double RAMP_RATE = 0.25;
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
-        public static final double INTAKE_POWER = 0.8;
+        public static final double INTAKE_POWER = 0.85;
         public static final double WRIST_POWER = 0.5;
-        public static final double WRIST_DOWN_POWER = -0.05;
+        public static final double WRIST_DOWN_POWER = -0.02;
         public static final double WRIST_BUMP_THRESHOLD = -20;
     }
 
@@ -145,7 +146,6 @@ public final class Constants {
         public static final double BOTTOM_SHOOTER_POWER = 0.48;
         public static final double BOTTOM_SHOOTER_POWER_LOW = 0.20;
 
-        // getSelectedSensorVelocity: units (2048/rotation) per 100ms
         public static final double UNITS_PER_ROTATION = 2048;
         public static final double RPM_TO_UNITS = 600 / UNITS_PER_ROTATION;
 
@@ -153,7 +153,6 @@ public final class Constants {
         public static final SupplyCurrentLimitConfiguration CURRENT_LIMIT = new SupplyCurrentLimitConfiguration(true,
                 80, 0, 0);
 
-        // Max slew rate to alert operator not to feed, in rpm per 20ms
         public static final double ALERT_THRESHOLD = 10;
         public static final double SHOOTER_RPM_TOLERANCE = 200.0;
         public static final double DWELL_TIME = 0.5;
