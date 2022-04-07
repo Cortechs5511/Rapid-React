@@ -26,6 +26,9 @@ public final class Constants {
         public static final double AUTO_TIMEOUT = 10.0;
         public static final double RAMSETE_BETA = 0;
         public static final double RAMSETE_ZETA = 0;
+        public static final double WRIST_CURRENT_LIMIT = 0;
+        public static final double DRIVE_BACK_DISTANCE = 0;
+        public static final double NUDGE_DISTANCE = 0;
     }
 
     public static class DriveConstants {
@@ -40,8 +43,8 @@ public final class Constants {
         public static final int CURRENT_LIMIT = 80;
 
         public static final double GEARING = (44f / 24f) * (68f / 11f);
-        public static final double WHEEL_DIAMETER = Units.inchesToMeters(6);
-        public static final double ENCODER_TO_METERS = WHEEL_DIAMETER / GEARING;
+        public static final double WHEEL_DIAMETER = 6;
+        public static final double ENCODER_TO_METERS = (WHEEL_DIAMETER * Math.PI()) / GEARING;
         public static final double DRIVE_VELOCITY_TOLERANCE = 1;
 
         public static final double PID_MIN_OUTPUT = 0;
