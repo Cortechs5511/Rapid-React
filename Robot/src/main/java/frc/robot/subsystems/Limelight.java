@@ -84,7 +84,7 @@ public class Limelight extends SubsystemBase {
         }
 
         double y = getY();
-        distance = -0.001996 * Math.pow(y, 3) + 0.09212 * Math.pow(y, 2) - 3.634 * y + 115.1;
+        distance = 12*((-2.2350145831184E-4*Math.pow(y, 3))+(0.0070239840777885*Math.pow(y, 2))-(0.29164518774187*y)+9.4505826482213);
     }
 
     /**
