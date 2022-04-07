@@ -11,6 +11,7 @@ import frc.robot.commands.collector.SetIntakePower;
 import frc.robot.commands.drive.Flip;
 import frc.robot.commands.drive.SetSpeed;
 import frc.robot.commands.SetClimberPower;
+import frc.robot.commands.limelight.LightToggle;
 import frc.robot.commands.limelight.LimelightDisplay;
 import frc.robot.commands.shooter.SetShooterPower;
 import frc.robot.subsystems.*;
@@ -58,6 +59,8 @@ public class RobotContainer {
         new JoystickButton(oi.leftStick, Constants.OIConstants.FLIP_BUTTON).whenPressed(new Flip(drive));
         new JoystickButton(oi.rightStick, Constants.OIConstants.HALF_SPEED_BUTTON)
                 .whenPressed(() -> drive.setMaxPower(0.5)).whenReleased(() -> drive.setMaxPower(1.0));
+
+        new JoystickButton(oi.controller, Constants.OIConstants.LIMELIGHT_TOGGLE_BUTTON).whenPressed(new LightToggle(limelight));
     }
 
     public Command getAutonomousCommand() {

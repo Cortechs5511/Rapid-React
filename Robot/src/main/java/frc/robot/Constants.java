@@ -77,6 +77,7 @@ public final class Constants {
         public static final int WRIST_DOWN_AXIS = 3;
         public static final int FLIP_BUTTON = 2;
         public static final int HALF_SPEED_BUTTON = 2;
+        public static final int LIMELIGHT_TOGGLE_BUTTON = 8;
     }
 
     public static class ClimberConstants {

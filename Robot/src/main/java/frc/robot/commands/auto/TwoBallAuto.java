@@ -13,78 +13,77 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
 
 public class TwoBallAuto extends CommandBase {
-  private final Intake intake;
-  private final Feeder feeder;
-  private final Shooter shooter;
-  private final Drive drive;
+    private final Intake intake;
+    private final Feeder feeder;
+    private final Shooter shooter;
+    private final Drive drive;
 
-  final Timer shootTimer = new Timer();
+    final Timer shootTimer = new Timer();
 
-  /** Creates a new TwoBallAuto. */
-  public TwoBallAuto(Intake intake, Feeder feeder, Shooter shooter, Drive drive) {
-    this.intake = intake;
-    this.feeder = feeder;
-    this.shooter = shooter;
-    this.drive = drive;
+    /** Creates a new TwoBallAuto. */
+    public TwoBallAuto(Intake intake, Feeder feeder, Shooter shooter, Drive drive) {
+        this.intake = intake;
+        this.feeder = feeder;
+        this.shooter = shooter;
+        this.drive = drive;
 
-    addRequirements(intake, feeder, shooter, drive);
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    shootTimer.reset();
-    shootTimer.start();
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    double time = shootTimer.get();
-    SmartDashboard.putNumber("Time", time);
-    // TO DO: FIX CONSTANTS FOR TIME
-    if (time < AutoConstants.TAXISHOOT_SHOOTER_WINDUP_TIME) {
-      // Accelerate shooter
-      shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER);
-      shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER);
-    } else if (time < AutoConstants.TAXISHOOT_FEED_TIME) {
-      // Feed
-      feeder.setTower(FeederConstants.TOWER_POWER);
-    } else if (time < AutoConstants.TWOBALL_WRIST_DOWN_TIME) {
-      // Drive back, put down wrist
-      drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
-      intake.setWrist(-1 * IntakeConstants.WRIST_POWER);
-    } else if (time < AutoConstants.TWOBALL_AUTO_DRIVE_TIME) {
-      // Stop wrist, keep driving keep intaking
-      intake.setWrist(0);
-      drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
-      intake.setIntake(IntakeConstants.INTAKE_POWER);
-      shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER_ELEVEN_FEET);
-      shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER_ELEVEN_FEET);
-    } else if (time < AutoConstants.TWOBALL_INTAKE_TIME) {
-      // Stop driving, keep intaking
-      drive.setPower(0, 0);
-    } else if (time < AutoConstants.TWOBALL_JERK_FORWARD_TIME) {
-      drive.setPower(-0.65, -0.65);
-    } else {
-      drive.setPower(0, 0);
+        addRequirements(intake, feeder, shooter, drive);
     }
-  }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    drive.setPower(0, 0);
-    intake.setWrist(0);
-    intake.setIntake(0);
-    feeder.setTower(0);
-    shooter.setBottomPower(0);
-    shooter.setTopPower(0);
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        shootTimer.reset();
+        shootTimer.start();
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        double time = shootTimer.get();
+        SmartDashboard.putNumber("Time", time);
+        if (time < AutoConstants.TAXISHOOT_SHOOTER_WINDUP_TIME) {
+            // Accelerate shooter
+            shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER);
+            shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER);
+        } else if (time < AutoConstants.TAXISHOOT_FEED_TIME) {
+            // Feed
+            feeder.setTower(FeederConstants.TOWER_POWER);
+        } else if (time < AutoConstants.TWOBALL_WRIST_DOWN_TIME) {
+            // Drive back, put down wrist
+            drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
+            intake.setWrist(-1 * IntakeConstants.WRIST_POWER);
+        } else if (time < AutoConstants.TWOBALL_AUTO_DRIVE_TIME) {
+            // Stop wrist, keep driving keep intaking
+            intake.setWrist(0);
+            drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
+            intake.setIntake(IntakeConstants.INTAKE_POWER);
+            shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER_ELEVEN_FEET);
+            shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER_ELEVEN_FEET);
+        } else if (time < AutoConstants.TWOBALL_INTAKE_TIME) {
+            // Stop driving, keep intaking
+            drive.setPower(0, 0);
+        } else if (time < AutoConstants.TWOBALL_JERK_FORWARD_TIME) {
+            drive.setPower(-0.65, -0.65);
+        } else {
+            drive.setPower(0, 0);
+        }
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        drive.setPower(0, 0);
+        intake.setWrist(0);
+        intake.setIntake(0);
+        feeder.setTower(0);
+        shooter.setBottomPower(0);
+        shooter.setTopPower(0);
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }
