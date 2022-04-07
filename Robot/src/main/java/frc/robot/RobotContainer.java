@@ -14,6 +14,7 @@ import frc.robot.commands.SetClimberPower;
 import frc.robot.commands.limelight.LimelightDisplay;
 import frc.robot.commands.shooter.SetShooterPower;
 import frc.robot.subsystems.*;
+import frc.robot.commands.auto.TwoBallAuto;
 
 public class RobotContainer {
     private SendableChooser<AutoRoutine> chooser = new SendableChooser<>();
@@ -27,7 +28,7 @@ public class RobotContainer {
     private final OI oi = OI.getInstance();
 
     enum AutoRoutine {
-        WaitCommand, BlueLeft, BlueRight, BlueMiddle, RedLeft, RedRight, RedMiddle
+        WaitCommand, BlueLeft, BlueRight, BlueMiddle, RedLeft, RedRight, RedMiddle, TwoBallAuto
     }
 
     public RobotContainer() {
@@ -39,6 +40,7 @@ public class RobotContainer {
         shooter.setDefaultCommand(new SetShooterPower(shooter));
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
+        chooser.addOption("Simple 2 ball auto", AutoRoutine.TwoBallAuto);
         chooser.addOption("2 ball auto blue left", AutoRoutine.BlueLeft);
         chooser.addOption("2 ball autos blue middle", AutoRoutine.BlueMiddle);
         chooser.addOption("2 ball auto blue right", AutoRoutine.BlueRight);

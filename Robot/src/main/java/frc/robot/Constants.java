@@ -13,7 +13,11 @@ public final class Constants {
 
     public static class AutoConstants {
         public static final double TAXISHOOT_SHOOTER_WINDUP_TIME = 1.0;
-        public static final double TAXISHOOT_FEED_TIME = 5.0;
+        public static final double TAXISHOOT_FEED_TIME = TAXISHOOT_SHOOTER_WINDUP_TIME + 5.0;
+        public static final double TWOBALL_AUTO_DRIVE_TIME = TAXISHOOT_FEED_TIME + 2.0;
+        public static final double TWOBALL_INTAKE_TIME = TWOBALL_AUTO_DRIVE_TIME + 1.5;
+        public static final double TWOBALL_WRIST_TIME = TWOBALL_INTAKE_TIME + 0.5;
+        public static final double TWOBALL_DRIVE_POWER = 0.3;
         public static final double SHOOTER_WINDUP_TIME = 1.0;
         public static final double SHOOTER_TOP_WHEEL_SPEED = 0.3;
         public static final double SHOOTER_BOTTOM_WHEEL_SPEED = 0.6;
