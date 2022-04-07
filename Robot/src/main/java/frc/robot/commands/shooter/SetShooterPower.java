@@ -26,6 +26,7 @@ public class SetShooterPower extends CommandBase {
     @Override
     public void initialize() {
         shooter.setBottomPower(0);
+        shooter.setTopPower(0);
 
         SmartDashboard.putNumber("Shooter/Bottom Shooter Power", bottomPower);
         SmartDashboard.putNumber("Shooter/Top Shooter Power", topPower);
@@ -36,12 +37,10 @@ public class SetShooterPower extends CommandBase {
         bottomPower = SmartDashboard.getNumber("Shooter/Bottom Shooter Power", bottomPower);
         topPower = SmartDashboard.getNumber("Shooter/Top Shooter Power", topPower);
 
-        // Toggle shooting power based off of status
         if (shooting) {
             shooter.setBottomPower(bottomPower);
             shooter.setTopPower(topPower);    
 
-            // Shooter speed advisory for operator
             double speed = shooter.getBottomSpeed();
 
             if ((speed - lastSpeed) > ShooterConstants.ALERT_THRESHOLD) {
@@ -56,12 +55,9 @@ public class SetShooterPower extends CommandBase {
             shooter.setTopPower(0);
         }
 
-        // Toggle shooting on and off
         if (oi.rightStick.getRawButton(1)) {
-            // Set to shoot
             shooting = true;
         } else if (oi.rightStick.getRawButton(3)) {
-            // Stop
             shooting = false;
         }
     }

@@ -50,7 +50,6 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
-        // Flush NT every 20ms if diagnostics enabled
         if (Constants.DIAGNOSTICS) {
             NetworkTableInstance.getDefault().flush();
         }

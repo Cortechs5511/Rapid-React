@@ -3,7 +3,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.subsystems.Climber;
 
 public class OI {
     private static OI oi;
@@ -46,33 +48,41 @@ public class OI {
     }
 
     /**
-     * Returns power for left climber with deadband
+     * Returns power for left climber 
+     * 1 or 1 if stick is past deadband in both directions
+     * 0 if stick is within deadband
      * 
      * @return double controller left joystick power
      */
     public double getLeftClimberPower() {
         double power = controller.getRawAxis(1);
 
-        if (Math.abs(power) < 2 * OIConstants.DEADBAND) {
+        if (power > OIConstants.DEADBAND * 2) {
+            return 1;
+        } else if (power < OIConstants.DEADBAND * -2) {
+            return -1;
+        } else {
             return 0;
         }
-
-        return power;
     }
 
     /**
      * Returns power for right climber with deadband
+     * 1 or 1 if stick is past deadband in both directions
+     * 0 if stick is within deadband
      * 
      * @return double controller left joystick power
      */
     public double getRightClimberPower() {
         double power = controller.getRawAxis(5);
 
-        if (Math.abs(power) < 2 * OIConstants.DEADBAND) {
+        if (power > OIConstants.DEADBAND * 2) {
+            return 1;
+        } else if (power < OIConstants.DEADBAND * -2) {
+            return -1;
+        } else {
             return 0;
         }
-
-        return power;
     }
 
     /**
@@ -93,7 +103,7 @@ public class OI {
      * @return int 1 if intake is pressed else, 0
      */
     public int getIntake() {
-        return (controller.getYButton() || controller.getXButton() || controller.getBButton()) ? 1 : 0;
+        return (controller.getYButton() /*|| controller.getXButton() || controller.getBButton()*/) ? 1 : 0;
     }
 
     /**
