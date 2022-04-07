@@ -146,11 +146,8 @@ public final class Constants {
         public static final double VOLTAGE_COMPENSATION = 11.0;
         public static final double LONG_RAMP_RATE = 0.75;
 
-        public static final double TOP_SHOOTER_POWER = 0.32;
-        public static final double TOP_SHOOTER_POWER_LOW = 0.15;
-
-        public static final double BOTTOM_SHOOTER_POWER = 0.48;
-        public static final double BOTTOM_SHOOTER_POWER_LOW = 0.20;
+        public static final double TOP_SHOOTER_POWER = 0.37;
+        public static final double BOTTOM_SHOOTER_POWER = 0.5;
 
         public static final double BOTTOM_SHOOTER_POWER_ELEVEN_FEET = 0.52;
         public static final double TOP_SHOOTER_POWER_ELEVEN_FEET = 0.5;
