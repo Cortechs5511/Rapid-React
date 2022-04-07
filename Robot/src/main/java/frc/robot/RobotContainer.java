@@ -13,6 +13,7 @@ import frc.robot.commands.drive.SetSpeed;
 import frc.robot.commands.limelight.LimelightDisplay;
 import frc.robot.commands.shooter.SetShooterPower;
 import frc.robot.subsystems.*;
+import frc.robot.commands.auto.TwoBallAuto;
 
 public class RobotContainer {
     private SendableChooser<AutoRoutine> chooser = new SendableChooser<>();
@@ -25,7 +26,7 @@ public class RobotContainer {
     private final OI oi = OI.getInstance();
 
     enum AutoRoutine {
-        WaitCommand, ThreeCargoBlue, ThreeCargoRed, TwoCargoBlue, TwoCargoRed
+        WaitCommand, ThreeCargoBlue, ThreeCargoRed, TwoCargoBlue, TwoCargoRed, TwoBallAuto
     }
 
     public RobotContainer() {
@@ -41,6 +42,8 @@ public class RobotContainer {
         chooser.addOption("2 ball autos blue", AutoRoutine.TwoCargoBlue);
         chooser.addOption("3 ball auto red", AutoRoutine.ThreeCargoRed);
         chooser.addOption("2 ball autos red", AutoRoutine.TwoCargoRed);
+        chooser.addOption("Simple 2 ball auto", AutoRoutine.TwoBallAuto);
+
 
         chooser.setDefaultOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         configureButtonBindings();
