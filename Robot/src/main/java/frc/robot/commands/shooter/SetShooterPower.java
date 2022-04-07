@@ -4,10 +4,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.Constants.ShooterConstants;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 
 public class SetShooterPower extends CommandBase {
     private final Shooter shooter;
+    private final Limelight limelight;
     private final OI oi = OI.getInstance();
 
     boolean shooting = false;
@@ -18,8 +20,9 @@ public class SetShooterPower extends CommandBase {
 
     double lastSpeed = 0;
 
-    public SetShooterPower(Shooter shooter) {
+    public SetShooterPower(Shooter shooter, Limelight limelight) {
         this.shooter = shooter;
+        this.limelight = limelight;
         addRequirements(this.shooter);
     }
 
@@ -30,13 +33,20 @@ public class SetShooterPower extends CommandBase {
 
         SmartDashboard.putNumber("Shooter/Bottom Shooter Power", bottomPower);
         SmartDashboard.putNumber("Shooter/Top Shooter Power", topPower);
+
+        SmartDashboard.putBoolean("Shooter/Manual Power", true);
     }
 
     @Override
     public void execute() {
-        bottomPower = SmartDashboard.getNumber("Shooter/Bottom Shooter Power", bottomPower);
-        topPower = SmartDashboard.getNumber("Shooter/Top Shooter Power", topPower);
-
+        if (SmartDashboard.getBoolean("Shooter/Manual Power", true)) {
+            bottomPower = SmartDashboard.getNumber("Shooter/Bottom Shooter Power", bottomPower);
+            topPower = SmartDashboard.getNumber("Shooter/Top Shooter Power", topPower);
+        } else {
+            bottomPower = limelight.getBottomPower();
+            topPower = limelight.getTopPower();
+        }
+ 
         if (shooting) {
             shooter.setBottomPower(bottomPower);
             shooter.setTopPower(topPower);    
@@ -59,6 +69,7 @@ public class SetShooterPower extends CommandBase {
             shooting = true;
         } else if (oi.rightStick.getRawButton(3)) {
             shooting = false;
+            oi.setRumble(0);
         }
     }
 

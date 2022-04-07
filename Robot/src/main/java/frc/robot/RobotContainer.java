@@ -38,7 +38,7 @@ public class RobotContainer {
         feeder.setDefaultCommand(new SetFeederPower(feeder));
         limelight.setDefaultCommand(new LimelightDisplay(limelight));
         climber.setDefaultCommand(new SetClimberPower(climber));
-        shooter.setDefaultCommand(new SetShooterPower(shooter));
+        shooter.setDefaultCommand(new SetShooterPower(shooter, limelight));
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         chooser.addOption("Simple 2 ball auto", AutoRoutine.TwoBallAuto);

@@ -34,11 +34,11 @@ public class Limelight extends SubsystemBase {
             return ShooterConstants.TOP_SHOOTER_POWER;
         }
 
-        // TODO: Fit top shooter power vs. distance and update
-        double power = (-7.5505436444866E-7*Math.pow(distance, 3))+(3.0733525002985E-4*Math.pow(distance, 2))-(0.035273885457723*X)+1.6119725962643;
+        double power = (-7.5505436444866E-7 * Math.pow(distance, 3)) + (3.0733525002985E-4 * Math.pow(distance, 2))
+                - (0.035273885457723 * distance) + 1.6119725962643;
         return power;
     }
-    
+
     /**
      * Method to return desired bottom shooter power
      *
@@ -51,8 +51,8 @@ public class Limelight extends SubsystemBase {
             return ShooterConstants.BOTTOM_SHOOTER_POWER;
         }
 
-        // TODO: Fit bottom shooter power vs. distance and update
-        double power = (7.4410621008951E-8*Math.pow(distance, 3))-(2.685403143862E-5*Math.pow(distance, 2))+(0.0036871646248961*distance)+0.33565674462514;
+        double power = (7.4410621008951E-8 * Math.pow(distance, 3)) - (2.685403143862E-5 * Math.pow(distance, 2))
+                + (0.0036871646248961 * distance) + 0.33565674462514;
         return power;
     }
 
@@ -84,7 +84,8 @@ public class Limelight extends SubsystemBase {
         }
 
         double y = getY();
-        distance = 12*((-2.2350145831184E-4*Math.pow(y, 3))+(0.0070239840777885*Math.pow(y, 2))-(0.29164518774187*y)+9.4505826482213);
+        distance = 12 * ((-2.2350145831184E-4 * Math.pow(y, 3)) + (0.0070239840777885 * Math.pow(y, 2))
+                - (0.29164518774187 * y) + 9.4505826482213);
     }
 
     /**
@@ -98,7 +99,7 @@ public class Limelight extends SubsystemBase {
     }
 
     /**
-     * Returns light status 
+     * Returns light status
      * 
      * @return boolean light on
      */
