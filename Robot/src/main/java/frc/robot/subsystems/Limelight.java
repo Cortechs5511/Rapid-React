@@ -28,12 +28,14 @@ public class Limelight extends SubsystemBase {
      * @return double calculated power for top shooter
      */
     public double getTopPower() {
+        updateDistance();
+
         if (distance < 0) {
             return ShooterConstants.TOP_SHOOTER_POWER;
         }
 
         // TODO: Fit top shooter power vs. distance and update
-        double power = 0;
+        double power = (-7.5505436444866E-7*Math.pow(distance, 3))+(3.0733525002985E-4*Math.pow(distance, 2))-(0.035273885457723*X)+1.6119725962643;
         return power;
     }
     
@@ -50,7 +52,7 @@ public class Limelight extends SubsystemBase {
         }
 
         // TODO: Fit bottom shooter power vs. distance and update
-        double power = 0;
+        double power = (7.4410621008951E-8*Math.pow(distance, 3))-(2.685403143862E-5*Math.pow(distance, 2))+(0.0036871646248961*distance)+0.33565674462514;
         return power;
     }
 
