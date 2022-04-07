@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.auto.TaxiShoot;
 import frc.robot.commands.auto.TrajectoryFollower;
@@ -87,13 +88,13 @@ public class RobotContainer {
                 selected = TrajectoryFollower.getPath("output/RedRight.wpilib.json", drive, true);
                 break;
             case WaitCommand:
-                selected = TrajectoryFollower.getPath("output/WaitCommand.wpilib.json", drive, true);
+                selected = new WaitCommand(1.0);
                 break;
             case TwoBallAuto:
                 selected = new TwoBallAuto(intake, feeder, shooter, drive);
                 break;
             default:
-                selected = new TaxiShoot(feeder, shooter, drive);
+                selected = new TwoBallAuto(feeder, shooter, drive);
                 break;
         }
         return selected;
