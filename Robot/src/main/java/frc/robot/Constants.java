@@ -13,11 +13,12 @@ public final class Constants {
 
     public static class AutoConstants {
         public static final double TAXISHOOT_SHOOTER_WINDUP_TIME = 1.0;
-        public static final double TAXISHOOT_FEED_TIME = TAXISHOOT_SHOOTER_WINDUP_TIME + 5.0;
-        public static final double TWOBALL_AUTO_DRIVE_TIME = TAXISHOOT_FEED_TIME + 2.0;
-        public static final double TWOBALL_INTAKE_TIME = TWOBALL_AUTO_DRIVE_TIME + 1.5;
-        public static final double TWOBALL_WRIST_TIME = TWOBALL_INTAKE_TIME + 0.5;
-        public static final double TWOBALL_DRIVE_POWER = 0.3;
+        public static final double TAXISHOOT_FEED_TIME = TAXISHOOT_SHOOTER_WINDUP_TIME + 3.0;
+        public static final double TWOBALL_WRIST_DOWN_TIME = TAXISHOOT_FEED_TIME + 0.5;
+        public static final double TWOBALL_AUTO_DRIVE_TIME = TWOBALL_WRIST_DOWN_TIME + 1.0;
+        public static final double TWOBALL_INTAKE_TIME = TWOBALL_AUTO_DRIVE_TIME + 1.0;
+        public static final double TWOBALL_JERK_FORWARD_TIME = TWOBALL_INTAKE_TIME + 0.125;
+        public static final double TWOBALL_DRIVE_POWER = 0.3;   
         public static final double SHOOTER_WINDUP_TIME = 1.0;
         public static final double SHOOTER_TOP_WHEEL_SPEED = 0.3;
         public static final double SHOOTER_BOTTOM_WHEEL_SPEED = 0.6;
@@ -149,6 +150,9 @@ public final class Constants {
 
         public static final double BOTTOM_SHOOTER_POWER = 0.48;
         public static final double BOTTOM_SHOOTER_POWER_LOW = 0.20;
+
+        public static final double BOTTOM_SHOOTER_POWER_ELEVEN_FEET = 0.52;
+        public static final double TOP_SHOOTER_POWER_ELEVEN_FEET = 0.5;
 
         public static final double UNITS_PER_ROTATION = 2048;
         public static final double RPM_TO_UNITS = 600 / UNITS_PER_ROTATION;

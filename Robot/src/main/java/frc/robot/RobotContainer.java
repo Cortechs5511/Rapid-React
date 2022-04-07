@@ -66,24 +66,32 @@ public class RobotContainer {
 
         switch (choice) {
             case BlueLeft:
-                selected = TrajectoryFollower.getPath("output/BlueLeft.wpilib.json", drive, true);    
+                selected = TrajectoryFollower.getPath("output/BlueLeft.wpilib.json", drive, true);   
+                break; 
             case BlueMiddle:
                 selected = TrajectoryFollower.getPath("output/BlueMiddle.wpilib.json", drive, true);
+                break;
             case BlueRight:
                 selected = TrajectoryFollower.getPath("output/BlueRight.wpilib.json", drive, true);
+                break;
             case RedLeft:
                 selected = TrajectoryFollower.getPath("output/RedLeft.wpilib.json", drive, true);
+                break;
             case RedMiddle:
                 selected = TrajectoryFollower.getPath("output/RedMiddle.wpilib.json", drive, true);
+                break;
             case RedRight:
                 selected = TrajectoryFollower.getPath("output/RedRight.wpilib.json", drive, true);
+                break;
             case WaitCommand:
                 selected = TrajectoryFollower.getPath("output/WaitCommand.wpilib.json", drive, true);
+                break;
+            case TwoBallAuto:
+                selected = new TwoBallAuto(intake, feeder, shooter, drive);
+                break;
             default:
                 selected = new TaxiShoot(feeder, shooter, drive);
-        }
-        if (selected == null) {
-            return new TaxiShoot(feeder, shooter, drive);
+                break;
         }
         return selected;
     }

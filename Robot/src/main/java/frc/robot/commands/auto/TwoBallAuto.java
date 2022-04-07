@@ -1,8 +1,10 @@
 package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.FeederConstants;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.Drive;
@@ -39,6 +41,7 @@ public class TwoBallAuto extends CommandBase {
   @Override
   public void execute() {
     double time = shootTimer.get();
+    SmartDashboard.putNumber("Time", time);
     // TO DO: FIX CONSTANTS FOR TIME
     if (time < AutoConstants.TAXISHOOT_SHOOTER_WINDUP_TIME) {
       // Accelerate shooter
@@ -46,18 +49,25 @@ public class TwoBallAuto extends CommandBase {
       shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER);
     } else if (time < AutoConstants.TAXISHOOT_FEED_TIME) {
       // Feed
-      feeder.setTower(0.6);
-    } else if (time < AutoConstants.TWOBALL_AUTO_DRIVE_TIME) {
-      // Drive back
+      feeder.setTower(FeederConstants.TOWER_POWER);
+    } else if (time < AutoConstants.TWOBALL_WRIST_DOWN_TIME) {
+      // Drive back, put down wrist
       drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
-    } else if (time < AutoConstants.TWOBALL_INTAKE_TIME) {
-      // Stop driving and intake
-      drive.setPower(0, 0);
-      intake.setWrist(IntakeConstants.WRIST_POWER);
+      intake.setWrist(-1 * IntakeConstants.WRIST_POWER);
+    } else if (time < AutoConstants.TWOBALL_AUTO_DRIVE_TIME) {
+      // Stop wrist, keep driving keep intaking
+      intake.setWrist(0);
+      drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
       intake.setIntake(IntakeConstants.INTAKE_POWER);
-    } else if (time < AutoConstants.TWOBALL_WRIST_TIME) {
-      // Wrist up
-      intake.setWrist(-1 * IntakeConstants.WRIST_DOWN_POWER);
+      shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER_ELEVEN_FEET);
+      shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER_ELEVEN_FEET);
+    } else if (time < AutoConstants.TWOBALL_INTAKE_TIME) {
+      // Stop driving, keep intaking
+      drive.setPower(0, 0);
+    } else if (time < AutoConstants.TWOBALL_JERK_FORWARD_TIME) {
+      drive.setPower(-0.65, -0.65);
+    } else {
+      drive.setPower(0, 0);
     }
   }
 
@@ -75,6 +85,6 @@ public class TwoBallAuto extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return shootTimer.hasElapsed(AutoConstants.AUTO_TIMEOUT);
+    return false;
   }
 }
