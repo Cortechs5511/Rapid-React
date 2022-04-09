@@ -30,7 +30,7 @@ public class RobotContainer {
     private final OI oi = OI.getInstance();
 
     enum AutoRoutine {
-        WaitCommand, BlueLeft, BlueRight, BlueMiddle, RedLeft, RedRight, RedMiddle, TwoBallAuto
+        WaitCommand, TwoBallAuto, OneBallAuto
     }
 
     public RobotContainer() {
@@ -43,14 +43,9 @@ public class RobotContainer {
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         chooser.addOption("Simple 2 ball auto", AutoRoutine.TwoBallAuto);
-        chooser.addOption("2 ball auto blue left", AutoRoutine.BlueLeft);
-        chooser.addOption("2 ball autos blue middle", AutoRoutine.BlueMiddle);
-        chooser.addOption("2 ball auto blue right", AutoRoutine.BlueRight);
-        chooser.addOption("2 ball autos red left", AutoRoutine.RedLeft);
-        chooser.addOption("2 ball autos red middle", AutoRoutine.RedMiddle);
-        chooser.addOption("2 ball autos red right", AutoRoutine.RedRight);
+        chooser.addOption("1 ball auto", AutoRoutine.OneBallAuto);
 
-        chooser.setDefaultOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
+        chooser.setDefaultOption("Simple 2 ball auto", AutoRoutine.TwoBallAuto);
         configureButtonBindings();
 
         Shuffleboard.getTab("Autonomous Selection").add(chooser);
@@ -69,32 +64,17 @@ public class RobotContainer {
         Command selected;
 
         switch (choice) {
-            case BlueLeft:
-                selected = TrajectoryFollower.getPath("output/BlueLeft.wpilib.json", drive, true);   
-                break; 
-            case BlueMiddle:
-                selected = TrajectoryFollower.getPath("output/BlueMiddle.wpilib.json", drive, true);
-                break;
-            case BlueRight:
-                selected = TrajectoryFollower.getPath("output/BlueRight.wpilib.json", drive, true);
-                break;
-            case RedLeft:
-                selected = TrajectoryFollower.getPath("output/RedLeft.wpilib.json", drive, true);
-                break;
-            case RedMiddle:
-                selected = TrajectoryFollower.getPath("output/RedMiddle.wpilib.json", drive, true);
-                break;
-            case RedRight:
-                selected = TrajectoryFollower.getPath("output/RedRight.wpilib.json", drive, true);
-                break;
             case WaitCommand:
                 selected = new WaitCommand(1.0);
                 break;
             case TwoBallAuto:
                 selected = new TwoBallAuto(intake, feeder, shooter, drive);
                 break;
+            case OneBallAuto:
+                selected = new TaxiShoot(feeder, shooter, drive);
+                break;
             default:
-                selected = new TwoBallAuto(feeder, shooter, drive);
+                selected = new TwoBallAuto(intake, feeder, shooter, drive);
                 break;
         }
         return selected;
