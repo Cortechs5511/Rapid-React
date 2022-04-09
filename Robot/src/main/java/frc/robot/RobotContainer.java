@@ -68,13 +68,13 @@ public class RobotContainer {
                 selected = new WaitCommand(1.0);
                 break;
             case TwoBallAuto:
-                selected = new TwoBallAuto(intake, feeder, shooter, drive);
+                selected = new TwoBallAuto(intake, feeder, shooter, drive, limelight);
                 break;
             case OneBallAuto:
                 selected = new TaxiShoot(feeder, shooter, drive);
                 break;
             default:
-                selected = new TwoBallAuto(intake, feeder, shooter, drive);
+                selected = new TwoBallAuto(intake, feeder, shooter, drive, limelight);
                 break;
         }
         return selected;

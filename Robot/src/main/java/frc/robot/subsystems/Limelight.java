@@ -19,7 +19,7 @@ public class Limelight extends SubsystemBase {
 
     public Limelight() {
         // Turn lights off
-        ledMode.setNumber(1);
+        setLight(false);
     }
 
     /**
