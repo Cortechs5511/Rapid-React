@@ -38,6 +38,8 @@ public class TwoBallAuto extends CommandBase {
     public void initialize() {
         shootTimer.reset();
         shootTimer.start();
+
+        limelight.setLight(false);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -56,14 +58,13 @@ public class TwoBallAuto extends CommandBase {
             // Drive back, put down wrist, turn on lights
             drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
             intake.setWrist(-1 * IntakeConstants.WRIST_POWER);
-            limelight.setLight(true);
         } else if (time < AutoConstants.TWOBALL_AUTO_DRIVE_TIME) {
             // Stop wrist, keep driving keep intaking
             intake.setWrist(0);
             drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
             intake.setIntake(IntakeConstants.INTAKE_POWER);
-            shooter.setBottomPower(limelight.getBottomPower());
-            shooter.setTopPower(limelight.getTopPower());
+            shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER_2);
+            shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER_2);
         } else if (time < AutoConstants.TWOBALL_INTAKE_TIME) {
             // Stop driving, keep intaking
             drive.setPower(0, 0);
