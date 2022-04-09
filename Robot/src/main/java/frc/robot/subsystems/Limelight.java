@@ -34,8 +34,9 @@ public class Limelight extends SubsystemBase {
             return ShooterConstants.TOP_SHOOTER_POWER;
         }
 
+        //Added 1.5% to the constant term
         double power = (-7.5505436444866E-7 * Math.pow(distance, 3)) + (3.0733525002985E-4 * Math.pow(distance, 2))
-                - (0.035273885457723 * distance) + 1.6119725962643;
+                - (0.035273885457723 * distance) + 1.6119725962643 + 0.015;
         return power;
     }
 
@@ -51,8 +52,9 @@ public class Limelight extends SubsystemBase {
             return ShooterConstants.BOTTOM_SHOOTER_POWER;
         }
 
+        //Added 2% to constant term
         double power = (7.4410621008951E-8 * Math.pow(distance, 3)) - (2.685403143862E-5 * Math.pow(distance, 2))
-                + (0.0036871646248961 * distance) + 0.33565674462514;
+                + (0.0036871646248961 * distance) + 0.33565674462514 + 0.02;
         return power;
     }
 
