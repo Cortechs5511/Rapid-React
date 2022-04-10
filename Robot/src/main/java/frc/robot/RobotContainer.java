@@ -43,7 +43,7 @@ public class RobotContainer {
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         chooser.addOption("2 ball auto", AutoRoutine.TwoBallAuto);
-        chooser.addOption("2 ball auto (shoot from hangar)", AutoRoutine.TwoBallAutoAlt);
+        chooser.addOption("2 ball auto (shoot from tarmac)", AutoRoutine.TwoBallAutoAlt);
         chooser.addOption("1 ball auto", AutoRoutine.OneBallAuto);
 
         chooser.setDefaultOption("2 ball auto", AutoRoutine.TwoBallAuto);
