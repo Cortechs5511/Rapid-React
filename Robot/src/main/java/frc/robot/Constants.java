@@ -110,7 +110,7 @@ public final class Constants {
         public static final double RAMP_RATE = 0.25;
         public static final NeutralMode NEUTRAL_MODE = NeutralMode.Brake;
 
-        public static final double INTAKE_POWER = 0.85;
+        public static final double INTAKE_POWER = 1;
         public static final double WRIST_POWER = 0.5;
         public static final double WRIST_DOWN_POWER = -0.02;
         public static final double WRIST_BUMP_THRESHOLD = -20;
@@ -131,7 +131,7 @@ public final class Constants {
         public static final int BOTTOM_SENSOR_PORT = 1;
         public static final int TOP_SENSOR_PORT = 2;
 
-        public static final double TOWER_POWER = 0.8;
+        public static final double TOWER_POWER = 1;
         public static final double HOLD_TOWER_POWER = 0.8;
 
         public static final double EJECT_TIMEOUT = 5.0;
