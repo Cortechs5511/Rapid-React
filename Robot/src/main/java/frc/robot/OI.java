@@ -3,9 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.subsystems.Climber;
 
 public class OI {
     private static OI oi;

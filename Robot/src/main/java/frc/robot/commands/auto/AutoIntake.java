@@ -28,13 +28,9 @@ public class AutoIntake extends CommandBase {
 
     @Override
     public void execute() {
-        double time = feedTimer.get();
-
         intake.setWrist(IntakeConstants.WRIST_POWER);
         intake.setIntake(IntakeConstants.INTAKE_POWER);
         feeder.holdTower(FeederConstants.HOLD_TOWER_POWER);
-
-
     }
 
     @Override
