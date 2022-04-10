@@ -8,14 +8,14 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Shooter;
 
-public class TaxiShoot extends CommandBase {
+public class OneBallAuto extends CommandBase {
     private final Feeder feeder;
     private final Shooter shooter;
     private final Drive drive;
 
     final Timer shootTimer = new Timer();
 
-    public TaxiShoot(Feeder feeder, Shooter shooter, Drive drive) {
+    public OneBallAuto(Feeder feeder, Shooter shooter, Drive drive) {
         this.feeder = feeder;
         this.shooter = shooter;
         this.drive = drive;
