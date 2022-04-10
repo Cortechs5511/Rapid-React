@@ -13,7 +13,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
 
-public class TwoBallAuto extends CommandBase {
+public class TwoBallAutoAlt extends CommandBase {
     private final Intake intake;
     private final Feeder feeder;
     private final Shooter shooter;
@@ -22,7 +22,7 @@ public class TwoBallAuto extends CommandBase {
 
     final Timer shootTimer = new Timer();
 
-    public TwoBallAuto(Intake intake, Feeder feeder, Shooter shooter, Drive drive, Limelight limelight) {
+    public TwoBallAutoAlt(Intake intake, Feeder feeder, Shooter shooter, Drive drive, Limelight limelight) {
         this.intake = intake;
         this.feeder = feeder;
         this.shooter = shooter;
@@ -43,7 +43,7 @@ public class TwoBallAuto extends CommandBase {
     @Override
     public void execute() {
         double time = shootTimer.get();
-        
+
         if (time < AutoConstants.TAXISHOOT_SHOOTER_WINDUP_TIME) {
             // Accelerate shooter
             shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER);
@@ -52,24 +52,24 @@ public class TwoBallAuto extends CommandBase {
             // Feed
             feeder.setTower(FeederConstants.TOWER_POWER);
         } else if (time < AutoConstants.TWOBALL_WRIST_DOWN_TIME) {
-            // Drive back, put down wrist
+            // Drive back, put down wrist, turn on lights, stop feeding
             drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
             intake.setWrist(-1 * IntakeConstants.WRIST_POWER);
+            feeder.holdTower(FeederConstants.HOLD_TOWER_POWER);
         } else if (time < AutoConstants.TWOBALL_AUTO_DRIVE_TIME) {
-            // Stop wrist, continue driving and intaking, and update shooter speed
+            // Stop wrist, keep driving keep intaking
             intake.setWrist(0);
             drive.setPower(AutoConstants.TWOBALL_DRIVE_POWER, AutoConstants.TWOBALL_DRIVE_POWER);
             intake.setIntake(IntakeConstants.INTAKE_POWER);
-            shooter.setBottomPower(ShooterConstants.BOTTOM_SHOOTER_POWER_2);
-            shooter.setTopPower(ShooterConstants.TOP_SHOOTER_POWER_2);
         } else if (time < AutoConstants.TWOBALL_INTAKE_TIME) {
             // Stop driving, keep intaking
             drive.setPower(0, 0);
-        } else if (time < AutoConstants.TWOBALL_JERK_FORWARD_TIME) {
-            // Bump the robot a little bit
-            drive.setPower(-0.65, -0.65);
+        } else if (time < AutoConstants.TWOBALL_DRIVE_BACK_TIME) {
+            drive.setPower(-AutoConstants.TWOBALL_DRIVE_POWER, -AutoConstants.TWOBALL_DRIVE_POWER);
         } else {
+            // Stop and shoot
             drive.setPower(0, 0);
+            feeder.setTower(FeederConstants.TOWER_POWER);
         }
     }
 
@@ -84,7 +84,6 @@ public class TwoBallAuto extends CommandBase {
         limelight.setLight(false);
     }
 
-    // Returns true when the command should end.
     @Override
     public boolean isFinished() {
         return false;

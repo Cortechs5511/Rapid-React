@@ -14,17 +14,19 @@ public final class Constants {
     public static class AutoConstants {
         public static final double TAXISHOOT_SHOOTER_WINDUP_TIME = 1.0;
         public static final double TAXISHOOT_FEED_TIME = TAXISHOOT_SHOOTER_WINDUP_TIME + 3.0;
+
         public static final double TWOBALL_WRIST_DOWN_TIME = TAXISHOOT_FEED_TIME + 0.5;
         public static final double TWOBALL_AUTO_DRIVE_TIME = TWOBALL_WRIST_DOWN_TIME + 1.0;
         public static final double TWOBALL_INTAKE_TIME = TWOBALL_AUTO_DRIVE_TIME + 1.0;
         public static final double TWOBALL_JERK_FORWARD_TIME = TWOBALL_INTAKE_TIME + 0.125;
+        public static final double TWOBALL_DRIVE_BACK_TIME = TWOBALL_INTAKE_TIME + 1.0;
         public static final double TWOBALL_DRIVE_POWER = 0.3;   
-        public static final double SHOOTER_WINDUP_TIME = 1.0;
-        public static final double SHOOTER_TOP_WHEEL_SPEED = 0.3;
-        public static final double SHOOTER_BOTTOM_WHEEL_SPEED = 0.6;
+        
         public static final double FEED_TIME = 5.0;
+        public static final double SHOOTER_WINDUP_TIME = 1.0;
         public static final double AUTO_POWER = 0.3;
-        public static final double AUTO_TIMEOUT = 10.0;
+        public static final double AUTO_TIMEOUT = 8.0;
+
         public static final double RAMSETE_BETA = 0;
         public static final double RAMSETE_ZETA = 0;
     }
@@ -83,7 +85,7 @@ public final class Constants {
     public static class ClimberConstants {
         public static final double VOLTAGE_COMPENSATION = 11;
         public static final IdleMode IDLE_MODE = IdleMode.kBrake;
-        public static final double RAMP_RATE = 0.5;
+        public static final double RAMP_RATE = 0.2;
         public static final int CURRENT_LIMIT = 50;
 
         public static final int LEFT_CLIMBER_PORT = 60;
@@ -152,7 +154,7 @@ public final class Constants {
 
         // 11 feet
         public static final double BOTTOM_SHOOTER_POWER_2 = 0.5;
-        public static final double TOP_SHOOTER_POWER_2 = 0.58;
+        public static final double TOP_SHOOTER_POWER_2 = 0.68;
 
         public static final double UNITS_PER_ROTATION = 2048;
         public static final double RPM_TO_UNITS = 600 / UNITS_PER_ROTATION;

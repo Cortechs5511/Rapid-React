@@ -16,6 +16,7 @@ import frc.robot.commands.limelight.LimelightDisplay;
 import frc.robot.commands.shooter.SetShooterPower;
 import frc.robot.subsystems.*;
 import frc.robot.commands.auto.TwoBallAuto;
+import frc.robot.commands.auto.TwoBallAutoAlt;
 
 public class RobotContainer {
     private SendableChooser<AutoRoutine> chooser = new SendableChooser<>();
@@ -29,7 +30,7 @@ public class RobotContainer {
     private final OI oi = OI.getInstance();
 
     enum AutoRoutine {
-        WaitCommand, TwoBallAuto, OneBallAuto
+        WaitCommand, TwoBallAuto, TwoBallAutoAlt, OneBallAuto
     }
 
     public RobotContainer() {
@@ -42,6 +43,7 @@ public class RobotContainer {
 
         chooser.addOption("Wait command (placeholder)", AutoRoutine.WaitCommand);
         chooser.addOption("2 ball auto", AutoRoutine.TwoBallAuto);
+        chooser.addOption("2 ball auto (shoot from hangar)", AutoRoutine.TwoBallAutoAlt);
         chooser.addOption("1 ball auto", AutoRoutine.OneBallAuto);
 
         chooser.setDefaultOption("2 ball auto", AutoRoutine.TwoBallAuto);
@@ -68,6 +70,9 @@ public class RobotContainer {
                 break;
             case TwoBallAuto:
                 selected = new TwoBallAuto(intake, feeder, shooter, drive, limelight);
+                break;
+            case TwoBallAutoAlt:
+                selected = new TwoBallAutoAlt(intake, feeder, shooter, drive, limelight);
                 break;
             case OneBallAuto:
                 selected = new OneBallAuto(feeder, shooter, drive);
