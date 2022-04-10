@@ -153,8 +153,8 @@ public final class Constants {
         public static final double BOTTOM_SHOOTER_POWER = 0.5;
 
         // 11 feet
-        public static final double BOTTOM_SHOOTER_POWER_2 = 0.5;
-        public static final double TOP_SHOOTER_POWER_2 = 0.68;
+        public static final double BOTTOM_SHOOTER_POWER_2 = 0.48;
+        public static final double TOP_SHOOTER_POWER_2 = 0.35;
 
         public static final double UNITS_PER_ROTATION = 2048;
         public static final double RPM_TO_UNITS = 600 / UNITS_PER_ROTATION;
