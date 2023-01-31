@@ -4,7 +4,9 @@ import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive.*;
+
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -24,40 +26,41 @@ public class Drive extends SubsystemBase {
 
     private final RelativeEncoder leftEncoder = createEncoder(leftFollower);
     private final RelativeEncoder rightEncoder = createEncoder(rightFollower);
-
-    private final AHRS gyro = new AHRS(Port.kMXP);
-    private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(0));
-
-    private boolean inverted = false;
     private double maxPower = 1.0;
 
-    SpeedControllerGroup leftMotors = null;
-    SpeedControllerGroup rightMotors = null;
-    DifferentialDrive differentialDrive = null;
+    private final AHRS gyro = new AHRS(Port.kMXP);
+    private final DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(0), maxPower, maxPower);
+
+    private boolean inverted = false;
 
 
-    public Drive() {
+    DifferentialDrive differentialDrive = new DifferentialDrive(leftLeader, rightLeader);
+
+
+    public  Drive() {
         leftFollower.follow(leftLeader);
         rightFollower.follow(rightLeader);
 
         leftEncoder.setPosition(0);
         rightEncoder.setPosition(0);
 
-        leftMotors = new SpeedControllerGroup(leftLeader);
-        rightMotors = new SpeedControllerGroup(rightLeader);
-        differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
 
         gyro.reset();
     }
 
     public void arcadeDrive(double moveSpeed, double rotateSpeed) {
         differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
-    }
+
+    } 
     /**
      * Get position of left encoder
      * 
      * @return double encoder sensed position, meters
      */
+
+    public double getPitch() {
+        return gyro.getPitch();
+    }
     public double getLeftPosition() {
         return leftEncoder.getPosition();
     }
@@ -103,20 +106,20 @@ public class Drive extends SubsystemBase {
     /**
      * Resets odometry for auto
      */
-    public void resetOdometry() {
+    /* public void resetOdometry() {
         leftEncoder.setPosition(0);
         rightEncoder.setPosition(0);
         odometry.resetPosition(new Pose2d(), Rotation2d.fromDegrees(gyro.getYaw()));
-    }
+    } */
 
     /**
      * Returns Pose2D of robot odometry
      * 
      * @return Pose2D robot position (x, y) in meters
      */
-    public Pose2d getPose() {
+    /* public Pose2d getPose() {
         return odometry.getPoseMeters();
-    }
+    } */
 
     /**
      * Sets drivetrain inversion flag to opposite of existing value
@@ -207,7 +210,7 @@ public class Drive extends SubsystemBase {
     public void periodic() {
         odometry.update(new Rotation2d(Math.IEEEremainder(gyro.getYaw(), 360)), leftEncoder.getPosition(),
                 rightEncoder.getPosition());
-
+        SmartDashboard.putNumber("Drivetrain/Pitch", gyro.getPitch());
         if (Constants.DIAGNOSTICS) {
             SmartDashboard.putNumber("Drivetrain/Left Position", getLeftPosition());
             SmartDashboard.putNumber("Drivetrain/Right Position", getRightPosition());

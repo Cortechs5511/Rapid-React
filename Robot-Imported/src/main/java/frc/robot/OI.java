@@ -45,6 +45,10 @@ public class OI {
         return rightStick.getX();
     }
 
+    public double getRightY() {
+        return rightStick.getY();
+    }
+
     /**
      * Returns power for left climber 
      * 1 or 1 if stick is past deadband in both directions
@@ -182,6 +186,16 @@ public class OI {
 
         return rightX;
     }
+
+    public double getRightYDeadband() {
+        double rightY = getRightY();
+        if (Math.abs(rightY) < OIConstants.DEADBAND) {
+            return 0;
+        }
+
+        return rightY;
+    }
+
 
     /**
      * Sets rumble value of controller to specified intensity

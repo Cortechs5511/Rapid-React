@@ -2,7 +2,7 @@ package frc.robot.commands.drive;
 
 import frc.robot.OI;
 import frc.robot.subsystems.Drive;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive.*;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class SetSpeed extends CommandBase {
@@ -24,7 +24,7 @@ public class SetSpeed extends CommandBase {
         double moveSpeed = oi.getLeftYDeadband();
         double rotateSpeed = oi.getRightXDeadband();
         drive.arcadeDrive(moveSpeed, rotateSpeed);
-        //drive.setPower(oi.getLeftYDeadband(), oi.getRightYDeadband());
+       //drive.setPower(oi.getLeftYDeadband(), oi.getRightYDeadband());
     }
 
     @Override
